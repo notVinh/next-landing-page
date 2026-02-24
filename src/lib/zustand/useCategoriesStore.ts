@@ -2,12 +2,12 @@
 import { create } from "zustand";
 
 type Category = {
-  id: string;
-  level: number;
-  description: string;
+  id: number;
   name: string;
-  link: string;
-  items?: { label: string; href: string }[];
+  description: string;
+  parent_id: number | null;
+  level: number;
+  slug?: string; // nếu backend có slug thì dùng, nếu không thì tự tạo
 };
 
 type CategoriesState = {

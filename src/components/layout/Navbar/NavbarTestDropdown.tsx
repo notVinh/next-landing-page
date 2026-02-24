@@ -180,7 +180,7 @@ export function NavbarTestDropdown() {
             </svg>
           </LocalizedLink>
           <div className="absolute left-full top-0 w-56 bg-white shadow-lg py-2 opacity-0 invisible -translate-x-2 group-hover/sub:opacity-100 group-hover/sub:visible group-hover/sub:translate-x-0 transition-all duration-200">
-            {sub.items.map((item) => (
+            {sub?.items?.map((item) => (
               <LocalizedLink
                 key={item.href}
                 href={item.href}
