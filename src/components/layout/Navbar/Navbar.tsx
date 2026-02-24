@@ -16,7 +16,7 @@ function getPathWithoutLang(pathname: string | null): string {
   return pathname.replace(/^\/(vi|en|zh)/, "") || "/";
 }
 
-export function Navbar({ data }) {
+export function Navbar({ data }: { data: any[] }) {
   const { categories, setCategories } = useCategoriesStore();
 
   useEffect(() => {
