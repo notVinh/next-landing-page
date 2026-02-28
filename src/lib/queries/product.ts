@@ -1,6 +1,6 @@
 // import axios from "axios";
 
-const backendUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api`;
+const backendUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;
 
 // export const getProductById = async (id: string) => {
 //   console.log(`${backendUrl}/products/${id}`);

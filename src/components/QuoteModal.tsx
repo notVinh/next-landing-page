@@ -37,7 +37,7 @@ export default function QuoteModal({
     notes: "",
     items: [
       {
-        product_id: productId,
+        productId: productId,
         quantity: 0,
       },
     ],
@@ -145,7 +145,7 @@ export default function QuoteModal({
               </p>
             </div>
 
-            <form className="p-8 space-y-4">
+            <form className="p-8 space-y-4" onSubmit={handleSubmit}>
               {/* Tên & Số điện thoại (Grid 2 cột) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -263,7 +263,6 @@ export default function QuoteModal({
               <button
                 type="submit"
                 disabled={isLoading || secondsLeft > 0}
-                onClick={handleSubmit}
                 className="w-full bg-slate-900 hover:bg-black text-white font-black py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-slate-200 mt-4"
               >
                 {!isLoading ? (

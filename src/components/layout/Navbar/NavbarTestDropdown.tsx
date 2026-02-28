@@ -8,9 +8,9 @@ import { useCategoriesStore } from "@/lib/zustand/useCategoriesStore";
 export function NavbarTestDropdown() {
   const { categories, setCategories } = useCategoriesStore();
 
-  const submenus = buildMenu(categories);
+  const { t, language } = useLanguage();
+  const submenus = buildMenu(categories, language);
 
-  const { t } = useLanguage();
   // const submenus = [
   //   {
   //     title: t("products.printCutSpread") as string,
@@ -192,12 +192,12 @@ export function NavbarTestDropdown() {
           </div>
         </div>
       ))}
-      <LocalizedLink
+      {/* <LocalizedLink
         href="/san-pham/phan-mem-quan-ly"
         className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
       >
         {t("products.dataManagementSoftware") as string}
-      </LocalizedLink>
+      </LocalizedLink> */}
     </div>
   );
 }

@@ -42,7 +42,7 @@ export default async function ProductDetailPage({
 
   // 3. Xử lý bản dịch an toàn
   const t = product.translations?.find(
-    (trans: { language_code: string }) => trans.language_code === lang,
+    (trans: { languageCode: string }) => trans.languageCode === lang,
   );
 
   if (!t) return notFound();
@@ -57,8 +57,8 @@ export default async function ProductDetailPage({
             <div className="w-full md:w-1/2 space-y-4">
               <div className="aspect-video bg-slate-100 rounded-2xl overflow-hidden border">
                 <img
-                  src={product.images[0]}
-                  alt={t.name}
+                  src={product.images[0] || "/placeholder-image.png"}
+                  alt={t.name || "Product Image"}
                   className="w-full h-full object-contain p-4"
                 />
               </div>

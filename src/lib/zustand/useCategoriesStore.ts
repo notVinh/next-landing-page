@@ -5,7 +5,7 @@ type Category = {
   id: number;
   name: string;
   description: string;
-  parent_id: number | null;
+  parentId: number | null;
   level: number;
   slug?: string; // nếu backend có slug thì dùng, nếu không thì tự tạo
 };

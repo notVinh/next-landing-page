@@ -10,6 +10,11 @@ export function middleware(request: NextRequest) {
   // Nếu là /admin thì bỏ qua i18n
   if (pathname.startsWith("/admin")) {
     return NextResponse.next();
+    // return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+  }
+
+  if (pathname.startsWith("/customer")) {
+    return NextResponse.next();
   }
 
   // Nếu root, redirect sang ngôn ngữ mặc định

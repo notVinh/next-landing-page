@@ -48,7 +48,7 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
       >
         <div className="max-w-7xl mx-auto relative z-10">
           <nav className="text-sm mb-4 text-blue-200">
-            Products /{" "}
+            {t("nav.products") as string} /{" "}
             <span className="text-white font-medium">{categoryName}</span>
           </nav>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">

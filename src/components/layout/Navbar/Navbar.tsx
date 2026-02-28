@@ -17,14 +17,14 @@ function getPathWithoutLang(pathname: string | null): string {
 }
 
 export function Navbar({ data }: { data: any[] }) {
-  // const { categories, setCategories } = useCategoriesStore();
+  const { categories, setCategories } = useCategoriesStore();
 
-  // useEffect(() => {
-  //   // chỉ set một lần khi mount
-  //   if (categories.length === 0) {
-  //     setCategories(data);
-  //   }
-  // }, [data, categories, setCategories]);
+  useEffect(() => {
+    // chỉ set một lần khi mount
+    if (categories.length === 0) {
+      setCategories(data);
+    }
+  }, [data, categories, setCategories]);
 
   const [testOpen, setTestOpen] = useState(false);
 

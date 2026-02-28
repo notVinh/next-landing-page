@@ -763,7 +763,7 @@
 
 </div>
 <script>
-    function loadOwlCar($cat_id, $parent_id) {
+    function loadOwlCar($cat_id, $parentId) {
         $.ajax({
             type: 'get',
             url: '/index.php?module=home&view=home&raw=1&task=ajax_owl_cat',
@@ -774,7 +774,7 @@
             success: function(data) {
                 // console.log(data.cat_id);
                 // console.log(data);
-                $("#data-owl-" + $parent_id).html(data);
+                $("#data-owl-" + $parentId).html(data);
                 return true;
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {}

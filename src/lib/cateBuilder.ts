@@ -2,9 +2,10 @@ type Category = {
   id: number;
   name: string;
   description: string;
-  parent_id: number | null;
+  parentId: number | null;
   level: number;
   slug?: string; // nếu backend có slug thì dùng, nếu không thì tự tạo
+  translations?: any[];
 };
 
 type MenuItem = {
@@ -24,34 +25,43 @@ function slugify(str: string): string {
     .replace(/[^a-z0-9-]/g, "");
 }
 
-export function buildMenu(categories: Category[]): MenuItem[] {
+export function buildMenu(categories: Category[], lang: string): MenuItem[] {
   const map: Record<number, MenuItem> = {};
   const roots: MenuItem[] = [];
 
-  // tạo node cho mỗi category
+  // Bước 1: Khởi tạo Map bằng ID của Category gốc
   categories.forEach((cat) => {
-    const slug = cat.slug || slugify(cat.name);
-    map[cat.id] = {
-      title: cat.name,
-      label: cat.name,
-      href: "", // sẽ gán sau
-      items: [],
-    };
+    const translation =
+      cat.translations?.find((t) => t.languageCode === lang) ||
+      cat.translations?.[0]; // Fallback về bản dịch đầu tiên nếu không tìm thấy lang
+
+    if (translation) {
+      map[cat.id] = {
+        title: translation.name,
+        label: translation.name,
+        href: translation.slug || slugify(translation.name),
+        items: [],
+      };
+    }
   });
 
-  // gán href và build cây
-  categories.forEach((cat) => {
-    const slug = cat.slug || slugify(cat.name);
-    const node = map[cat.id];
+  // Bước 2: Sắp xếp categories theo level để đảm bảo cha luôn có href trước con
+  const sortedCategories = [...categories].sort((a, b) => a.level - b.level);
 
-    if (cat.parent_id === null) {
-      // root
-      node.href = `/san-pham/${slug}`;
+  // Bước 3: Xây dựng cấu trúc cây và nối chuỗi href
+  sortedCategories.forEach((cat) => {
+    const node = map[cat.id];
+    if (!node) return;
+
+    if (cat.parentId === null) {
+      // Root node
+      node.href = `/san-pham/${node.href}`;
       roots.push(node);
     } else {
-      const parent = map[cat.parent_id];
+      const parent = map[cat.parentId];
       if (parent) {
-        node.href = `${parent.href}/${slug}`;
+        // Nối slug của con vào href hoàn chỉnh của cha
+        node.href = `${parent.href}/${node.href}`;
         parent.items?.push(node);
       }
     }

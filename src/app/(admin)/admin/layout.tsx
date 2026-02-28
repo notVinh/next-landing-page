@@ -1,4 +1,5 @@
 import Sidebar from "@/components/admin/Sidebar";
+import QueryProvider from "@/lib/react-query/QueryProvider";
 import { Bell, RotateCw, Settings, User } from "lucide-react";
 
 export default function AdminLayout({
@@ -33,7 +34,10 @@ export default function AdminLayout({
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-8">{children}</main>
+        <QueryProvider>
+          {" "}
+          <main className="flex-1 overflow-y-auto p-8">{children}</main>
+        </QueryProvider>
       </div>
     </div>
   );

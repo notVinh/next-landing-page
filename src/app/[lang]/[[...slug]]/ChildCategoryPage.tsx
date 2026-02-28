@@ -10,11 +10,11 @@ interface ProductModel {
   id: string;
   name: string;
   subName: string;
-  image: string;
+  images: string[];
   features: string[];
   translations: [
     {
-      language_code: string;
+      languageCode: string;
       name: string;
       description: string;
       specs: { label: string; value: string }[];
@@ -37,7 +37,7 @@ export function ChildCategoryPage({
 
   // 1. Tìm thông tin danh mục hiện tại (con1) dựa trên props đã có
   // Chúng ta tìm item có name khớp với 'child' và có cấp độ là level 2
-  const currentCategory = categories.find(
+  const currentCategory: any = categories.find(
     (item: { level: number }) => item.level === 2,
   );
 
@@ -61,7 +61,7 @@ export function ChildCategoryPage({
         setLoading(true);
         // Dùng template string để đưa currentId vào URL
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories/${currentId}/products`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/categories/${currentId}/products`,
         );
 
         // Axios trả về data nằm trong property .data
@@ -77,16 +77,40 @@ export function ChildCategoryPage({
     fetchData();
   }, [currentId]);
 
+  //tìm ra cha
+  const parentCategory: any = categories.find(
+    (item: { level: number; id: number }) =>
+      item.level === 1 && item.id === currentCategory?.parentId,
+  );
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 1. Header Blue Section */}
       <div className="bg-[#2b5a9e] text-white py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <nav className="text-sm text-blue-200 mb-2">
-            Products / Print, Mill, Spread, Cut /{" "}
-            <span className="text-white">{subCategoryName}</span>
+            {t("nav.products") as string} /{" "}
+            {
+              parentCategory?.translations.find(
+                (t: any) => t.languageCode === language,
+              )?.name
+            }{" "}
+            /{" "}
+            <span className="text-white">
+              {
+                currentCategory?.translations.find(
+                  (t: any) => t.languageCode === language,
+                )?.name
+              }
+            </span>
           </nav>
-          <h1 className="text-4xl font-bold mb-3">{subCategoryName}</h1>
+          <h1 className="text-4xl font-bold mb-3">
+            {
+              currentCategory?.translations.find(
+                (t: any) => t.languageCode === language,
+              )?.name
+            }
+          </h1>
           <p className="text-lg text-blue-100">
             High-precision pattern and template digitizing equipment.
           </p>
@@ -97,7 +121,7 @@ export function ChildCategoryPage({
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
         {products.map((item) => {
           const matchLanguageItem = item.translations.find(
-            (i) => i.language_code === language,
+            (i) => i.languageCode === language,
           );
           return (
             <div
@@ -107,7 +131,7 @@ export function ChildCategoryPage({
               {/* Ảnh sản phẩm */}
               <div className="w-full md:w-1/3 flex justify-center">
                 <img
-                  src={item.image}
+                  src={item.images[0]}
                   alt={matchLanguageItem?.name}
                   className="max-h-48 object-contain"
                 />

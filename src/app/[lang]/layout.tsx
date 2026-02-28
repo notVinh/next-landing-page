@@ -11,16 +11,18 @@ export default async function LangLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }) {
-  // const res = await fetch(`${process.env.BACKEND_URL}/api/categories`, {
-  //   next: { revalidate: 60 },
-  // });
-  // const categories = await res.json();
+  const res = await fetch(`${process.env.BACKEND_URL}/categories`, {
+    next: { revalidate: 60 },
+  });
+  const categories = await res.json();
+
+  console.log(categories);
 
   return (
     <LanguageProvider>
       <div className="font-sans">
-        {/* <Navbar data={categories} /> */}
-        <Navbar data={[]} />
+        <Navbar data={categories.data || []} />
+        {/* <Navbar data={[]} /> */}
         <main className="pt-16">{children}</main>
         <Footer />
         <FloatingContactButtons />
