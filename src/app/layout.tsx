@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.ico",
+  },
   title:
     "GTG - Giang Thành | Máy May Công Nghiệp, Thiết Bị Ngành May Hàng Đầu Việt Nam",
   description:
