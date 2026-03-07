@@ -9,7 +9,6 @@ const backendUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}`;
 // };
 
 export const getProductById = async (id: string) => {
-  console.log(`${backendUrl}/products/${id}`);
   const res = await fetch(`${backendUrl}/products/${id}`, {
     cache: "no-store", // hoặc "force-cache" tùy nhu cầu
   });

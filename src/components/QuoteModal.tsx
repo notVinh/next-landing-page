@@ -107,7 +107,7 @@ export default function QuoteModal({
   return (
     <>
       <button
-        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2"
+        className="flex-1 bg-blue-600 border-2 hover:bg-white hover:text-blue-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg shadow-blue-200 transition-all flex items-center justify-center gap-2"
         onClick={() => setIsOpen(true)}
       >
         <PhoneIcon className="w-5 h-5" />
@@ -118,7 +118,7 @@ export default function QuoteModal({
             : "联系报价"}
       </button>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4 mt-12">
           {/* Overlay mờ phía sau */}
           <div
             className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"

@@ -1,14 +1,16 @@
 import Sidebar from "@/components/admin/Sidebar";
+import UserFetcher from "@/components/admin/UserFetcher";
 import QueryProvider from "@/lib/react-query/QueryProvider";
 import { Bell, RotateCw, Settings, User } from "lucide-react";
 
-export default function AdminLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <div className="flex h-screen bg-gray-50">
+      <UserFetcher />
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}

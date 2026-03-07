@@ -6,35 +6,59 @@ const DEFAULT_LANG = "vi";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const accessToken = request.cookies.get("accessToken")?.value;
 
-  // Nếu là /admin thì bỏ qua i18n
+  // 1. Bảo vệ nhánh ADMIN (Auth Guard)
   if (pathname.startsWith("/admin")) {
+    // 1. Nếu đang vào trang Login MÀ ĐÃ CÓ token -> Đá về Dashboard
+    if (pathname === "/admin/login" && accessToken) {
+      return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+    }
+
+    // 2. Nếu vào các trang quản trị MÀ CHƯA CÓ token -> Đá về Login
+    if (pathname !== "/admin/login" && !accessToken) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
+
     return NextResponse.next();
-    // return NextResponse.redirect(new URL("/admin/dashboard", request.url));
   }
 
-  if (pathname.startsWith("/customer")) {
+  // 1. ƯU TIÊN SỐ 1: Nhánh Admin và các file hệ thống
+  // Loại bỏ hoàn toàn Admin và API khỏi luồng xử lý i18n
+  if (
+    // pathname.startsWith("/admin") ||
+    pathname.startsWith("/customer") ||
+    pathname.startsWith("/api") ||
+    pathname.includes(".") // Bỏ qua các file có đuôi mở rộng (.png, .jpg, .svg...)
+  ) {
     return NextResponse.next();
   }
 
-  // Nếu root, redirect sang ngôn ngữ mặc định
+  // 2. Xử lý trang chủ (Root)
   if (pathname === "/") {
-    const lang = request.cookies.get("NEXT_LOCALE")?.value || DEFAULT_LANG;
+    // Ưu tiên cookie nếu người dùng đã chọn ngôn ngữ trước đó
+    const lang =
+      request.cookies.get("userSelectedLanguage")?.value || DEFAULT_LANG;
     return NextResponse.redirect(new URL(`/${lang}`, request.url));
   }
 
-  // Nếu path bắt đầu bằng /vi, /en, /zh thì cho qua
-  const firstSegment = pathname.split("/")[1];
-  if (SUPPORTED_LANGS.includes(firstSegment)) {
+  // 3. Kiểm tra xem URL đã có ngôn ngữ hợp lệ chưa
+  const pathnameHasLocale = SUPPORTED_LANGS.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
+  );
+
+  if (pathnameHasLocale) {
     return NextResponse.next();
   }
 
-  // Các path khác không có lang → redirect sang /vi/...
+  // 4. Nếu vào các trang landing mà thiếu [lang] -> Redirect về ngôn ngữ mặc định
+  // Ví dụ: /about -> /vi/about
   return NextResponse.redirect(
     new URL(`/${DEFAULT_LANG}${pathname}`, request.url),
   );
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|favicon.ico|images|logo|.*\\.).*)"],
+  // Matcher tối ưu: Chạy trên tất cả các route trừ file tĩnh và hệ thống Next.js
+  matcher: ["/((?!_next/static|_next/image|assets|favicon.ico|sw.js|.*\\.).*)"],
 };

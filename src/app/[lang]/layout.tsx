@@ -4,6 +4,11 @@ import { Footer } from "@/components/layout/Footer/Footer";
 import { FloatingContactButtons } from "@/components/FloatingContactButtons";
 import { ToastContainer } from "react-toastify";
 
+export async function generateStaticParams() {
+  // Trả về danh sách các ngôn ngữ bạn hỗ trợ
+  return [{ lang: "vi" }, { lang: "en" }, { lang: "zh" }];
+}
+
 export default async function LangLayout({
   children,
   params,
@@ -11,15 +16,15 @@ export default async function LangLayout({
   children: React.ReactNode;
   params: Promise<{ lang: string }>;
 }) {
+  const { lang } = await params;
+
   const res = await fetch(`${process.env.BACKEND_URL}/categories`, {
     next: { revalidate: 60 },
   });
   const categories = await res.json();
 
-  console.log(categories);
-
   return (
-    <LanguageProvider>
+    <LanguageProvider lang={lang}>
       <div className="font-sans">
         <Navbar data={categories.data || []} />
         {/* <Navbar data={[]} /> */}

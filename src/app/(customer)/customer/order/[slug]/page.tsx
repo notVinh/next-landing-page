@@ -62,7 +62,6 @@ export default function OrderConfirmPage() {
     const getQuote = async () => {
       try {
         const data = await getQuoteByToken(slug);
-        console.log("Quote data:", data);
         setQuoteData(data);
       } catch (error) {
         if ((error as any).response?.status === 404) {
@@ -90,7 +89,6 @@ export default function OrderConfirmPage() {
         customerAddress: currentCustomer.address,
       };
       const data = await confirmQuoteByCustomer(slug, customerInfo);
-      console.log("Confirm data:", customerInfo);
       setSubmitted(true);
     } catch (error) {
       console.error("Error confirming quote:", error);

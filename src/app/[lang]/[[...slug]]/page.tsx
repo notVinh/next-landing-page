@@ -1,39 +1,71 @@
-import { normalizePathToBase } from "@/utils/routeSlugs";
+// @/app/[lang]/[[...slug]]/page.tsx
+import { routeAliases, getPageIdBySlug } from "@/data/routeAliases";
+import { notFound } from "next/navigation";
 import { HomePage } from "./HomePage";
 import { ProductsPage } from "./ProductsPage";
-import { SolutionsPage } from "./SolutionsPage";
-import { ServicesPage } from "./ServicesPage";
-import { ContactPage } from "./ContactPage";
-import { CatalogPage } from "./CatalogPage";
-import { CompanyInfoPage } from "./CompanyInfoPage";
-import { CompanyProfilePage } from "./CompanyProfilePage";
-import { HistoryPage } from "./HistoryPage";
-import { notFound } from "next/navigation";
-import { TestPage } from "./TestPage";
 import { CategoryParentPage } from "./CategoryParentPage";
 import { ChildCategoryPage } from "./ChildCategoryPage";
 import ProductDetailPage from "./ProductDetailPage";
+import { SolutionsPage } from "./SolutionsPage";
+import SolutionDetailTemplate from "@/components/home/SolutionDetailTemplate";
+import { solutions } from "@/data/solutionData";
+import { CompanyProfilePage } from "./CompanyProfilePage";
+import HistoryPage from "./HistoryPage";
+import CompanyInfoPage from "./CompanyInfoPage";
+import ServicesPage from "./ServicesPage";
+import ContactPage from "./ContactPage";
+import CatalogPage from "./CatalogPage";
 
-const routeMap: Record<string, React.ComponentType> = {
-  "/": HomePage,
-  "/san-pham": ProductsPage,
-  "/giai-phap": SolutionsPage,
-  "/dich-vu": ServicesPage,
-  "/lien-he": ContactPage,
-  "/catalog": CatalogPage,
-  "/thong-tin-cong-ty": CompanyInfoPage,
-  "/ho-so-cong-ty": CompanyProfilePage,
-  "/lich-su": HistoryPage,
-  "/test": TestPage,
+const componentMap: Record<string, React.ComponentType> = {
+  home: HomePage,
+  contact: ContactPage,
+  services: ServicesPage,
+  products: ProductsPage, // Prefix cho sản
+  history: HistoryPage,
+  profile: CompanyProfilePage,
+  info: CompanyInfoPage,
+  catalog: CatalogPage,
 };
 
-export default async function SlugPage({
-  params,
-}: {
-  params: Promise<{ lang: string; slug?: string[] }>;
-}) {
+interface PageProps {
+  params: Promise<{
+    lang: string; // Từ thư mục [lang]
+    slug?: string[]; // Từ thư mục [[...slug]], dấu ? vì nó là Optional
+  }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>; // Nếu bạn cần dùng query string (?key=value)
+}
+
+export default async function SlugPage({ params }: PageProps) {
   const { slug, lang } = await params;
   const pathSegments = slug || [];
+
+  // Trường hợp Trang chủ: /vi hoặc /en
+  if (pathSegments.length === 0) return <HomePage />;
+
+  const firstSegment = pathSegments[0];
+
+  const SOLUTION_PREFIXES: Record<string, string> = {
+    vi: "giai-phap",
+    en: "solutions",
+    zh: "jie-jue-fang-an",
+  };
+  const solutionBase = SOLUTION_PREFIXES[lang] || "giai-phap";
+
+  // Case: /giai-phap (Trang danh sách giải pháp)
+  if (pathSegments.length === 1 && pathSegments[0] === solutionBase) {
+    return <SolutionsPage />;
+  }
+
+  // Case: /giai-phap/giai-phap-may-quan-jean (Trang chi tiết giải pháp)
+  if (pathSegments.length === 2 && pathSegments[0] === solutionBase) {
+    const currentSolutionSlug = pathSegments[1];
+    // Tìm ID gốc của giải pháp để truyền vào component
+    const solutionData = solutions.find((s) =>
+      s.translations?.some((t) => t.slug === currentSolutionSlug),
+    );
+
+    return <SolutionDetailTemplate slug={currentSolutionSlug} />;
+  }
 
   const PRODUCT_SLUGS: Record<string, string> = {
     vi: "san-pham",
@@ -57,11 +89,7 @@ export default async function SlugPage({
   if (pathSegments.length === 3 && pathSegments[0] === productBase) {
     // Render giao diện catecon riêng biệt ở đây
     return (
-      <ChildCategoryPage
-        parent={pathSegments[1]}
-        child={pathSegments[2]}
-        subCategoryName={pathSegments[2]}
-      />
+      <ChildCategoryPage parent={pathSegments[1]} child={pathSegments[2]} />
     );
   }
 
@@ -75,13 +103,13 @@ export default async function SlugPage({
       />
     );
   }
-  const rawPath = "/" + pathSegments.join("/");
-  const normalizedPath = normalizePathToBase(rawPath);
 
-  const PageComponent = routeMap[normalizedPath];
-  if (!PageComponent) {
-    notFound();
+  // 2. Kiểm tra các trang tĩnh (Contact, Services...)
+  const pageId = getPageIdBySlug(firstSegment);
+  if (pageId && componentMap[pageId]) {
+    const PageComponent = componentMap[pageId];
+    return <PageComponent />;
   }
 
-  return <PageComponent />;
+  notFound();
 }

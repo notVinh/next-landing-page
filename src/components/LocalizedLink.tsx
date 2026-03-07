@@ -62,7 +62,7 @@ export function LocalizedLink({
   const params = useParams();
   const language = (params?.lang as string) || "vi";
 
-  const to = typeof href === "string" ? href : href.pathname || "/";
+  const to = typeof href === "string" ? href : href?.pathname || "/";
   const localizedHref = getLocalizedPath(to, language) as `/${string}`;
 
   return (

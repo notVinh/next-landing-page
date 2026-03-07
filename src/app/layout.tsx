@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title:
-    "GTG Giang Thành | Máy May Công Nghiệp, Thiết Bị Ngành May Hàng Đầu Việt Nam",
+    "GTG - Giang Thành | Máy May Công Nghiệp, Thiết Bị Ngành May Hàng Đầu Việt Nam",
   description:
-    "GTG Giang Thành - Nhà cung cấp máy may công nghiệp, máy may lập trình, máy cắt vải tự động, thiết bị ngành may hàng đầu Việt Nam.",
+    "GTG - Giang Thành - Nhà cung cấp máy may công nghiệp, máy may lập trình, máy cắt vải tự động, thiết bị ngành may hàng đầu Việt Nam.",
 };
 
 export default function RootLayout({

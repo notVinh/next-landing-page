@@ -29,19 +29,23 @@ export default function Sidebar() {
       name: "Quản lý nhà máy",
       icon: <Factory size={20} />,
       href: "/admin/factory",
-    },
-    {
-      name: "Nhà máy của tôi",
-      icon: <Settings size={20} />,
-      href: "/admin/nha-may-cua-toi",
-      // Thêm subItems để giống ảnh bạn gửi
       subItems: [
-        { name: "Thông tin nhà máy", href: "/admin/nha-may-cua-toi/thong-tin" },
-        { name: "Phòng ban", href: "/admin/nha-may-cua-toi/phong-ban" },
-        { name: "Nhân viên", href: "/admin/nha-may-cua-toi/nhan-vien" },
-        { name: "Nhân viên", href: "/admin/nha-may-cua-toi/nhan-vien" },
+        { name: "Thông tin nhà máy", href: "/admin/factory/overview" },
+        { name: "Phòng ban", href: "/admin/factory/department" },
+        { name: "Nhân viên", href: "/admin/factory/nhan-vien" },
       ],
     },
+    // {
+    //   name: "Nhà máy của tôi",
+    //   icon: <Settings size={20} />,
+    //   href: "/admin/nha-may-cua-toi",
+    //   // Thêm subItems để giống ảnh bạn gửi
+    //   subItems: [
+    //     { name: "Thông tin nhà máy", href: "/admin/nha-may-cua-toi/thong-tin" },
+    //     { name: "Phòng ban", href: "/admin/nha-may-cua-toi/phong-ban" },
+    //     { name: "Nhân viên", href: "/admin/nha-may-cua-toi/nhan-vien" },
+    //   ],
+    // },
     {
       name: "Chấm công",
       icon: <CalendarCheck size={20} />,
@@ -56,7 +60,12 @@ export default function Sidebar() {
     {
       name: "Dữ liệu từ MISA",
       icon: <Database size={20} />,
-      href: "/admin/dulieu-misa",
+      href: "/admin/misa",
+      subItems: [
+        { name: "Đơn hàng", href: "/admin/misa/order" },
+        // { name: "Phòng ban", href: "/admin/factory/department" },
+        // { name: "Nhân viên", href: "/admin/factory/nhan-vien" },
+      ],
     },
     { name: "Sản phẩm", icon: <Box size={20} />, href: "/admin/san-pham" },
     { name: "Báo giá", icon: <Receipt size={20} />, href: "/admin/bao-gia" },

@@ -5,6 +5,9 @@ import {
   LightbulbIcon,
   PlayIcon,
   TableIcon,
+  Settings2,
+  Zap,
+  ShieldCheck,
 } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -15,201 +18,224 @@ export default async function ProductDetailPage({
   productSlug: string;
   lang: string;
 }) {
-  console.log(productSlug);
-  // / 1. Kiểm tra slug ngay lập tức
-  if (!productSlug) {
-    return notFound();
-  }
+  if (!productSlug) return notFound();
 
   let product;
   try {
-    // 2. Gọi API tại Server
     product = await getProductById(productSlug);
-
-    // Nếu API trả về null hoặc không có ID, kích hoạt trang 404
-    if (!product || !product.id) {
-      return notFound();
-    }
+    if (!product || !product.id) return notFound();
   } catch (error) {
     console.error("SEO Error Fetching Product:", error);
-    // Trả về một giao diện thông báo lỗi nhẹ nhàng thay vì sập cả trang
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Đã xảy ra lỗi khi tải sản phẩm. Vui lòng thử lại sau.
+        Lỗi tải dữ liệu...
       </div>
     );
   }
 
-  // 3. Xử lý bản dịch an toàn
-  const t = product.translations?.find(
-    (trans: { languageCode: string }) => trans.languageCode === lang,
+  const currentProduct = product.translations?.find(
+    (trans: any) => trans.languageCode === lang,
   );
-
-  if (!t) return notFound();
+  if (!currentProduct) return notFound();
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-28 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* SECTION 1: HEADER & OVERVIEW */}
-        <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden mb-8">
-          <div className="p-8 md:p-12 flex flex-col md:flex-row gap-12">
-            {/* Gallery bên trái */}
-            <div className="w-full md:w-1/2 space-y-4">
-              <div className="aspect-video bg-slate-100 rounded-2xl overflow-hidden border">
-                <img
-                  src={product.images[0] || "/placeholder-image.png"}
-                  alt={t.name || "Product Image"}
-                  className="w-full h-full object-contain p-4"
-                />
-              </div>
-              <div className="grid grid-cols-4 gap-4">
-                {product.images.slice(1, 5).map((img: string, idx: number) => (
-                  <div
-                    key={idx}
-                    className="aspect-square bg-white border rounded-xl overflow-hidden hover:border-blue-500 cursor-pointer transition"
-                  >
-                    <img src={img} className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-            </div>
+    <div className="min-h-screen bg-white">
+      {/* SECTION 1: HERO BANNER (Giống ảnh mẫu Hikari) */}
+      <div className="relative bg-blue-600 (hoặc bg-slate-900) pt-32 pb-20 overflow-hidden text-white">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
-            {/* Thông tin chính bên phải */}
-            <div className="w-full md:w-1/2 space-y-6">
-              <div>
-                <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">
-                  {product.brand}
-                </span>
-                <h1 className="text-3xl md:text-4xl font-black text-slate-900 mt-2 leading-tight">
-                  {t.name}
-                </h1>
-              </div>
-
-              <p className="text-slate-600 leading-relaxed text-lg italic">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Nội dung bên trái */}
+            <div className="w-full md:w-3/5 space-y-6">
+              <nav className="flex text-sm text-blue-200 gap-2 mb-4">
+                {/* <span>{t("nav.home") as string}</span> / <span>Products</span> /{" "} */}
+                <span className="text-white font-bold">{product.brand}</span>
+              </nav>
+              <h1 className="text-4xl md:text-6xl font-black leading-tight uppercase tracking-tighter">
+                {currentProduct.name}
+              </h1>
+              <div
+                className="prose max-w-none description-content font-light leading-relaxed"
+                dangerouslySetInnerHTML={{
+                  __html: currentProduct.description
+                    .replace(/<[^>]*>/g, "")
+                    .trim(),
+                }}
+              />
+              {/* <p className="text-xl text-blue-100 max-w-xl ">
                 {t.description}
-              </p>
+              </p> */}
 
-              <div className="flex items-baseline gap-4">
-                <span className="text-3xl font-black text-blue-600">
-                  {t.price}
-                </span>
-                <span className="text-slate-400 text-sm italic">
-                  (Giá có thể thay đổi tùy cấu hình)
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4 pt-4 ">
                 <QuoteModal
-                  productName={t.name}
+                  productName={currentProduct.name}
                   productId={product.id}
                   lang={lang}
                 />
-                <button className="bg-slate-900 hover:bg-black text-white font-bold py-4 px-6 rounded-2xl transition-all">
-                  Brochure (PDF)
+                <button className="border-2 border-white/30 hover:bg-white hover:text-blue-900 px-8 py-4 rounded-full font-bold transition-all uppercase text-sm">
+                  Download Brochure
                 </button>
+              </div>
+            </div>
+
+            {/* Ảnh sản phẩm bên phải (Tràn lề) */}
+            <div className="w-full md:w-2/5 relative">
+              <div className="relative z-20 transform hover:scale-105 transition-transform duration-500">
+                <img
+                  src={product.images[0] || "/placeholder.png"}
+                  alt={currentProduct.name}
+                  className="w-full h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
+                />
+              </div>
+              {/* Vòng tròn sáng phía sau ảnh */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/20 rounded-full blur-[100px]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* SECTION 2: QUICK SPECS BAR (Các icon đặc điểm nhanh) */}
+      <div className="bg-slate-100 border-b">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-white rounded-2xl shadow-sm text-blue-600">
+                <Zap size={24} />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500">Tốc độ</p>
+                <p className="font-bold">5000 r/min</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-white rounded-2xl shadow-sm text-blue-600">
+                <Settings2 size={24} />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500">Công nghệ</p>
+                <p className="font-bold">Digital Drive</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-white rounded-2xl shadow-sm text-blue-600">
+                <ShieldCheck size={24} />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500">Bảo hành</p>
+                <p className="font-bold">24 Tháng</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-white rounded-2xl shadow-sm text-blue-600">
+                <TableIcon size={24} />
+              </div>
+              <div>
+                <p className="text-xs text-slate-500">Model</p>
+                <p className="font-bold">{product.id}</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* SECTION 2: SPECS & FEATURES */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Cột trái: Thông số kỹ thuật (Bảng) */}
-          <div className="lg:col-span-2 space-y-8">
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-              <h3 className="text-xl font-black text-slate-800 mb-6 flex items-center gap-2">
-                <TableIcon className="text-blue-600" />
-                {lang === "vi"
-                  ? "Thông số kỹ thuật"
-                  : lang === "en"
-                    ? "Technical Specifications"
-                    : "技术规格"}
-              </h3>
-              <div className="overflow-hidden border rounded-2xl">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-slate-50">
-                      <th className="p-4 text-sm font-bold text-slate-500 border-b w-1/3 italic">
-                        Hạng mục
-                      </th>
-                      <th className="p-4 text-sm font-bold text-slate-900 border-b">
-                        Thông số chi tiết
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y">
-                    {t.specs?.map(
-                      (spec: { label: string; value: string }, idx: number) => (
-                        <tr
-                          key={idx}
-                          className="hover:bg-slate-50/50 transition"
-                        >
-                          <td className="p-4 text-sm text-slate-500 font-medium">
-                            {spec.label}
-                          </td>
-                          <td className="p-4 text-sm text-slate-900 font-bold">
-                            {spec.value}
-                          </td>
-                        </tr>
-                      ),
-                    )}
-                  </tbody>
-                </table>
-              </div>
+      {/* SECTION 3: THÔNG SỐ CHI TIẾT & TÍNH NĂNG */}
+      <div className="max-w-7xl mx-auto px-4 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          {/* Cột trái: Bảng thông số */}
+          <div className="lg:col-span-2">
+            <h2 className="text-3xl font-black mb-10 flex items-center gap-4 uppercase">
+              <span className="w-12 h-1 bg-blue-600"></span>
+              Specifications
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+              {currentProduct.specs?.map((spec: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="flex justify-between py-4 border-b border-slate-100 hover:bg-slate-50 transition px-2"
+                >
+                  <span className="text-slate-500 font-medium">
+                    {spec.label}
+                  </span>
+                  <span className="text-slate-900 font-bold">{spec.value}</span>
+                </div>
+              ))}
             </div>
 
-            {/* Video Demo */}
-            <div className="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden group">
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <PlayIcon className="fill-blue-500 text-blue-500" />
-                  Video vận hành thực tế
-                </h3>
-                <div className="aspect-video bg-black/40 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-blue-500 transition cursor-pointer">
-                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl">
-                    <PlayIcon className="fill-white" />
+            {/* SECTION 4: DETAILED DESCRIPTION CONTENT */}
+            <div className="bg-slate-50 border-t border-slate-100 py-20 mt-6 rounded-xl">
+              <div className="max-w-4xl mx-auto px-4">
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
+                    Chi tiết sản phẩm
+                  </h2>
+                  <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+                  <p className="mt-6 text-slate-500 font-medium">
+                    Khám phá các công nghệ và tính năng đột phá được tích hợp
+                    bên trong {currentProduct.name}
+                  </p>
+                </div>
+
+                {/* Nội dung Rich Text từ Editor */}
+                <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-sm border border-slate-100">
+                  <article
+                    className="overflow-hidden wrap-break-words prose prose-lg prose-blue max-w-none 
+                prose-headings:font-black prose-headings:text-slate-900
+                prose-p:text-slate-600 prose-p:leading-relaxed
+                prose-img:rounded-[2rem] prose-img:shadow-2xl prose-img:mx-auto prose-img:border-8 prose-img:border-slate-50
+                prose-strong:text-blue-700
+                prose-a:text-blue-600 hover:prose-a:text-blue-800"
+                    dangerouslySetInnerHTML={{
+                      __html: currentProduct.description,
+                    }}
+                  />
+                </div>
+
+                {/* CTA Footer nhỏ bên dưới nội dung */}
+                <div className="mt-16 text-center">
+                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-100 text-blue-700 rounded-full font-bold text-sm">
+                    <ShieldCheck size={18} />
+                    Sản phẩm chính hãng được phân phối bởi GTG Group
                   </div>
                 </div>
               </div>
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 blur-[100px] -z-0"></div>
             </div>
           </div>
 
-          {/* Cột phải: Đặc điểm nổi bật (Features) */}
-          <div className="space-y-8">
-            <div className="bg-blue-600 rounded-3xl p-8 text-white shadow-xl shadow-blue-100">
-              <h3 className="text-xl font-black mb-6 flex items-center gap-2">
-                <LightbulbIcon />
-                {lang === "vi"
-                  ? "Tính năng ưu việt"
-                  : lang === "en"
-                    ? "Key Features"
-                    : "主要特点"}
-              </h3>
-              <ul className="space-y-4">
-                {t.features.map((feature: string, idx: number) => (
-                  <li
-                    key={idx}
-                    className="flex gap-3 text-sm leading-relaxed items-start"
-                  >
-                    <CheckCircleIcon className="w-5 h-5 text-blue-200 shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Cột phải: Features & Support */}
+          <div className="space-y-10">
+            <div className="bg-slate-900 rounded-[2rem] p-10 text-white shadow-2xl relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <LightbulbIcon className="text-yellow-400" /> Key Features
+                </h3>
+                <ul className="space-y-5">
+                  {currentProduct.features.map((f: string, i: number) => (
+                    <li
+                      key={i}
+                      className="flex gap-4 items-start text-slate-300 text-sm"
+                    >
+                      <CheckCircleIcon className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/20 blur-[50px]"></div>
             </div>
 
-            {/* Support Box */}
-            <div className="bg-white rounded-3xl p-8 border-2 border-dashed border-slate-200">
-              <h4 className="font-bold text-slate-800 mb-2">
-                Hỗ trợ kỹ thuật 24/7
-              </h4>
-              <p className="text-sm text-slate-500 mb-4">
-                Mọi vấn đề về lắp đặt và vận hành GT-9012 sẽ được kỹ sư GTG hỗ
-                trợ ngay lập tức.
-              </p>
-              <div className="text-blue-600 font-black text-xl">
-                Hotline: 09xx.xxx.xxx
+            <div className="p-1 border-2 border-slate-100 rounded-[2rem]">
+              <div className="bg-blue-50 rounded-[1.9rem] p-8 text-center">
+                <p className="text-blue-600 font-bold mb-2 text-sm uppercase">
+                  Cần hỗ trợ ngay?
+                </p>
+                <h4 className="text-2xl font-black text-slate-900 mb-4">
+                  Hotline: 09xx.xxx.xxx
+                </h4>
+                <button className="w-full bg-white border border-blue-200 py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                  Liên hệ kỹ thuật GTG
+                </button>
               </div>
             </div>
           </div>

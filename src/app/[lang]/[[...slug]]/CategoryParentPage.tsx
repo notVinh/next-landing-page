@@ -1,6 +1,8 @@
 "use client";
 
+import { LocalizedLink } from "@/components/LocalizedLink";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCategoriesStore } from "@/lib/zustand/useCategoriesStore";
 
 interface ProductItem {
   id: string;
@@ -11,8 +13,24 @@ interface ProductItem {
 }
 
 export function CategoryParentPage({ categoryName }: { categoryName: string }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
+  const { categories, setCategories } = useCategoriesStore();
+
+  const currentCategory: any = categories.find((item: any) => {
+    const translateItem = item?.translations?.find(
+      (trans: any) => trans.languageCode === language,
+    );
+    return item.level === 1 && translateItem?.slug === categoryName;
+  });
+
+  const currentCategoryItem = currentCategory?.translations.find(
+    (t: any) => t.languageCode === language,
+  );
+
+  const subCat = categories.filter(
+    (item) => item.parentId === currentCategory?.id,
+  );
   // Dữ liệu mẫu giả lập từ ảnh bạn gửi
   const products: ProductItem[] = [
     {
@@ -46,19 +64,21 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
           backgroundPosition: "center",
         }}
       >
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10 px-10">
           <nav className="text-sm mb-4 text-blue-200">
             {t("nav.products") as string} /{" "}
-            <span className="text-white font-medium">{categoryName}</span>
+            <span className="text-white font-medium">
+              {currentCategoryItem?.name}
+            </span>
           </nav>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            {categoryName}
+            {currentCategoryItem?.name}
           </h1>
-          <p className="mt-4 text-xl text-blue-100 max-w-3xl">
+          {/* <p className="mt-4 text-xl text-blue-100 max-w-3xl">
             Modern equipment for production preparation: digitizing patterns,
             printing markers, spreading and automatic fabric cutting with high
             precision.
-          </p>
+          </p> */}
         </div>
       </div>
 
@@ -80,31 +100,35 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50"
-            >
-              {/* Image Container */}
-              <div className="h-64 bg-white p-6 flex items-center justify-center">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="max-h-full max-w-full object-contain transform hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+          {subCat.map((product: any) => {
+            const currentItemLang = product.translations.find(
+              (i: any) => i.languageCode === language,
+            );
+            return (
+              <div
+                key={product.id}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50"
+              >
+                {/* Image Container */}
+                <div className="h-64 bg-white p-6 flex items-center justify-center">
+                  <img
+                    src={product.image}
+                    alt={product.id}
+                    className="max-h-full max-w-full object-contain transform hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
 
-              {/* Content Section */}
-              <div className="p-6 flex-grow flex flex-col border-t border-gray-50">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {product.name}
-                </h3>
-                <p className="text-gray-500 text-sm mb-4 line-clamp-3">
-                  {product.description}
-                </p>
+                {/* Content Section */}
+                <div className="p-6 flex-grow flex flex-col border-t border-gray-50">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {currentItemLang.name}
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-4 line-clamp-3">
+                    {currentItemLang.description}
+                  </p>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Tags */}
+                  {/* <div className="flex flex-wrap gap-2 mb-6">
                   {product.tags.map((tag) => (
                     <span
                       key={tag}
@@ -113,12 +137,12 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                       {tag}
                     </span>
                   ))}
-                </div>
+                </div> */}
 
-                {/* View Details Link */}
-                <div className="mt-auto">
-                  <a
-                    href={`#`}
+                  {/* View Details Link */}
+                  <div className="mt-auto">
+                    {/* <a
+                    href={``}
                     className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group"
                   >
                     View products
@@ -135,11 +159,39 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                         d="M9 5l7 7-7 7"
                       />
                     </svg>
-                  </a>
+                  </a> */}
+
+                    <LocalizedLink
+                      key={product.id}
+                      href={
+                        "san-pham/" +
+                        currentCategoryItem?.slug +
+                        `/${product.translations.find((i: any) => i.languageCode === language).slug}`
+                      }
+                      className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
+                    >
+                      <div className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group p-2">
+                        View products
+                        <svg
+                          className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
+                    </LocalizedLink>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
