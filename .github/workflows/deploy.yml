@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Tạo file .env.production từ secrets
+        run: |
+          echo "BACKEND_URL=${{ secrets.BACKEND_URL }}" >> .env.production
+          echo "NEXT_PUBLIC_BACKEND_URL=${{ secrets.NEXT_PUBLIC_BACKEND_URL }}" >> .env.production
+
       - name: Login Docker Hub
         uses: docker/login-action@v2
         with:
