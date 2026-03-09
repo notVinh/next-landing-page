@@ -44,7 +44,7 @@ export function ChildCategoryPage({
       try {
         setLoading(true);
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/categories/${currentId}/products`,
+          `/api-proxy/categories/${currentId}/products`,
         );
         setProducts(response.data.products);
       } catch (error) {

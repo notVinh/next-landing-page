@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api-proxy/:path*",
+        // Ưu tiên BACKEND_URL (cho Docker), nếu không có thì dùng NEXT_PUBLIC (cho Local)
+        destination: `${process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL}/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
