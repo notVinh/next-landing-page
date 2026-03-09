@@ -3,6 +3,12 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+
+# Khai báo các đối số xây dựng (Build Arguments)
+ARG NEXT_PUBLIC_BACKEND_URL
+# Chuyển đối số thành biến môi trường để Next.js đọc được lúc build
+ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
+
 RUN npm run build
 
 FROM node:20-alpine
