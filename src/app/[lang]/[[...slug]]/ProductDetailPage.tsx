@@ -11,6 +11,33 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 
+const translationDetail = {
+  vi: {
+    opening1: "Phản hồi",
+    openDesc1: "Nhanh",
+    opening2: "Công nghệ",
+    openDesc2: "Tiên tiến",
+    opening3: "Bảo hành",
+    openDesc3: "24 Tháng",
+  },
+  en: {
+    opening1: "Response",
+    openDesc1: "Fast",
+    opening2: "Technology",
+    openDesc2: "Advanced",
+    opening3: "Guarantee",
+    openDesc3: "24 Month",
+  },
+  zh: {
+    opening1: "反馈",
+    openDesc1: "快速地",
+    opening2: "技术",
+    openDesc2: "先进的",
+    opening3: "保证",
+    openDesc3: "24个月",
+  },
+};
+
 export default async function ProductDetailPage({
   productSlug,
   lang = "vi",
@@ -41,7 +68,7 @@ export default async function ProductDetailPage({
   return (
     <div className="min-h-screen bg-white">
       {/* SECTION 1: HERO BANNER (Giống ảnh mẫu Hikari) */}
-      <div className="relative bg-blue-600 (hoặc bg-slate-900) pt-32 pb-20 overflow-hidden text-white">
+      <div className="relative bg-blue-600 (hoặc bg-slate-900) pt-32 pb-20 overflow-hidden text-white min-h-170">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
@@ -97,7 +124,7 @@ export default async function ProductDetailPage({
       </div>
 
       {/* SECTION 2: QUICK SPECS BAR (Các icon đặc điểm nhanh) */}
-      <div className="bg-slate-100 border-b">
+      {/* <div className="bg-slate-100 border-b">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="flex items-center gap-4">
@@ -105,8 +132,10 @@ export default async function ProductDetailPage({
                 <Zap size={24} />
               </div>
               <div>
-                <p className="text-xs text-slate-500">Tốc độ</p>
-                <p className="font-bold">5000 r/min</p>
+                <p className="text-xs text-slate-500">
+                  {translationDetail[lang].opening1}
+                </p>
+                <p className="font-bold">{translationDetail[lang].openDesc1}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -114,8 +143,10 @@ export default async function ProductDetailPage({
                 <Settings2 size={24} />
               </div>
               <div>
-                <p className="text-xs text-slate-500">Công nghệ</p>
-                <p className="font-bold">Digital Drive</p>
+                <p className="text-xs text-slate-500">
+                  {translationDetail[lang].opening2}
+                </p>
+                <p className="font-bold">{translationDetail[lang].openDesc2}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -123,8 +154,10 @@ export default async function ProductDetailPage({
                 <ShieldCheck size={24} />
               </div>
               <div>
-                <p className="text-xs text-slate-500">Bảo hành</p>
-                <p className="font-bold">24 Tháng</p>
+                <p className="text-xs text-slate-500">
+                  {translationDetail[lang].opening3}
+                </p>
+                <p className="font-bold">{translationDetail[lang].openDesc3}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -138,7 +171,7 @@ export default async function ProductDetailPage({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* SECTION 3: THÔNG SỐ CHI TIẾT & TÍNH NĂNG */}
       <div className="max-w-7xl mx-auto px-4 py-20">

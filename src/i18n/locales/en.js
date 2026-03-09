@@ -25,6 +25,12 @@ export default {
     viewAll: "View all products",
     viewDetails: "View Details",
     bestSeller: "Best Seller",
+    opening1: "Response",
+    openDesc1: "Fast",
+    opening2: "Technology",
+    openDesc2: "Advanced",
+    opening3: "Guarantee",
+    openDesc3: "24 Month",
 
     // Featured products section
     industrialMachine: "Industrial Sewing Machine",

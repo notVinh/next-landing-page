@@ -85,18 +85,20 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* 2. Overview Section Card */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
-          <p className="text-gray-600 leading-relaxed">
-            {`GTG's Print, Router, Spread & Cut product line includes high-tech
-            equipment for production preparation in the garment industry. From
-            digitizing patterns, printing cutting markers, to automatic fabric
-            spreading and cutting - all optimized for maximum efficiency.`}
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            {t("productCategories.overview")}
+          </h2>
+          <p className="text-gray-600 mb-4">
+            {t("pages.productsPage.solutionDesc1")}
+          </p>
+          <p className="text-gray-600 mb-4">
+            {t("pages.productsPage.solutionDesc2")}
           </p>
         </div>
 
         {/* 3. Equipment Types Grid */}
         <h2 className="text-2xl font-bold text-gray-900 mb-8">
-          Equipment Types
+          {t("pages.productsPage.categoryTitle")}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -112,7 +114,9 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                 {/* Image Container */}
                 <div className="h-64 bg-white p-6 flex items-center justify-center">
                   <img
-                    src={product.image}
+                    src={
+                      product.image || "images/danhmuc/he thong may cadcam.png"
+                    }
                     alt={product.id}
                     className="max-h-full max-w-full object-contain transform hover:scale-105 transition-transform duration-500"
                   />
@@ -171,7 +175,7 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                       className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
                     >
                       <div className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group p-2">
-                        View products
+                        {t("productCategories.viewProducts")}
                         <svg
                           className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
                           fill="none"

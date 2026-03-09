@@ -161,33 +161,37 @@ export function ChildCategoryPage({
                       ({matchTrans?.description})
                     </p> */}
 
-                    {/* <div className="text-gray-500 text-[15px] leading-relaxed mb-8 border-t border-gray-100 pt-4">
-                      {matchTrans?.specs?.map((s, idx) => (
+                    <div className="text-gray-500 text-[15px] leading-relaxed mb-8 border-t border-gray-100 pt-4">
+                      {matchTrans?.specs?.slice(0, 3).map((s, idx) => (
                         <div key={idx} className="mb-1">
                           <span className="text-gray-400">•</span> {s.label}:{" "}
                           <span className="text-gray-700">{s.value}</span>
                         </div>
                       ))}
-                    </div> */}
+                    </div>
 
                     {/* Circle Arrow Button - Giống ảnh mẫu */}
+
                     <LocalizedLink
                       href={`/san-pham/${parent}/${child}/${item.id}`}
-                      className="w-10 h-10 rounded-full bg-gray-400 text-white flex items-center justify-center group-hover:bg-blue-600 transition-all self-start"
+                      className="flex items-center gap-2"
                     >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
+                      <div className=" h-10 p-2 gap-2 rounded-full bg-gray-400 text-white flex items-center justify-center group-hover:bg-blue-600 transition-all self-start">
+                        <div className="">{t("products.viewDetails")}</div>
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </div>
                     </LocalizedLink>
                   </div>
                 </div>

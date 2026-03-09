@@ -25,6 +25,12 @@ export default {
     viewAll: "查看所有产品",
     viewDetails: "查看详情",
     bestSeller: "畅销产品",
+    opening1: "反馈",
+    openDesc1: "快速地",
+    opening2: "技术",
+    openDesc2: "先进的",
+    opening3: "保证",
+    openDesc3: "24个月",
 
     // Featured products section
     industrialMachine: "工业缝纫机",

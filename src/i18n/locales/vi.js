@@ -25,6 +25,12 @@ export default {
     viewAll: "Xem tất cả sản phẩm",
     viewDetails: "Xem chi tiết",
     bestSeller: "Bán chạy nhất",
+    opening1: "Phản hồi",
+    openDesc1: "Nhanh",
+    opening2: "Công nghệ",
+    openDesc2: "Tiên tiến",
+    opening3: "Bảo hành",
+    openDesc3: "24 Tháng",
 
     // Featured products section
     industrialMachine: "Máy May Công Nghiệp",

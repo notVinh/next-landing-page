@@ -9,6 +9,7 @@ export function ProductsPage() {
   const { categories, setCategories } = useCategoriesStore();
 
   const allCategories = categories.filter((item) => item.level === 1);
+  console.log(categories);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -34,15 +35,16 @@ export function ProductsPage() {
             const currentItemLang = cat?.translations?.find(
               (i: any) => i.languageCode === language,
             );
+            console.log(cat.image);
             return (
               <LocalizedLink
                 key={cat.id}
                 href={"san-pham/" + currentItemLang.slug}
                 className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
               >
-                <div className="h-48 md:h-64 bg-gray-100 flex items-center justify-center">
+                <div className="h-48 md:h-64  flex items-center justify-center">
                   <img
-                    src={cat?.image || "images/danhmuc/he thong may cadcam.png"}
+                    src={cat.image || "images/danhmuc/he thong may cadcam.png"}
                     alt={cat?.id}
                     className="w-full h-full object-contain"
                   />
@@ -55,22 +57,33 @@ export function ProductsPage() {
                   <p className="text-sm text-gray-600 line-clamp-2 my-2">
                     {currentItemLang.description}
                   </p>
-                  <div className="flex">
-                    {childItem.length > 0 &&
-                      childItem.map((item: any) => (
-                        <div key={item.id}>
-                          <div className="bg-blue-100 block py-1 px-2 text-blue-600">
-                            {
-                              item?.translations?.find(
-                                (i: any) => i.languageCode === language,
-                              ).name
-                            }
+                  <div className="flex gap-2 mt-2">
+                    {childItem.length > 0 && (
+                      <>
+                        {/* Chỉ map qua 3 item đầu tiên */}
+                        {childItem?.slice(0, 3).map((item: any) => (
+                          <div key={item.id}>
+                            <div className="bg-blue-100 block py-1 px-2 text-blue-600 text-xs">
+                              {
+                                item?.translations?.find(
+                                  (i: any) => i.languageCode === language,
+                                )?.name
+                              }
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+
+                        {/* Hiển thị số lượng còn dư nếu danh sách dài hơn 3 */}
+                        {childItem.length > 3 && (
+                          <div className="bg-gray-100 block py-1 px-2 text-gray-600 text-xs">
+                            + {childItem.length - 3}
+                          </div>
+                        )}
+                      </>
+                    )}
                   </div>
-                  <span className="inline-flex items-center text-sm font-semibold text-blue-600 mt-2">
-                    {/* {t("products.viewDetails") as string} */}
+                  <span className="inline-flex items-center text-sm font-semibold text-blue-600 mt-8">
+                    {t("products.viewDetails") as string}
                     <svg
                       className="w-4 h-4 ml-2"
                       fill="none"
