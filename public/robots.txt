@@ -1,12 +1,9 @@
-# robots.txt for gtgsew.com
-# https://www.robotstxt.org/robotstxt.html
-
+# *
 User-agent: *
 Allow: /
 
-# Disallow admin or private paths (if any)
-Disallow: /api/
-Disallow: /admin/
+# Host
+Host: https://yourdomain.com
 
-# Sitemap location
-Sitemap: https://gtgsew.com/sitemap.xml
+# Sitemaps
+Sitemap: https://yourdomain.com/sitemap.xml
