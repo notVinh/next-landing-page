@@ -154,12 +154,12 @@ export default function QuoteModal({
                   </label>
                   <input
                     type="text"
-                    placeholder="..."
+                    placeholder=""
                     value={formData.customerName}
                     onChange={(e) =>
                       setFormData({ ...formData, customerName: e.target.value })
                     }
-                    className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition"
+                    className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition text-black"
                     required
                   />
                 </div>
@@ -178,7 +178,7 @@ export default function QuoteModal({
                         customerPhone: e.target.value,
                       })
                     }
-                    className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition"
+                    className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition text-black"
                     required
                   />
                 </div>
@@ -197,7 +197,7 @@ export default function QuoteModal({
                   }
                   required
                   placeholder="email@company.com"
-                  className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition"
+                  className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition text-black"
                 />
               </div>
 
@@ -216,7 +216,7 @@ export default function QuoteModal({
 
               {/* So luong*/}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-slate-500 uppercase ml-1 flex items-center gap-1">
+                <label className="text-xs font-bold text-slate-500 uppercase ml-1 flex items-center gap-1 ">
                   <ShoppingCartIcon size={14} />{" "}
                   {lang === "vi" ? "So luong" : "Quantity"}
                 </label>
@@ -235,7 +235,7 @@ export default function QuoteModal({
                       ],
                     })
                   }
-                  className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition"
+                  className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition text-black"
                 />
               </div>
 
@@ -256,7 +256,7 @@ export default function QuoteModal({
                       ? "Yêu cầu về số lượng, thông số cấu hình..."
                       : "Quantity, specific requirements..."
                   }
-                  className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition resize-none"
+                  className="w-full bg-slate-50 border-none rounded-2xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 transition resize-none text-black"
                 ></textarea>
               </div>
 

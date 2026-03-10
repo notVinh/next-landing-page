@@ -253,7 +253,9 @@ export default function OrderConfirmPage() {
                     type="text"
                     className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20"
                     placeholder="Nguyễn Văn A"
-                    value={quoteData?.customerName}
+                    value={
+                      currentCustomer.name || quoteData?.customerName || ""
+                    }
                     onChange={(e) =>
                       setCurrentCustomer({
                         ...currentCustomer,
@@ -271,7 +273,9 @@ export default function OrderConfirmPage() {
                     type="tel"
                     className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20"
                     placeholder="090..."
-                    value={quoteData?.customerPhone || currentCustomer.phone}
+                    value={
+                      quoteData?.customerPhone || currentCustomer.phone || ""
+                    }
                     onChange={(e) =>
                       setCurrentCustomer({
                         ...currentCustomer,
@@ -290,7 +294,9 @@ export default function OrderConfirmPage() {
                     className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500/20"
                     placeholder="Số nhà, tên đường..."
                     value={
-                      quoteData?.customerAddress || currentCustomer.address
+                      quoteData?.customerAddress ||
+                      currentCustomer.address ||
+                      ""
                     }
                     onChange={(e) =>
                       setCurrentCustomer({
