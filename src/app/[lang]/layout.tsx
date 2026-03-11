@@ -26,7 +26,7 @@ export default async function LangLayout({
   return (
     <LanguageProvider lang={lang}>
       <div className="font-sans">
-        <Navbar data={categories.data || []} />
+        <Navbar data={categories.data?.reverse() || []} />
         {/* <Navbar data={[]} /> */}
         <main className="pt-16">{children}</main>
         <Footer />
