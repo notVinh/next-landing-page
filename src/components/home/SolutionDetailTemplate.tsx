@@ -278,6 +278,28 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
             }
           />
         )}
+        {solutionData?.diagramVideo && (
+          <div className="bg-white p-6 md:p-8 shadow-lg mb-12 animate-on-scroll animate-from-bottom">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              {language === "zh"
+                ? "演示视频"
+                : language === "en"
+                  ? "Demonstration Video"
+                  : "Video Minh Họa"}
+            </h2>
+            <div className="flex justify-center">
+              <div className="w-full max-w-4xl aspect-video">
+                <iframe
+                  src={solutionData?.diagramVideo}
+                  title="Demonstration Video"
+                  className="w-full h-full rounded-lg shadow-lg"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         <SolutionBenefits solutionKey={solutionData.solutionKey} />
       </div>

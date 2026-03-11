@@ -1608,6 +1608,7 @@ export const solutions = [
   {
     id: "cadCam",
     solutionKey: "cadCam",
+    diagramVideo: "https://www.youtube.com/embed/pl_Vk39jqJs",
     translations: [
       {
         languageCode: "vi",
