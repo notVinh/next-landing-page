@@ -2,8 +2,13 @@
 User-agent: *
 Allow: /
 
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /api
+
 # Host
-Host: https://yourdomain.com
+Host: http://171.244.62.122:9696
 
 # Sitemaps
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: http://171.244.62.122:9696/sitemap.xml

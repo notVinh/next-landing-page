@@ -436,6 +436,7 @@ export default {
     hefeiLocation:
       "Phòng 403-2, Tòa 5, Vạn Dương Chúng Sáng Thành (Tân Trạm), Giao lộ Thiên Thủy & Tân Biện Hà, Quận Tân Trạm, TP Hợp Phì, An Huy, Trung Quốc",
     factoryPhone: "0086-13345510808",
+    factoryPhonevn: "0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
     copyright: "© 2025 GTG.",
     brand: "Thương hiệu",

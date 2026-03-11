@@ -434,6 +434,7 @@ export default {
     hefeiLocation:
       "Room 403-2, Building 5, Wanyang Innovation City (Xinzhan), Intersection of Tianshui Road & Xinbianhe Road, Xinzhan District, Hefei City, Anhui Province, China",
     factoryPhone: "0086-13345510808",
+    factoryPhonevn: "0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
     copyright: "© 2025 GTG.",
     brand: "Brand",

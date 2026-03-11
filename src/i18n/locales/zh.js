@@ -400,6 +400,7 @@ export default {
     hefeiLocation:
       "中国安徽省合肥市新站区天水路与新汴河路交口合肥（新站）万洋众创城5栋403-2",
     factoryPhone: "0086-13345510808",
+    factoryPhonevn: "0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
     copyright: "© 2025 GTG.",
     brand: "品牌",

@@ -124,10 +124,10 @@ export function FooterContact() {
             />
           </svg>
           <a
-            href="tel:008613345510808"
+            href="tel:0961230808"
             className="text-gray-400 text-sm hover:text-orange-400"
           >
-            {t("footer.factoryPhone") as string}
+            {t("footer.factoryPhonevn") as string}
           </a>
         </li>
       </ul>

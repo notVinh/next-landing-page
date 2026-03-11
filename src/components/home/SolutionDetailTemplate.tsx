@@ -4,6 +4,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { allProducts, getSolutionBySlug } from "@/data/solutionData";
 import { useState, useMemo } from "react";
 import MachineListTable from "../MachineListTable";
+import SolutionBenefits from "./SolutionBenefits";
+import EmptySolution from "./EmptySolution";
 
 // --- 1. ĐỊNH NGHĨA TYPES ĐỂ FIX LỖI INDEX SIGNATURE ---
 type SupportedLanguage = "vi" | "en" | "zh";
@@ -167,9 +169,10 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
         )}
 
         {/* Interactive Diagram Section */}
-        {hasInteractiveDiagram && displayData.diagramImage && (
-          <div className="bg-white p-8 md:p-12 shadow-2xl mb-16 relative z-10 rounded-[3rem] overflow-visible">
-            <div className="flex justify-center overflow-visible">
+        <div className="bg-white p-8 md:p-12 shadow-2xl mb-16 relative z-10 rounded-[3rem] overflow-visible min-h-[400px] flex items-center justify-center">
+          {hasInteractiveDiagram && displayData.diagramImage ? (
+            /* TRƯỜNG HỢP CÓ SƠ ĐỒ */
+            <div className="flex justify-center overflow-visible w-full">
               <div
                 className={`relative w-full ${displayData.diagramMaxWidth || "max-w-4xl"}`}
               >
@@ -183,7 +186,6 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
                   const productIdList =
                     pos.productIds || (pos.productId ? [pos.productId] : []);
 
-                  // FIX LỖI DÒNG 184: TRUY CẬP TRỰC TIẾP QUA TYPEDALLPRODUCTS
                   const products = productIdList
                     .map((id) => typedAllProducts[id])
                     .filter(Boolean);
@@ -203,13 +205,19 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
                       onMouseLeave={() => setActiveHotspot(null)}
                     >
                       <div
-                        className={`w-5 h-5 rounded-full border-4 border-white shadow-lg transition-all ${activeHotspot === pos.id ? "bg-orange-500 scale-150" : "bg-blue-600"}`}
+                        className={`w-5 h-5 rounded-full border-4 border-white shadow-lg transition-all ${
+                          activeHotspot === pos.id
+                            ? "bg-orange-500 scale-150"
+                            : "bg-blue-600"
+                        }`}
                       />
 
                       {/* Tooltip Content */}
                       {activeHotspot === pos.id && (
                         <div
-                          className={`absolute z-[100] top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 ${pos.side === "left" ? "left-0" : "right-0"}`}
+                          className={`absolute z-[100] top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 ${
+                            pos.side === "left" ? "left-0" : "right-0"
+                          }`}
                         >
                           {firstProduct?.images?.[0] && (
                             <img
@@ -249,8 +257,11 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
                 })}
               </div>
             </div>
-          </div>
-        )}
+          ) : (
+            /* TRƯỜNG HỢP KHÔNG CÓ SƠ ĐỒ - HIỆN COMPONENT TRỐNG */
+            <EmptySolution />
+          )}
+        </div>
 
         {/* Machine List Table */}
         {displayData.machinePositions && (
@@ -267,6 +278,8 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
             }
           />
         )}
+
+        <SolutionBenefits solutionKey={solutionData.solutionKey} />
       </div>
     </div>
   );
