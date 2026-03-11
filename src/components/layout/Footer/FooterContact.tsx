@@ -176,7 +176,7 @@ export function FooterContact() {
           </svg>
           <a
             href="tel:008613345510808"
-            className="text-gray-400 text-sm hover:text-orange-400"
+            className="text-gray-400 text-sm hover:text-green-400"
           >
             {t("footer.factoryPhone") as string}
           </a>

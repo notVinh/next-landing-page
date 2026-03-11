@@ -402,7 +402,7 @@ export default {
     factoryPhone: "0086-13345510808",
     factoryPhonevn: "0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
-    copyright: "© 2025 GTG.",
+    copyright: "© 2026 GTG.",
     brand: "品牌",
     center: "中国研发中心",
     centerLocation:
@@ -1101,6 +1101,7 @@ export default {
     consultDesc: "GTG专家团队随时为您的企业考察并提供最合适的解决方案。",
     contactNow: "立即联系",
     solutions: "解决方案",
+    pendingDetail: "此解决方案的详细信息正在准备中，请稍后查看。",
 
     // 内衣
     doLot: {
@@ -1700,6 +1701,10 @@ export default {
     updating: "更新中",
     updatingDesc: "产品正在更新中。请稍后再来或联系我们获取咨询。",
     backToCategory: "← 返回类别",
+
+    detailText: "产品详情",
+    detailDesc: "探索内置的突破性技术和功能。",
+    detailEnd: "GTG集团经销的正品",
 
     // 服装厂自动化设备子类别
     mayTuDong: "服装厂自动化设备",

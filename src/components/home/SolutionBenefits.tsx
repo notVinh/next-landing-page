@@ -77,7 +77,7 @@ const SolutionBenefits = ({ solutionKey }: { solutionKey: string }) => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Tiêu đề */}
         <h2 className="text-3xl font-bold text-gray-900 mb-12 text-left">
-          Ưu Điểm Giải Pháp
+          {t("solutionPages.benefits") as string}
         </h2>
 
         {/* Grid Benefits */}
@@ -102,14 +102,13 @@ const SolutionBenefits = ({ solutionKey }: { solutionKey: string }) => {
         <div className="bg-blue-500 rounded-sm p-10 md:p-16 text-center text-white relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Cần Tư Vấn Giải Pháp?
+              {t("solutionPages.needConsult") as string}
             </h2>
             <p className="text-lg opacity-90 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Đội ngũ chuyên gia của GTG sẵn sàng khảo sát và tư vấn giải pháp
-              phù hợp nhất cho doanh nghiệp của bạn.
+              {t("solutionPages.consultDesc") as string}
             </p>
             <button className="bg-white text-blue-500 font-bold py-4 px-10 rounded-sm hover:bg-gray-100 transition-colors uppercase tracking-wider">
-              Liên Hệ Ngay
+              {t("common.contactUs") as string}
             </button>
           </div>
 

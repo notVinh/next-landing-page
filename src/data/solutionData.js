@@ -1342,7 +1342,7 @@ export const solutions = [
       {
         languageCode: "en",
         title: "Knitted Wear Solutions",
-        slug: "knitted-wear",
+        slug: "knitwear",
       },
       {
         languageCode: "zh",

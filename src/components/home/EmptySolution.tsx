@@ -1,6 +1,8 @@
+import { useLanguage } from "@/contexts/LanguageContext";
 import React from "react";
 
 const EmptySolution = () => {
+  const { t } = useLanguage();
   return (
     <div className="flex items-center justify-center pb-10">
       <div className=" w-full bg-white rounded-sm p-16 flex flex-col items-center text-center">
@@ -23,13 +25,12 @@ const EmptySolution = () => {
 
         {/* Tiêu đề */}
         <h3 className="text-2xl font-bold text-slate-800 mb-4">
-          Đang Cập Nhật
+          {t("productSubcategories.updating") as string}
         </h3>
 
         {/* Nội dung mô tả */}
         <p className="text-gray-500 max-w-sm leading-relaxed">
-          Thông tin chi tiết cho giải pháp này đang được chuẩn bị. Vui lòng quay
-          lại sau.
+          {t("solutionPages.pendingDetail") as string}
         </p>
       </div>
     </div>

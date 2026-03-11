@@ -436,7 +436,7 @@ export default {
     factoryPhone: "0086-13345510808",
     factoryPhonevn: "0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
-    copyright: "© 2025 GTG.",
+    copyright: "© 2026 GTG.",
     brand: "Brand",
     center: "R&D Center in China",
     centerLocation:
@@ -573,6 +573,7 @@ export default {
     // Solutions Page
     solutionsPage: {
       title: "Technology Solutions",
+
       heroDesc:
         "GTG provides comprehensive machinery solutions for each type of garment product, from underwear to formal wear, helping optimize your production process.",
       sectionTitle: "Solutions by Industry",
@@ -1273,6 +1274,8 @@ export default {
       "GTG's expert team is ready to survey and advise on the most suitable solution for your business.",
     contactNow: "Contact Now",
     solutions: "Solutions",
+    pendingDetail:
+      "Details for this solution are being prepared. Please check back later.",
 
     // Underwear
     doLot: {
@@ -2059,6 +2062,11 @@ export default {
     updatingDesc:
       "Products are being updated. Please come back later or contact us for consultation.",
     backToCategory: "← Back to category",
+
+    detailText: "Product details",
+    detailDesc:
+      "Discover the groundbreaking technologies and features built in.",
+    detailEnd: "Genuine products distributed by GTG Group",
 
     // Factory Automation subcategories
     mayTuDong: "Factory Automation",

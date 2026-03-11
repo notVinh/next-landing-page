@@ -56,7 +56,7 @@ export function Hero() {
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="#contact"
+                href="tel:0961230808"
                 className="bg-blue-600 text-white px-8 py-3 text-center font-semibold hover:bg-blue-700 transition shadow-lg hover:shadow-xl"
               >
                 {t("hero.cta") as string}

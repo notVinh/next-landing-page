@@ -438,7 +438,7 @@ export default {
     factoryPhone: "0086-13345510808",
     factoryPhonevn: "0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
-    copyright: "© 2025 GTG.",
+    copyright: "© 2026 GTG.",
     brand: "Thương hiệu",
     center: "Trung tâm RD tại Trung Quốc",
     centerLocation:
@@ -1252,6 +1252,8 @@ export default {
       "Đội ngũ chuyên gia của GTG sẵn sàng khảo sát và tư vấn giải pháp phù hợp nhất cho doanh nghiệp của bạn.",
     contactNow: "Liên Hệ Ngay",
     solutions: "Giải Pháp",
+    pendingDetail:
+      "Thông tin chi tiết cho giải pháp này đang được chuẩn bị. Vui lòng quay lại sau.",
 
     // Đồ Lót
     doLot: {
@@ -2034,6 +2036,11 @@ export default {
     updatingDesc:
       "Sản phẩm đang được cập nhật. Vui lòng quay lại sau hoặc liên hệ chúng tôi để được tư vấn.",
     backToCategory: "← Quay lại danh mục",
+
+    detailText: "Chi tiết sản phẩm",
+    detailDesc:
+      "Khám phá các công nghệ và tính năng đột phá được tích hợp bên trong",
+    detailEnd: "Sản phẩm chính hãng được phân phối bởi GTG Group",
 
     // Máy Tự Động Xưởng May subcategories
     mayTuDong: "Máy Tự Động Xưởng May",

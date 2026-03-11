@@ -1,3 +1,4 @@
+import ProductDetailDesc from "@/components/ProductDetailDesc";
 import QuoteModal from "@/components/QuoteModal";
 import { getProductById } from "@/lib/queries/product";
 import {
@@ -19,6 +20,10 @@ const translationDetail = {
     openDesc2: "Tiên tiến",
     opening3: "Bảo hành",
     openDesc3: "24 Tháng",
+    spec: "Thông số",
+    feature: "Đặc điểm",
+    contact: "Cần hỗ trợ ngay?",
+    contactDesc: "Liên hệ với kỹ thuật GTG",
   },
   en: {
     opening1: "Response",
@@ -27,6 +32,10 @@ const translationDetail = {
     openDesc2: "Advanced",
     opening3: "Guarantee",
     openDesc3: "24 Month",
+    spec: "Specifications",
+    feature: "Key Features",
+    contact: "Help Now?",
+    contactDesc: "Contact GTG technical support",
   },
   zh: {
     opening1: "反馈",
@@ -35,6 +44,10 @@ const translationDetail = {
     openDesc2: "先进的",
     opening3: "保证",
     openDesc3: "24个月",
+    spec: "规格",
+    feature: "主要特点",
+    contact: "需要立即帮助吗？",
+    contactDesc: "请联系 GTG 技术支持",
   },
 };
 
@@ -124,7 +137,7 @@ export default async function ProductDetailPage({
       </div>
 
       {/* SECTION 2: QUICK SPECS BAR (Các icon đặc điểm nhanh) */}
-      {/* <div className="bg-slate-100 border-b">
+      <div className="bg-slate-100 border-b">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="flex items-center gap-4">
@@ -133,9 +146,17 @@ export default async function ProductDetailPage({
               </div>
               <div>
                 <p className="text-xs text-slate-500">
-                  {translationDetail[lang].opening1}
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .opening1
+                  }
                 </p>
-                <p className="font-bold">{translationDetail[lang].openDesc1}</p>
+                <p className="font-bold">
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .openDesc1
+                  }
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -144,9 +165,17 @@ export default async function ProductDetailPage({
               </div>
               <div>
                 <p className="text-xs text-slate-500">
-                  {translationDetail[lang].opening2}
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .opening2
+                  }
                 </p>
-                <p className="font-bold">{translationDetail[lang].openDesc2}</p>
+                <p className="font-bold">
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .openDesc2
+                  }
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -155,9 +184,17 @@ export default async function ProductDetailPage({
               </div>
               <div>
                 <p className="text-xs text-slate-500">
-                  {translationDetail[lang].opening3}
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .opening3
+                  }
                 </p>
-                <p className="font-bold">{translationDetail[lang].openDesc3}</p>
+                <p className="font-bold">
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .openDesc3
+                  }
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -171,7 +208,7 @@ export default async function ProductDetailPage({
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* SECTION 3: THÔNG SỐ CHI TIẾT & TÍNH NĂNG */}
       <div className="max-w-7xl mx-auto px-4 py-20">
@@ -180,7 +217,7 @@ export default async function ProductDetailPage({
           <div className="lg:col-span-2">
             <h2 className="text-3xl font-black mb-10 flex items-center gap-4 uppercase">
               <span className="w-12 h-1 bg-blue-600"></span>
-              Specifications
+              {translationDetail[lang as keyof typeof translationDetail].spec}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
               {currentProduct.specs?.map((spec: any, idx: number) => (
@@ -197,43 +234,10 @@ export default async function ProductDetailPage({
             </div>
 
             {/* SECTION 4: DETAILED DESCRIPTION CONTENT */}
-            <div className="bg-slate-50 border-t border-slate-100 py-20 mt-6 rounded-xl">
-              <div className="max-w-4xl mx-auto px-4">
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
-                    Chi tiết sản phẩm
-                  </h2>
-                  <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
-                  <p className="mt-6 text-slate-500 font-medium">
-                    Khám phá các công nghệ và tính năng đột phá được tích hợp
-                    bên trong {currentProduct.name}
-                  </p>
-                </div>
-
-                {/* Nội dung Rich Text từ Editor */}
-                <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-sm border border-slate-100">
-                  <article
-                    className="overflow-hidden wrap-break-words prose prose-lg prose-blue max-w-none 
-                prose-headings:font-black prose-headings:text-slate-900
-                prose-p:text-slate-600 prose-p:leading-relaxed
-                prose-img:rounded-[2rem] prose-img:shadow-2xl prose-img:mx-auto prose-img:border-8 prose-img:border-slate-50
-                prose-strong:text-blue-700
-                prose-a:text-blue-600 hover:prose-a:text-blue-800"
-                    dangerouslySetInnerHTML={{
-                      __html: currentProduct.description,
-                    }}
-                  />
-                </div>
-
-                {/* CTA Footer nhỏ bên dưới nội dung */}
-                <div className="mt-16 text-center">
-                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-100 text-blue-700 rounded-full font-bold text-sm">
-                    <ShieldCheck size={18} />
-                    Sản phẩm chính hãng được phân phối bởi GTG Group
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProductDetailDesc
+              name={currentProduct.name}
+              desc={currentProduct.description}
+            />
           </div>
 
           {/* Cột phải: Features & Support */}
@@ -241,7 +245,11 @@ export default async function ProductDetailPage({
             <div className="bg-slate-900 rounded-[2rem] p-10 text-white shadow-2xl relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                  <LightbulbIcon className="text-yellow-400" /> Key Features
+                  <LightbulbIcon className="text-yellow-400" />
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .feature
+                  }
                 </h3>
                 <ul className="space-y-5">
                   {currentProduct.features.map((f: string, i: number) => (
@@ -261,14 +269,22 @@ export default async function ProductDetailPage({
             <div className="p-1 border-2 border-slate-100 rounded-[2rem]">
               <div className="bg-blue-50 rounded-[1.9rem] p-8 text-center">
                 <p className="text-blue-600 font-bold mb-2 text-sm uppercase">
-                  Cần hỗ trợ ngay?
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .contact
+                  }
                 </p>
                 <h4 className="text-2xl font-black text-slate-900 mb-4">
                   Hotline: 09xx.xxx.xxx
                 </h4>
-                <button className="w-full bg-white border border-blue-200 py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                  Liên hệ kỹ thuật GTG
-                </button>
+                <a href="tel:0961230808">
+                  <button className="w-full bg-white border border-blue-200 py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                    {
+                      translationDetail[lang as keyof typeof translationDetail]
+                        .contactDesc
+                    }
+                  </button>
+                </a>
               </div>
             </div>
           </div>
