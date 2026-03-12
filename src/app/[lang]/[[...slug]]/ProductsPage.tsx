@@ -9,7 +9,6 @@ export function ProductsPage() {
   const { categories, setCategories } = useCategoriesStore();
 
   const allCategories = categories.filter((item) => item.level === 1);
-  console.log(categories);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -35,7 +34,6 @@ export function ProductsPage() {
             const currentItemLang = cat?.translations?.find(
               (i: any) => i.languageCode === language,
             );
-            console.log(cat.image);
             return (
               <LocalizedLink
                 key={cat.id}

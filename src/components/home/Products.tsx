@@ -9,9 +9,7 @@ export function Products() {
   const { t, language } = useLanguage();
   const { categories } = useCategoriesStore();
 
-  console.log(categories);
   const products = categories.filter((item) => item.level === 1);
-  console.log(products);
 
   // const products = useMemo(
   //   () => [
@@ -73,7 +71,6 @@ export function Products() {
             const currentProduct = product.translations?.find(
               (i: any) => i.languageCode === language,
             );
-            console.log(currentProduct);
 
             return (
               <LocalizedLink
@@ -83,7 +80,9 @@ export function Products() {
               >
                 <div className="h-48 md:h-64 lg:h-72 bg-white flex items-center justify-center overflow-hidden">
                   <img
-                    src={product.image || ""}
+                    src={
+                      product.image || "images/danhmuc/he thong may cadcam.png"
+                    }
                     alt={currentProduct.name}
                     className="w-full h-full object-contain"
                   />
