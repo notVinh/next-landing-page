@@ -97,7 +97,7 @@ export default async function ProductDetailPage({
                 {currentProduct.name}
               </h1>
               <div
-                className="prose max-w-none description-content font-light leading-relaxed"
+                className="prose max-w-none description-content font-light leading-relaxed line-clamp-4"
                 dangerouslySetInnerHTML={{
                   __html: currentProduct.description
                     .replace(/<[^>]*>/g, "")

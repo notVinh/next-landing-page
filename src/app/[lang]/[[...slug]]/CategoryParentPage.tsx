@@ -127,7 +127,7 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {currentItemLang.name}
                   </h3>
-                  <p className="text-gray-500 text-sm mb-4 line-clamp-3">
+                  <p className="text-gray-500 text-sm mb-4 line-clamp-3 ">
                     {currentItemLang.description}
                   </p>
 

@@ -148,7 +148,7 @@ export function ChildCategoryPage({
                       {matchTrans?.name}
                     </h3>
                     <div
-                      className="prose max-w-none description-content font-light leading-relaxed mb-5"
+                      className="prose max-w-none description-content font-light leading-relaxed mb-5 line-clamp-4"
                       dangerouslySetInnerHTML={{
                         __html: (matchTrans?.description || "")
                           .replace(/<[^>]*>/g, "")

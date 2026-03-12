@@ -54,7 +54,7 @@ export function ProductsPage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {currentItemLang.name}
                   </h3>
-                  <p className="text-sm text-gray-600 line-clamp-2 my-2">
+                  <p className="text-sm text-gray-600 line-clamp-4 my-2">
                     {currentItemLang.description}
                   </p>
                   <div className="flex gap-2 mt-2">
