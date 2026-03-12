@@ -39,12 +39,12 @@ export function Products() {
         image: "/images/danhmuc/May phu tro.png",
         link: "/san-pham/may-phu-tro",
       },
-      // {
-      //   name: t("products.software"),
-      //   desc: t("products.softwareDesc"),
-      //   image: "/images/danhmuc/phan mem quan ly du lieu tong hop.png",
-      //   link: "/san-pham/phan-mem-quan-ly",
-      // },
+      {
+        name: t("products.software"),
+        desc: t("products.softwareDesc"),
+        image: "/images/danhmuc/phan mem quan ly du lieu tong hop.png",
+        link: "/san-pham/phan-mem-quan-ly",
+      },
     ],
     [t],
   );

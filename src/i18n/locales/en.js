@@ -89,6 +89,8 @@ export default {
     industrialDesc: "Basic sewing machines for all needs",
     auxiliary: "Auxiliary Equipment",
     auxiliaryDesc: "Production support equipment",
+    software: "Integrated Data Management Software",
+    softwareDesc: "Integrated Data Management Software",
 
     // Subcategories - Print Cut Spread
     digitizingBoard: "Digitizing Board",

@@ -81,12 +81,12 @@ export default async function ProductDetailPage({
   return (
     <div className="min-h-screen bg-white">
       {/* SECTION 1: HERO BANNER (Giống ảnh mẫu Hikari) */}
-      <div className="relative bg-blue-600 (hoặc bg-slate-900) pt-32 pb-20 overflow-hidden text-white min-h-170">
+      <div className="relative bg-blue-600 (hoặc bg-slate-900) pt-20 pb-20 overflow-hidden text-white min-h-170">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="flex flex-col md:flex-row items-center gap-14">
             {/* Nội dung bên trái */}
             <div className="w-full md:w-3/5 space-y-6">
               <nav className="flex text-sm text-blue-200 gap-2 mb-4">
