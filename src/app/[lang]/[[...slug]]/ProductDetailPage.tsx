@@ -212,25 +212,87 @@ export default async function ProductDetailPage({
 
       {/* SECTION 3: THÔNG SỐ CHI TIẾT & TÍNH NĂNG */}
       <div className="max-w-7xl mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-16"> */}
+        <div className="flex flex-col gap-16">
           {/* Cột trái: Bảng thông số */}
           <div className="lg:col-span-2">
-            <h2 className="text-3xl font-black mb-10 flex items-center gap-4 uppercase">
-              <span className="w-12 h-1 bg-blue-600"></span>
-              {translationDetail[lang as keyof typeof translationDetail].spec}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-              {currentProduct.specs?.map((spec: any, idx: number) => (
-                <div
-                  key={idx}
-                  className="flex justify-between py-4 border-b border-slate-100 hover:bg-slate-50 transition px-2"
-                >
-                  <span className="text-slate-500 font-medium">
-                    {spec.label}
-                  </span>
-                  <span className="text-slate-900 font-bold">{spec.value}</span>
+            {currentProduct.specs?.length > 0 && (
+              <div>
+                <h2 className="text-3xl font-black mb-10 flex items-center gap-4 uppercase">
+                  <span className="w-12 h-1 bg-blue-600"></span>
+                  {
+                    translationDetail[lang as keyof typeof translationDetail]
+                      .spec
+                  }
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+                  {currentProduct.specs?.map((spec: any, idx: number) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between py-4 border-b border-slate-100 hover:bg-slate-50 transition px-2"
+                    >
+                      <span className="text-slate-500 font-medium">
+                        {spec.label}
+                      </span>
+                      <span className="text-slate-900 font-bold">
+                        {spec.value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+            )}
+            {/* Cột phải: Features & Support */}
+            <div className=" mt-10">
+              {currentProduct.features?.length > 0 && (
+                <div className="bg-slate-900 rounded-[2rem] p-10 text-white shadow-2xl relative overflow-hidden">
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                      <LightbulbIcon className="text-yellow-400" />
+                      {
+                        translationDetail[
+                          lang as keyof typeof translationDetail
+                        ].feature
+                      }
+                    </h3>
+                    <ul className="space-y-5">
+                      {currentProduct.features.map((f: string, i: number) => (
+                        <li
+                          key={i}
+                          className="flex gap-4 items-start text-slate-300 text-sm"
+                        >
+                          <CheckCircleIcon className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/20 blur-[50px]"></div>
+                </div>
+              )}
+
+              {/* <div className="p-1 border-2 border-slate-100 rounded-[2rem]">
+                <div className="bg-blue-50 rounded-[1.9rem] p-8 text-center">
+                  <p className="text-blue-600 font-bold mb-2 text-sm uppercase">
+                    {
+                      translationDetail[lang as keyof typeof translationDetail]
+                        .contact
+                    }
+                  </p>
+                  <h4 className="text-2xl font-black text-slate-900 mb-4">
+                    Hotline: 09xx.xxx.xxx
+                  </h4>
+                  <a href="tel:0961230808">
+                    <button className="w-full bg-white border border-blue-200 py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                      {
+                        translationDetail[
+                          lang as keyof typeof translationDetail
+                        ].contactDesc
+                      }
+                    </button>
+                  </a>
+                </div>
+              </div> */}
             </div>
 
             {/* SECTION 4: DETAILED DESCRIPTION CONTENT */}
@@ -240,55 +302,6 @@ export default async function ProductDetailPage({
               imgList={product.images}
               videoList={product.videos}
             />
-          </div>
-
-          {/* Cột phải: Features & Support */}
-          <div className="space-y-10">
-            <div className="bg-slate-900 rounded-[2rem] p-10 text-white shadow-2xl relative overflow-hidden">
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                  <LightbulbIcon className="text-yellow-400" />
-                  {
-                    translationDetail[lang as keyof typeof translationDetail]
-                      .feature
-                  }
-                </h3>
-                <ul className="space-y-5">
-                  {currentProduct.features.map((f: string, i: number) => (
-                    <li
-                      key={i}
-                      className="flex gap-4 items-start text-slate-300 text-sm"
-                    >
-                      <CheckCircleIcon className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/20 blur-[50px]"></div>
-            </div>
-
-            <div className="p-1 border-2 border-slate-100 rounded-[2rem]">
-              <div className="bg-blue-50 rounded-[1.9rem] p-8 text-center">
-                <p className="text-blue-600 font-bold mb-2 text-sm uppercase">
-                  {
-                    translationDetail[lang as keyof typeof translationDetail]
-                      .contact
-                  }
-                </p>
-                <h4 className="text-2xl font-black text-slate-900 mb-4">
-                  Hotline: 09xx.xxx.xxx
-                </h4>
-                <a href="tel:0961230808">
-                  <button className="w-full bg-white border border-blue-200 py-3 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                    {
-                      translationDetail[lang as keyof typeof translationDetail]
-                        .contactDesc
-                    }
-                  </button>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>

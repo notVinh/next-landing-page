@@ -86,12 +86,18 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* 2. Overview Section Card */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          {/* <h2 className="text-2xl font-bold text-gray-900 mb-4">
             {t("productCategories.overview")}
-          </h2>
-          <p className="text-gray-600 mb-4">
+          </h2> */}
+          {/* <p className="text-gray-600 mb-4">
             {currentCategoryItem?.description}
-          </p>
+          </p> */}
+          <div
+            className="prose max-w-none description-content font-light leading-relaxed mb-5 line-clamp-4 flex flex-col gap-3"
+            dangerouslySetInnerHTML={{
+              __html: currentCategoryItem?.description || "",
+            }}
+          />
           {/* <p className="text-gray-600 mb-4">
             {t("pages.productsPage.solutionDesc2")}
           </p> */}

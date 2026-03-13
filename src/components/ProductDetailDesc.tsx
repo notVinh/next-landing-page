@@ -20,13 +20,13 @@ const ProductDetailDesc = ({
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
-            {t("productSubcategories.detailText") as string}
+            {/* {t("productSubcategories.detailText") as string} */}
           </h2>
-          <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
-          <p className="mt-6 text-slate-500 font-medium">
-            {t("productSubcategories.detailEnd") as string}
-            {name}`
+          <p className="mb-6  font-medium text-blue-400">
+            {t("productSubcategories.detailEnd") as string} -{` `}
+            {name}
           </p>
+          <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
         </div>
 
         {/* Nội dung Rich Text từ Editor */}
@@ -73,7 +73,7 @@ const ProductDetailDesc = ({
           </div>
         )}
 
-        {videoList && (
+        {videoList?.length > 0 && (
           <div className="flex flex-col items-center justify-center mt-20">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
               {"Video sản phẩm"}
