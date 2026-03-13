@@ -2,8 +2,19 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ShieldCheck } from "lucide-react";
 
-const ProductDetailDesc = ({ name, desc }: { name: string; desc: string }) => {
+const ProductDetailDesc = ({
+  name,
+  desc,
+  imgList,
+  videoList,
+}: {
+  name: string;
+  desc: string;
+  imgList: [];
+  videoList: [];
+}) => {
   const { t } = useLanguage();
+
   return (
     <div className="bg-slate-50 border-t border-slate-100 py-20 mt-6 rounded-xl">
       <div className="max-w-4xl mx-auto px-4">
@@ -32,6 +43,55 @@ const ProductDetailDesc = ({ name, desc }: { name: string; desc: string }) => {
             }}
           />
         </div>
+
+        {imgList?.length > 1 && (
+          <div className="flex flex-col items-center justify-center mt-20">
+            {/* Tiêu đề */}
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4 text-center">
+              {"Hình ảnh sản phẩm"}
+            </h2>
+            <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full mb-10"></div>
+
+            {/* Lưới hình ảnh - CHỈ 2 ITEM MỖI DÒNG */}
+            <div className="grid grid-cols-2 gap-4 md:gap-6 w-full max-w-6xl">
+              {/* Item ảnh 1 */}
+              {imgList?.slice(1)?.map((i, index) => (
+                <div
+                  key={index}
+                  className="aspect-[16/10] overflow-hidden rounded-2xl shadow-md border-4 border-white bg-white transition-transform hover:scale-[1.02]"
+                >
+                  <img
+                    src={i || "/placeholder.png"}
+                    alt={"anh san pham"}
+                    className="w-full h-full object-cover" // Giúp ảnh lấp đầy khung mà không bị méo
+                  />
+                </div>
+              ))}
+
+              {/* Nếu sau này bạn dùng vòng lặp, các ảnh tiếp theo sẽ tự động xuống dòng và vẫn giữ 2 ảnh/dòng */}
+            </div>
+          </div>
+        )}
+
+        {videoList && (
+          <div className="flex flex-col items-center justify-center mt-20">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
+              {"Video sản phẩm"}
+            </h2>
+            <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+            {videoList?.map((video, index) => (
+              <div className="w-full max-w-4xl aspect-video mt-5" key={index}>
+                <iframe
+                  src={video}
+                  title="Demonstration Video"
+                  className="w-full h-full rounded-lg shadow-lg"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* CTA Footer nhỏ bên dưới nội dung */}
         <div className="mt-16 text-center">

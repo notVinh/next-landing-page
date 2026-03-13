@@ -52,15 +52,16 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
     // ... thêm các sản phẩm khác tương tự ảnh
   ];
 
+  console.log(currentCategoryItem);
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 1. Header Banner Section */}
       <div
-        className="relative bg-blue-900 py-16 px-4 sm:px-6 lg:px-8 text-white overflow-hidden"
+        className="relative bg-blue-600 py-16 sm:px-6 lg:px-8 text-white overflow-hidden"
         style={{
           backgroundImage:
             "linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('/images/banner_product/gtg_bgr_detail.png')",
-          backgroundSize: "cover",
+          backgroundSize: "contain",
           backgroundPosition: "center",
         }}
       >
@@ -89,11 +90,11 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
             {t("productCategories.overview")}
           </h2>
           <p className="text-gray-600 mb-4">
-            {t("pages.productsPage.solutionDesc1")}
+            {currentCategoryItem?.description}
           </p>
-          <p className="text-gray-600 mb-4">
+          {/* <p className="text-gray-600 mb-4">
             {t("pages.productsPage.solutionDesc2")}
-          </p>
+          </p> */}
         </div>
 
         {/* 3. Equipment Types Grid */}
@@ -107,73 +108,83 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
               (i: any) => i.languageCode === language,
             );
             return (
-              <div
+              <LocalizedLink
                 key={product.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50"
+                href={
+                  "san-pham/" +
+                  currentCategoryItem?.slug +
+                  `/${product.translations.find((i: any) => i.languageCode === language).slug}`
+                }
+                className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
               >
-                {/* Image Container */}
-                <div className="h-64 bg-white p-6 flex items-center justify-center">
-                  <img
-                    src={
-                      product.image || "images/danhmuc/he thong may cadcam.png"
-                    }
-                    alt={product.id}
-                    className="max-h-full max-w-full object-contain transform hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                {/* Content Section */}
-                <div className="p-6 flex-grow flex flex-col border-t border-gray-50">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    {currentItemLang.name}
-                  </h3>
-                  <p className="text-gray-500 text-sm mb-4 line-clamp-3 ">
-                    {currentItemLang.description}
-                  </p>
-
-                  {/* Tags */}
-                  {/* <div className="flex flex-wrap gap-2 mb-6">
-                  {product.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-medium rounded border border-blue-100 uppercase tracking-wider"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div> */}
-
-                  {/* View Details Link */}
-                  <div className="mt-auto">
-                    {/* <a
-                    href={``}
-                    className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group"
-                  >
-                    View products
-                    <svg
-                      className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a> */}
-
-                    <LocalizedLink
-                      key={product.id}
-                      href={
-                        "san-pham/" +
-                        currentCategoryItem?.slug +
-                        `/${product.translations.find((i: any) => i.languageCode === language).slug}`
+                <div
+                  key={product.id}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50"
+                >
+                  {/* Image Container */}
+                  <div className="h-64 bg-white p-6 flex items-center justify-center">
+                    <img
+                      src={
+                        product.image ||
+                        "images/danhmuc/he thong may cadcam.png"
                       }
-                      className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
+                      alt={product.id}
+                      className="max-h-full max-w-full object-contain transform hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-6 flex-grow flex flex-col border-t border-gray-50">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      {currentItemLang.name}
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-4 line-clamp-3 ">
+                      {currentItemLang.description}
+                    </p>
+
+                    {/* Tags */}
+                    {/* <div className="flex flex-wrap gap-2 mb-6">
+                    {product.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-medium rounded border border-blue-100 uppercase tracking-wider"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div> */}
+
+                    {/* View Details Link */}
+                    <div className="mt-auto">
+                      {/* <a
+                      href={``}
+                      className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group"
                     >
+                      View products
+                      <svg
+                        className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </a> */}
+
+                      {/* <LocalizedLink
+                        key={product.id}
+                        href={
+                          "san-pham/" +
+                          currentCategoryItem?.slug +
+                          `/${product.translations.find((i: any) => i.languageCode === language).slug}`
+                        }
+                        className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
+                      > */}
                       <div className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group p-2">
                         {t("productCategories.viewProducts")}
                         <svg
@@ -190,10 +201,11 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                           />
                         </svg>
                       </div>
-                    </LocalizedLink>
+                      {/* </LocalizedLink> */}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </LocalizedLink>
             );
           })}
         </div>

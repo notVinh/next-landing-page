@@ -91,9 +91,9 @@ export default async function ProductDetailPage({
             <div className="w-full md:w-3/5 space-y-6">
               <nav className="flex text-sm text-blue-200 gap-2 mb-4">
                 {/* <span>{t("nav.home") as string}</span> / <span>Products</span> /{" "} */}
-                <span className="text-white font-bold">{product.brand}</span>
+                {/* <span className="text-white font-bold">{product.brand}</span> */}
               </nav>
-              <h1 className="text-4xl md:text-6xl font-black leading-tight uppercase tracking-tighter">
+              <h1 className="text-4xl md:text-5xl font-black leading-tight uppercase tracking-tighter">
                 {currentProduct.name}
               </h1>
               <div
@@ -237,6 +237,8 @@ export default async function ProductDetailPage({
             <ProductDetailDesc
               name={currentProduct.name}
               desc={currentProduct.description}
+              imgList={product.images}
+              videoList={product.videos}
             />
           </div>
 

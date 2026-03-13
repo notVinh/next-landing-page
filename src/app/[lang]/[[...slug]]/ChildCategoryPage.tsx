@@ -56,6 +56,8 @@ export function ChildCategoryPage({
     fetchData();
   }, [currentId]);
 
+  console.log(currentCategory);
+
   const categoryName = currentCategory?.translations.find(
     (t: any) => t.languageCode === language,
   )?.name;
@@ -63,14 +65,9 @@ export function ChildCategoryPage({
   return (
     <div className="min-h-screen bg-white font-sans text-[#333]">
       {/* 1. Hero Section - Tone đen/xám chuyên nghiệp */}
-      <div className="relative h-[280px] w-full flex items-center overflow-hidden bg-[#1a1a1a]">
+      <div className="relative h-[220px] w-full flex items-center overflow-hidden bg-[#1e619d] px-6">
         {/* Lớp phủ Overlay tối để chữ trắng nổi bật */}
         <div className="absolute inset-0 bg-blue/50 z-10" />
-        <img
-          src="/gtg_bg.png"
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-90"
-          alt="Banner"
-        />
 
         <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
           <nav className="flex items-center text-[13px] text-gray-300 mb-4 space-x-2">
@@ -85,10 +82,23 @@ export function ChildCategoryPage({
             </span>
           </nav>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-wide uppercase leading-tight border-l-4 border-blue-600 pl-6">
+          <div className="text-sm md:text-[26px] font-bold text-white tracking-wide uppercase leading-tight border-l-4 border-blue-600 pl-6">
             {categoryName}
-          </h1>
+          </div>
         </div>
+        <div className="flex justify-center">
+          <img
+            src={currentCategory?.image || "/gtg_bg.png"}
+            // className="absolute inset-0 w-full object-cover z-0 opacity-60"
+            className="w-fit z-50"
+            alt="Banner"
+          />
+        </div>
+        <img
+          src={"/gtg_bg.png"}
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-45"
+          alt="Banner"
+        />
       </div>
 
       {/* 2. Intro Section - White Background */}

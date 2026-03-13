@@ -213,12 +213,55 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
                       />
 
                       {/* Tooltip Content */}
-                      {activeHotspot === pos.id && (
+                      {/* {activeHotspot === pos.id && (
                         <div
                           className={`absolute z-[100] top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 ${
                             pos.side === "left" ? "left-0" : "right-0"
                           }`}
                         >
+                          {firstProduct?.images?.[0] && (
+                            <img
+                              src={firstProduct.images[0]}
+                              className="w-full h-32 object-contain mb-3"
+                              alt=""
+                            />
+                          )}
+                          <h4 className="font-bold text-slate-900 text-sm mb-2">
+                            {firstProduct
+                              ? language === "zh"
+                                ? firstProduct.nameZh
+                                : language === "en"
+                                  ? firstProduct.nameEn
+                                  : firstProduct.name
+                              : pos.nameVi}
+                          </h4>
+                          <div className="pt-2 border-t">
+                            <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">
+                              Model đề xuất:
+                            </p>
+                            <div className="flex flex-wrap gap-1">
+                              {pos.models.map((m, i) => (
+                                <span
+                                  key={i}
+                                  className={`text-[10px] px-2 py-0.5 rounded font-bold ${colorClasses.bgLight} ${colorClasses.text}`}
+                                >
+                                  {m}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )} */}
+                      {/* Tooltip Content */}
+                      {activeHotspot === pos.id && (
+                        <div
+                          className={`absolute z-[100] top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 
+      ${pos.side === "left" ? "left-0" : "right-0"}
+      
+      /* Lớp đệm vô hình kết nối Node và Tooltip */
+      before:content-[''] before:absolute before:w-full before:h-6 before:-top-6 before:left-0`}
+                        >
+                          {/* ... giữ nguyên nội dung bên trong (images, h4, models) ... */}
                           {firstProduct?.images?.[0] && (
                             <img
                               src={firstProduct.images[0]}
