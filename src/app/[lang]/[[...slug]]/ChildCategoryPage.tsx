@@ -65,7 +65,7 @@ export function ChildCategoryPage({
   return (
     <div className="min-h-screen bg-white font-sans text-[#333]">
       {/* 1. Hero Section - Tone đen/xám chuyên nghiệp */}
-      <div className="relative h-[220px] w-full flex items-center overflow-hidden bg-[#1e619d] px-6">
+      <div className="relative h-[220px] w-full flex items-center overflow-hidden bg-[#1e619d] px-32">
         {/* Lớp phủ Overlay tối để chữ trắng nổi bật */}
         <div className="absolute inset-0 bg-blue/50 z-10" />
 
@@ -90,7 +90,7 @@ export function ChildCategoryPage({
           <img
             src={currentCategory?.image || "/gtg_bg.png"}
             // className="absolute inset-0 w-full object-cover z-0 opacity-60"
-            className="w-fit z-50"
+            className="w-fit"
             alt="Banner"
           />
         </div>
