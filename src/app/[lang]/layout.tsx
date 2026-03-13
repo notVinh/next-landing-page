@@ -37,7 +37,7 @@ export default async function LangLayout({
 
   try {
     const res = await fetch(`${process.env.BACKEND_URL}/categories`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 20 },
     });
     const categories = await res.json();
 
