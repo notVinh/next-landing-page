@@ -5,8 +5,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  title:
-    "GTG - Giang Thành | Máy May Công Nghiệp, Thiết Bị Ngành May Hàng Đầu Việt Nam",
+  title: "GTG Smart Garment Factory Solution",
   description:
     "GTG - Giang Thành - Nhà cung cấp máy may công nghiệp, máy may lập trình, máy cắt vải tự động, thiết bị ngành may hàng đầu Việt Nam.",
 };
