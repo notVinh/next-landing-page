@@ -142,7 +142,7 @@ export function ChildCategoryPage({
                 <LocalizedLink
                   key={item.id}
                   href={`/san-pham/${parent}/${child}/${item.id}`}
-                  className="flex items-center gap-2"
+                  // className="flex items-center gap-2"
                 >
                   <div className="group bg-white flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm overflow-hidden">
                     {/* Left: Product Image */}
