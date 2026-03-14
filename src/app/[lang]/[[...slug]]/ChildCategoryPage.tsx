@@ -46,6 +46,7 @@ export function ChildCategoryPage({
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/categories/${currentId}/products`,
         );
+
         setProducts(response.data.products);
       } catch (error) {
         console.error("Lỗi fetch:", error);
@@ -65,12 +66,12 @@ export function ChildCategoryPage({
   return (
     <div className="min-h-screen bg-white font-sans text-[#333]">
       {/* 1. Hero Section - Tone đen/xám chuyên nghiệp */}
-      <div className="relative h-[220px] w-full flex items-center overflow-hidden bg-[#1e619d] px-32">
+      <div className="relative h-[220px] w-full flex md:flex-row flex-row items-center overflow-hidden bg-[#1e619d] md:px-32 px-7 justify-between">
         {/* Lớp phủ Overlay tối để chữ trắng nổi bật */}
         <div className="absolute inset-0 bg-blue/50 z-10" />
 
-        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full ">
-          <nav className="flex items-center text-[13px] text-gray-300 mb-4 space-x-2">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full md:flex md:flex-col hidden">
+          <nav className="md:flex items-center text-[13px] text-gray-300 mb-4 space-x-2 ">
             <span className="flex items-center">
               <i className="fas fa-home mr-1"></i> {t("nav.home") as string}
             </span>
@@ -82,15 +83,20 @@ export function ChildCategoryPage({
             </span>
           </nav>
 
-          <div className="text-sm md:text-[30px] font-bold text-white tracking-wide uppercase leading-tight border-l-4 border-blue-600 pl-6">
+          <div className=" text-sm md:text-[30px] font-bold text-white tracking-wide uppercase leading-tight border-l-4 border-blue-600 pl-6 h-full md:flex items-center hidden">
             {categoryName}
           </div>
         </div>
-        <div className="flex justify-center w-2/3">
+
+        <div className="text-lg md:text-[30px] font-bold text-white uppercase  w-full h-full z-50  flex items-center justify-center md:hidden border-b-4 border-blue-600">
+          {categoryName}
+        </div>
+
+        <div className=" justify-center w-2/3 ">
           <img
             src={currentCategory?.image || "/gtg_bg.png"}
             // className="absolute inset-0 w-full object-cover z-0 opacity-60"
-            className="w-fit"
+            className="w-fit "
             alt="Banner"
           />
         </div>
@@ -128,7 +134,7 @@ export function ChildCategoryPage({
 
       {/* 3. Product List Section - Gray Background */}
       <div className="bg-[#f8f9fa] py-10 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 space-y-10">
+        <div className="max-w-7xl mx-auto px-6 space-y-10 flex flex-col">
           {loading ? (
             <div className="flex justify-center py-20">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-700"></div>
