@@ -69,7 +69,7 @@ export function ChildCategoryPage({
         {/* Lớp phủ Overlay tối để chữ trắng nổi bật */}
         <div className="absolute inset-0 bg-blue/50 z-10" />
 
-        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full ">
           <nav className="flex items-center text-[13px] text-gray-300 mb-4 space-x-2">
             <span className="flex items-center">
               <i className="fas fa-home mr-1"></i> {t("nav.home") as string}
@@ -82,11 +82,11 @@ export function ChildCategoryPage({
             </span>
           </nav>
 
-          <div className="text-sm md:text-[26px] font-bold text-white tracking-wide uppercase leading-tight border-l-4 border-blue-600 pl-6">
+          <div className="text-sm md:text-[30px] font-bold text-white tracking-wide uppercase leading-tight border-l-4 border-blue-600 pl-6">
             {categoryName}
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center w-2/3">
           <img
             src={currentCategory?.image || "/gtg_bg.png"}
             // className="absolute inset-0 w-full object-cover z-0 opacity-60"
@@ -144,7 +144,7 @@ export function ChildCategoryPage({
                   className="group bg-white flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm overflow-hidden"
                 >
                   {/* Left: Product Image */}
-                  <div className="w-full md:w-[40%] p-10 flex items-center justify-center bg-white border-r border-gray-50">
+                  <div className="w-full md:w-[40%] p-10 flex items-center justify-center bg-white border-r border-gray-50 ">
                     <img
                       src={item.images[0]}
                       alt={matchTrans?.name}
