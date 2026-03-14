@@ -113,6 +113,8 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
             const currentItemLang = product.translations.find(
               (i: any) => i.languageCode === language,
             );
+
+            console.log(currentItemLang);
             return (
               <LocalizedLink
                 key={product.id}
@@ -148,7 +150,7 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                       className="prose max-w-none description-content font-light leading-relaxed line-clamp-4"
                       dangerouslySetInnerHTML={{
                         __html: currentItemLang.description
-                          .replace(/<[^>]*>/g, "")
+                          .replace(/<img[^>]*>/g, "")
                           .trim(),
                       }}
                     />

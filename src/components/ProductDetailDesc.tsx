@@ -17,7 +17,7 @@ const ProductDetailDesc = ({
 
   return (
     <div className="bg-slate-50 border-t border-slate-100 py-20 mt-6 rounded-xl">
-      <div className="max-w-4xl mx-auto px-4">
+      <div className=" mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
             {/* {t("productSubcategories.detailText") as string} */}

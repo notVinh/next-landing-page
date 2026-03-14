@@ -139,53 +139,51 @@ export function ChildCategoryPage({
                 (i) => i.languageCode === language,
               );
               return (
-                <div
+                <LocalizedLink
                   key={item.id}
-                  className="group bg-white flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm overflow-hidden"
+                  href={`/san-pham/${parent}/${child}/${item.id}`}
+                  className="flex items-center gap-2"
                 >
-                  {/* Left: Product Image */}
-                  <div className="w-full md:w-[40%] p-10 flex items-center justify-center bg-white border-r border-gray-50 ">
-                    <img
-                      src={item.images[0]}
-                      alt={matchTrans?.name}
-                      className="max-h-60 object-contain group-hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-
-                  {/* Right: Product Details */}
-                  <div className="w-full md:w-[60%] p-10 flex flex-col justify-center relative">
-                    <h3 className="text-[24px] font-medium text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                      {matchTrans?.name}
-                    </h3>
-                    <div
-                      className="prose max-w-none description-content font-light leading-relaxed mb-5 line-clamp-4"
-                      dangerouslySetInnerHTML={{
-                        __html: (matchTrans?.description || "")
-                          .replace(/<[^>]*>/g, "")
-                          .trim(),
-                      }}
-                    />
-
-                    {/* <p className="text-blue-600 text-[17px] font-normal mb-4" 
-                    >
-                      ({matchTrans?.description})
-                    </p> */}
-
-                    <div className="text-gray-500 text-[15px] leading-relaxed mb-8 border-t border-gray-100 pt-4">
-                      {matchTrans?.specs?.slice(0, 3).map((s, idx) => (
-                        <div key={idx} className="mb-1">
-                          <span className="text-gray-400">•</span> {s.label}:{" "}
-                          <span className="text-gray-700">{s.value}</span>
-                        </div>
-                      ))}
+                  <div className="group bg-white flex flex-col md:flex-row shadow-sm hover:shadow-xl transition-all duration-500 rounded-sm overflow-hidden">
+                    {/* Left: Product Image */}
+                    <div className="w-full md:w-[40%] p-10 flex items-center justify-center bg-white border-r border-gray-50 ">
+                      <img
+                        src={item.images[0]}
+                        alt={matchTrans?.name}
+                        className="max-h-60 object-contain group-hover:scale-110 transition-transform duration-700"
+                      />
                     </div>
 
-                    {/* Circle Arrow Button - Giống ảnh mẫu */}
+                    {/* Right: Product Details */}
+                    <div className="w-full md:w-[60%] p-10 flex flex-col justify-center relative">
+                      <h3 className="text-[24px] font-medium text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                        {matchTrans?.name}
+                      </h3>
+                      <div
+                        className="prose max-w-none description-content font-light leading-relaxed mb-5 line-clamp-4"
+                        dangerouslySetInnerHTML={{
+                          __html: (matchTrans?.description || "")
+                            .replace(/<img[^>]*>/g, "")
+                            .trim(),
+                        }}
+                      />
 
-                    <LocalizedLink
-                      href={`/san-pham/${parent}/${child}/${item.id}`}
-                      className="flex items-center gap-2"
-                    >
+                      {/* <p className="text-blue-600 text-[17px] font-normal mb-4" 
+                      >
+                        ({matchTrans?.description})
+                      </p> */}
+
+                      <div className="text-gray-500 text-[15px] leading-relaxed mb-8 border-t border-gray-100 pt-4">
+                        {matchTrans?.specs?.slice(0, 3).map((s, idx) => (
+                          <div key={idx} className="mb-1">
+                            <span className="text-gray-400">•</span> {s.label}:{" "}
+                            <span className="text-gray-700">{s.value}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Circle Arrow Button - Giống ảnh mẫu */}
+
                       <div className=" h-10 p-2 gap-2 rounded-full bg-gray-400 text-white flex items-center justify-center group-hover:bg-blue-600 transition-all self-start">
                         <div className="">{t("products.viewDetails")}</div>
                         <svg
@@ -202,9 +200,10 @@ export function ChildCategoryPage({
                           />
                         </svg>
                       </div>
-                    </LocalizedLink>
+                      {/* </LocalizedLink> */}
+                    </div>
                   </div>
-                </div>
+                </LocalizedLink>
               );
             })
           )}

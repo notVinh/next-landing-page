@@ -98,7 +98,7 @@ export function Products() {
                     className="prose max-w-none description-content font-light leading-relaxed line-clamp-3 mb-3 md:mb-4"
                     dangerouslySetInnerHTML={{
                       __html: currentProduct.description
-                        .replace(/<[^>]*>/g, "")
+                        .replace(/<img[^>]*>/g, "")
                         .trim(),
                     }}
                   />
