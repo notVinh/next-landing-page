@@ -114,9 +114,9 @@ export default async function ProductDetailPage({
                   productId={product.id}
                   lang={lang}
                 />
-                <button className="border-2 border-white/30 hover:bg-white hover:text-blue-900 px-8 py-4 rounded-full font-bold transition-all uppercase text-sm">
+                {/* <button className="border-2 border-white/30 hover:bg-white hover:text-blue-900 px-8 py-4 rounded-full font-bold transition-all uppercase text-sm">
                   Download Brochure
-                </button>
+                </button> */}
               </div>
             </div>
 

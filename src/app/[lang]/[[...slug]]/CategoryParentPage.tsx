@@ -127,7 +127,7 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
               >
                 <div
                   key={product.id}
-                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50 min-h-120"
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50 h-full"
                 >
                   {/* Image Container */}
                   <div className="h-64 bg-white p-6 flex items-center justify-center">
@@ -155,49 +155,8 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                       }}
                     />
 
-                    {/* Tags */}
-                    {/* <div className="flex flex-wrap gap-2 mb-6">
-                    {product.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-medium rounded border border-blue-100 uppercase tracking-wider"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div> */}
-
                     {/* View Details Link */}
                     <div className="mt-auto">
-                      {/* <a
-                      href={``}
-                      className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group"
-                    >
-                      View products
-                      <svg
-                        className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </a> */}
-
-                      {/* <LocalizedLink
-                        key={product.id}
-                        href={
-                          "san-pham/" +
-                          currentCategoryItem?.slug +
-                          `/${product.translations.find((i: any) => i.languageCode === language).slug}`
-                        }
-                        className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
-                      > */}
                       <div className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-800 transition-colors group p-2">
                         {t("productCategories.viewProducts")}
                         <svg
