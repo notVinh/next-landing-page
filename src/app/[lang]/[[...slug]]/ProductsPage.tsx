@@ -48,7 +48,7 @@ export function ProductsPage() {
                   />
                 </div>
 
-                <div className="p-4 flex flex-col justify-between h-full">
+                <div className="p-4 flex flex-col justify-between h-full gap-8 md:gap-0">
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">
                       {currentItemLang.name}
