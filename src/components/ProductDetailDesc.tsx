@@ -16,17 +16,17 @@ const ProductDetailDesc = ({
   const { t } = useLanguage();
 
   return (
-    <div className="bg-slate-50 border-t border-slate-100 py-20 mt-6 rounded-xl">
+    <div className="  mt-6 rounded-xl">
       <div className=" mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center">
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
             {/* {t("productSubcategories.detailText") as string} */}
           </h2>
-          <p className="mb-6  font-medium text-blue-400">
+          {/* <p className="mb-6  font-medium text-blue-400">
             {t("productSubcategories.detailEnd") as string} -{` `}
             {name}
           </p>
-          <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+          <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div> */}
         </div>
 
         {/* Nội dung Rich Text từ Editor */}
