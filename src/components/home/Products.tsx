@@ -91,9 +91,17 @@ export function Products() {
                   <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2 md:mb-3">
                     {currentProduct.name}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-2 flex-grow">
+                  {/* <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-2 flex-grow">
                     {currentProduct.description}
-                  </p>
+                  </p> */}
+                  <div
+                    className="prose max-w-none description-content font-light leading-relaxed line-clamp-3 mb-3 md:mb-4"
+                    dangerouslySetInnerHTML={{
+                      __html: currentProduct.description
+                        .replace(/<[^>]*>/g, "")
+                        .trim(),
+                    }}
+                  />
                   <span className="inline-flex items-center text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700 mt-auto">
                     {t("products.viewDetails") as string}
                     <svg

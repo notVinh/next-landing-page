@@ -121,11 +121,11 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                   currentCategoryItem?.slug +
                   `/${product.translations.find((i: any) => i.languageCode === language).slug}`
                 }
-                className="flex flex-col bg-white rounded-lg overflow-hidden shadow hover-lift"
+                className="flex flex-col rounded-lg overflow-hidden shadow hover-lift"
               >
                 <div
                   key={product.id}
-                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50"
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col border border-gray-50 min-h-120"
                 >
                   {/* Image Container */}
                   <div className="h-64 bg-white p-6 flex items-center justify-center">
@@ -140,7 +140,7 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
                   </div>
 
                   {/* Content Section */}
-                  <div className="p-6 flex-grow flex flex-col border-t border-gray-50">
+                  <div className="p-6 flex-grow flex flex-col border-t border-gray-50 ">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       {currentItemLang.name}
                     </h3>
