@@ -85,7 +85,7 @@ const ProductDetailDesc = ({
           </div>
         )}
 
-        {videoList?.length > 0 && (
+        {/* {videoList?.length > 0 && (
           <div className="flex flex-col items-center justify-center mt-20">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
               {"Video sản phẩm"}
@@ -102,6 +102,49 @@ const ProductDetailDesc = ({
                 />
               </div>
             ))}
+          </div>
+        )} */}
+
+        {videoList?.length > 0 && (
+          <div className="flex flex-col items-center justify-center mt-20">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
+              {"Video sản phẩm"}
+            </h2>
+            <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+
+            {videoList?.map((video, index) => {
+              // Hàm xử lý link tại chỗ
+              const getEmbedUrl = (url: string) => {
+                if (!url) return "";
+
+                // Regex này tập trung bóc tách ID từ nhiều dạng link (watch, share, shorts, embed)
+                const regExp =
+                  /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+                const match = url.match(regExp);
+
+                const videoId =
+                  match && match[2].length === 11 ? match[2] : null;
+
+                if (videoId) {
+                  return `https://www.youtube.com/embed/${videoId}`;
+                }
+
+                // Nếu đã là link embed sẵn thì giữ nguyên, không thì trả về rỗng để tránh lỗi frame
+                return url.includes("youtube.com/embed/") ? url : "";
+              };
+
+              return (
+                <div className="w-full max-w-4xl aspect-video mt-5" key={index}>
+                  <iframe
+                    src={getEmbedUrl(video)}
+                    title="Demonstration Video"
+                    className="w-full h-full rounded-lg shadow-lg"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              );
+            })}
           </div>
         )}
 
