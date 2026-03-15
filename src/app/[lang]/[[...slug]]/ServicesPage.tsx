@@ -274,7 +274,7 @@ const ServicesPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a
-                href="tel:0961230808"
+                href="tel:+84961230808"
                 className="inline-flex items-center justify-center bg-white text-blue-900 px-12 py-5 rounded-2xl font-black text-lg shadow-xl hover:bg-blue-50 transition-all hover:scale-105 active:scale-95"
               >
                 <svg

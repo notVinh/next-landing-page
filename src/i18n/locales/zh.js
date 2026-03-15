@@ -30,7 +30,7 @@ export default {
     opening2: "技术",
     openDesc2: "先进的",
     opening3: "保证",
-    openDesc3: "24个月",
+    openDesc3: "12个月",
 
     // Featured products section
     industrialMachine: "工业缝纫机",
@@ -155,6 +155,7 @@ export default {
 
   // Hero Section
   hero: {
+    tel: "+8613345510808 - +84961230808",
     badge: "越南领先的工业缝纫机代理商",
     title: "GTG解决方案",
     titleHighlight: "技术与设备",
@@ -381,7 +382,7 @@ export default {
   // Footer
   footer: {
     companyName: "GTG投资发展股份公司",
-    companyDesc: "GTG - 专业提供正品工业缝纫机和服装设备。",
+    companyDesc: "GTG - 智能服装工厂解决方案",
     quickLinks: "快速链接",
     home: "首页",
     about: "关于我们",
@@ -393,14 +394,14 @@ export default {
     website: "网站",
     office: "越南办事处",
     officeLocation: "河内市龙编区赛东190号TT03-03",
-    officePhone: "0961.230.808",
+    officePhone: "+84 0961.230.808",
     factory: "越南工厂",
     factoryLocation: "宁平省同文区同文一扩展工业区 CN02 号地块",
     hefeiCenter: "合肥运营中心",
     hefeiLocation:
       "中国安徽省合肥市新站区天水路与新汴河路交口合肥（新站）万洋众创城5栋403-2",
-    factoryPhone: "0086-13345510808",
-    factoryPhonevn: "0961.230.808",
+    factoryPhone: "+86 13345510808",
+    factoryPhonevn: "+84 0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
     copyright: "© 2026 GTG.",
     brand: "品牌",
@@ -668,6 +669,102 @@ export default {
     title: "公司简介",
     heroDesc: "GTG - 越南领先的工业缝纫机和服装设备供应商。",
     introduction: "简介",
+    // 1. 品牌概况 (Brand Overview)
+    brandTitle: "GTG 品牌概况",
+    brandIntroduction:
+      "GTG 是一家专注于服装工业设备研发、生产及自动化解决方案的国际化品牌。",
+    brandModelTitle: "GTG 采用跨国技术生态系统模式运营，包括：",
+    brandModelRnd: "位于中国的设计研发中心",
+    brandModelMarket: "位于越南的组装、测试及市场开发体系",
+    brandModelNetwork: "遍布全球主要纺织服装生产国家的销售网络",
+
+    brandBenefitTitle: "GTG 解决方案助力：",
+    brandBenefit1: "提升生产效率",
+    brandBenefit2: "降低生产成本",
+    brandBenefit3: "优化生产运营管理",
+    brandBenefit4: "逐步向智能服装工厂 (Smart Garment Factory) 转型",
+
+    // 2. 发展历程 (History)
+    historyTitle: "2. 发展历程",
+    historyDesc:
+      "在发展过程中，GTG 已从单一的工业缝纫设备逐步扩展到自动化解决方案及智能制造领域。",
+    historyMilestoneTitle: "重要里程碑：",
+    historyMilestone1: "研发先进工业缝纫机及电脑花样机",
+    historyMilestone2: "进军服装自动化设备领域",
+    historyMilestone3:
+      "开发专用设备：自动充棉机、羽绒充绒机、自动接松紧带机、压胶机",
+    historyMilestone4: "研发并实施智能服装工厂整体解决方案",
+    historyGlobalPresence: "目前，GTG 产品已广泛应用于亚洲地区的众多服装工厂。",
+
+    // 3. 技术生态系统 (Ecosystem)
+    ecosystemTitle: "3. GTG 技术生态系统",
+    ecosystemDesc: "GTG 构建了服务于服装行业的全方位技术生态系统，包括：",
+
+    ecosystemRnDTitle: "研发 (R&D)",
+    ecosystemRnD1: "机械设计",
+    ecosystemRnD2: "电子控制系统",
+    ecosystemRnD3: "自动化技术研究",
+
+    ecosystemProdTitle: "制造 (Manufacturing)",
+    ecosystemProd1: "零部件生产",
+    ecosystemProd2: "设备 OEM 生产",
+    ecosystemProd3: "组装与质量检测",
+
+    ecosystemSolTitle: "解决方案 (Solutions)",
+    ecosystemSol1: "服装生产设备",
+    ecosystemSol2: "生产线自动化",
+    ecosystemSol3: "生产管理软件",
+
+    // 4. 产品目录 (Product Catalog) - SỬA THEO SẾP
+    introDesc17: "4. 产品目录",
+    introDesc18: "GTG 提供覆盖服装生产流程的设备：",
+
+    productGroup1: "工业缝纫设备",
+    productGroup1Item1: "单针平缝机",
+    productGroup1Item2: "双针缝纫机",
+    productGroup1Item3: "包缝机",
+    productGroup1Item4: "花样机",
+
+    productGroup2: "CAD/CAM设备",
+    productGroup2Item1: "排料绘图机",
+    productGroup2Item2: "自动铺布机",
+    productGroup2Item3: "自动裁剪机",
+
+    productGroup3: "自动化设备",
+    productGroup3Item1: "自动充棉机",
+    productGroup3Item2: "羽绒充绒机",
+    productGroup3Item3: "自动接松紧带机",
+    productGroup3Item4: "压胶机",
+
+    productGroup4: "辅助设备",
+    productGroup4Item1: "热压机",
+    productGroup4Item2: "后整理设备",
+    productGroup4Item3: "生产辅助设备",
+
+    // 5. 智能服装工厂解决方案 (Solutions) - SỬA THEO SẾP
+    solutionTitle: "5. 智能服装工厂解决方案",
+    solutionDesc: "GTG 提供完整的服装工厂解决方案：",
+    solutionItem1: "生产线自动化",
+    solutionItem2: "MES生产管理系统",
+    solutionItem3: "智能仓储系统",
+    solutionItem4: "生产效率监控系统",
+    solutionItem5: "智能服装工厂解决方案",
+
+    // 6. 市场网络 (Market) - SỬA THEO SẾP
+    marketTitle: "6. 全球市场网络",
+    marketDesc: "GTG 设备目前已应用于多个国家的服装制造企业，包括：",
+    marketItem1: "越南",
+    marketItem2: "中国",
+    marketItem3: "东南亚",
+    marketItem4: "其他服装制造国家",
+    marketFooter: "GTG 正不断扩大其全球合作伙伴与客户网络。",
+
+    // 7. 愿景与使命 (Vision & Mission) - SỬA THEO SẾP
+    visionMissionTitle: "7. 愿景与使命",
+    visionTitle: "愿景",
+    visionContent: "成为亚洲领先的服装设备与技术解决方案品牌。",
+    missionTitle: "使命",
+    missionContent: "通过创新设备与技术解决方案推动服装行业迈向智能制造。",
     introDesc1:
       "是越南领先的高科技缝纫机供应商，满足从个人到全国大型服装企业的多样化客户需求。",
     introDesc2: "我们在中国拥有生产工厂，分销",

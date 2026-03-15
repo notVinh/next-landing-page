@@ -30,7 +30,7 @@ export default {
     opening2: "Technology",
     openDesc2: "Advanced",
     opening3: "Guarantee",
-    openDesc3: "24 Month",
+    openDesc3: "12 Month",
 
     // Featured products section
     industrialMachine: "Industrial Sewing Machine",
@@ -413,8 +413,7 @@ export default {
   // Footer
   footer: {
     companyName: "Giang Thanh Investment Development JSC",
-    companyDesc:
-      "GTG - Specialized in providing industrial sewing machines and authentic garment equipment.",
+    companyDesc: "GTG - Smart Garment Factory Solution.",
     quickLinks: "Quick Links",
     home: "Home",
     about: "About Us",
@@ -427,7 +426,7 @@ export default {
     // Office info
     office: "Vietnam Office",
     officeLocation: "TT03-03, 190 Sai Dong, Long Bien, Hanoi",
-    officePhone: "0961.230.808",
+    officePhone: "+84 0961.230.808",
     // Factory info
     factory: "Factory in Vietnam",
     factoryLocation:
@@ -435,8 +434,8 @@ export default {
     hefeiCenter: "Hefei Operation Center",
     hefeiLocation:
       "Room 403-2, Building 5, Wanyang Innovation City (Xinzhan), Intersection of Tianshui Road & Xinbianhe Road, Xinzhan District, Hefei City, Anhui Province, China",
-    factoryPhone: "0086-13345510808",
-    factoryPhonevn: "0961.230.808",
+    factoryPhone: "+86 13345510808",
+    factoryPhonevn: "+84 0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
     copyright: "© 2026 GTG.",
     brand: "Brand",
@@ -775,6 +774,119 @@ export default {
     heroDesc:
       "Giang Thanh Investment Development JSC - Leading supplier of industrial sewing machines and garment equipment in Vietnam.",
     introduction: "General Introduction",
+    // 1. Brand Overview
+    brandTitle: "GTG Overview",
+    brandIntroduction:
+      "GTG is an international brand specializing in the research, development, and supply of industrial equipment and automation solutions for the garment industry.",
+    brandModelTitle:
+      "GTG operates under a multinational technology ecosystem model, featuring:",
+    brandModelRnd: "R&D Center in China",
+    brandModelMarket:
+      "Assembly, testing, and market development system in Vietnam",
+    brandModelNetwork:
+      "Distribution network across major textile and garment producing nations",
+
+    brandBenefitTitle: "GTG solutions help to:",
+    brandBenefit1: "Boost productivity",
+    brandBenefit2: "Reduce production costs",
+    brandBenefit3: "Optimize operational management",
+    brandBenefit4: "Step-by-step transition to Smart Garment Factories",
+
+    // 2. Development History
+    historyTitle: "2. Development History",
+    historyDesc:
+      "Throughout its journey, GTG has evolved from providing industrial sewing machines to advanced automation and smart factory solutions.",
+    historyMilestoneTitle: "Key Milestones:",
+    historyMilestone1:
+      "Developed advanced industrial sewing and programmable pattern machines",
+    historyMilestone2: "Expanded into garment automation equipment",
+    historyMilestone3:
+      "Launched specialized machinery: Down & Fiber filling, Elastic joining, and Seam sealing machines",
+    historyMilestone4:
+      "Researched and implemented Smart Garment Factory solutions",
+    historyGlobalPresence:
+      "GTG products are now trusted by numerous garment factories across Asia.",
+
+    // 3. Technology Ecosystem
+    ecosystemTitle: "3. GTG Technology Ecosystem",
+    ecosystemDesc:
+      "GTG builds a comprehensive technology ecosystem for the garment sector, including:",
+
+    ecosystemRnDTitle: "R&D",
+    ecosystemRnD1: "Mechanical Design",
+    ecosystemRnD2: "Electronic Control Systems",
+    ecosystemRnD3: "Automation Research",
+
+    ecosystemProdTitle: "Manufacturing",
+    ecosystemProd1: "Component Production",
+    ecosystemProd2: "OEM Equipment Manufacturing",
+    ecosystemProd3: "Assembly & Quality Control",
+
+    ecosystemSolTitle: "Solutions",
+    ecosystemSol1: "Garment Production Equipment",
+    ecosystemSol2: "Assembly Line Automation",
+    ecosystemSol3: "Manufacturing Execution Software",
+
+    // 4. Product Catalog
+    introDesc17: "4. Product Catalog",
+    introDesc18:
+      "GTG provides equipment for the entire garment production chain:",
+
+    // Group: Industrial Sewing Machines
+    productGroup1: "Industrial Sewing Machines",
+    productGroup1Item1: "Single Needle Machines",
+    productGroup1Item2: "Double Needle Machines",
+    productGroup1Item3: "Overlock Machines",
+    productGroup1Item4: "Programmable Pattern Machines",
+
+    // Group: CAD/CAM Equipment
+    productGroup2: "CAD/CAM Equipment",
+    productGroup2Item1: "Plotter Machines",
+    productGroup2Item2: "Fabric Spreading Machines",
+    productGroup2Item3: "Automatic Cutting Machines",
+
+    // Group: Automation Equipment
+    productGroup3: "Automation Equipment",
+    productGroup3Item1: "Fiber Filling Machines",
+    productGroup3Item2: "Down Filling Machines",
+    productGroup3Item3: "Automatic Elastic Joining Machines",
+    productGroup3Item4: "Seam Sealing Machines",
+
+    // Group: Auxiliary Equipment
+    productGroup4: "Auxiliary Equipment",
+    productGroup4Item1: "Heat Press Machines",
+    productGroup4Item2: "Finishing Equipment",
+    productGroup4Item3: "Production Support Devices",
+
+    // 5. Smart Garment Factory Solutions
+    solutionTitle: "5. Smart Garment Factory Solutions",
+    solutionDesc:
+      "GTG provides turnkey solutions for modern garment factories:",
+    solutionItem1: "Production Line Automation",
+    solutionItem2: "MES (Manufacturing Execution System)",
+    solutionItem3: "Smart Warehouse Management System",
+    solutionItem4: "Real-time Productivity Tracking",
+    solutionItem5: "Comprehensive Smart Garment Factory Solutions",
+
+    // 6. Market Network
+    marketTitle: "6. Market Network",
+    marketDesc:
+      "GTG equipment is widely utilized in major garment manufacturing hubs:",
+    marketItem1: "Vietnam",
+    marketItem2: "China",
+    marketItem3: "Southeast Asia",
+    marketItem4: "Global Textile-Producing Nations",
+    marketFooter:
+      "GTG is continuously expanding its network of partners and clients worldwide.",
+
+    // 7. Vision & Mission
+    visionMissionTitle: "7. Vision & Mission",
+    visionTitle: "Vision",
+    visionContent:
+      "To become the leading brand for technology equipment and solutions in the Asian garment industry.",
+    missionTitle: "Mission",
+    missionContent:
+      "Developing innovative equipment and solutions to empower the garment industry with higher productivity and a seamless transition to smart manufacturing.",
     introDesc1:
       "is a leading supplier of high-tech sewing machines serving diverse customer needs from individuals to large garment enterprises nationwide.",
     introDesc2:

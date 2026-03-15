@@ -151,7 +151,7 @@ function HistoryPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="tel:0961230808"
+                href="tel:+84961230808"
                 className="inline-flex items-center justify-center bg-white text-blue-900 px-8 py-4 font-black rounded-2xl shadow-xl hover:bg-blue-50 transition-all hover:scale-105 active:scale-95"
               >
                 <svg

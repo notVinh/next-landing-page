@@ -30,7 +30,7 @@ export default {
     opening2: "Công nghệ",
     openDesc2: "Tiên tiến",
     opening3: "Bảo hành",
-    openDesc3: "24 Tháng",
+    openDesc3: "12 Tháng",
 
     // Featured products section
     industrialMachine: "Máy May Công Nghiệp",
@@ -413,8 +413,7 @@ export default {
   // Footer
   footer: {
     companyName: "Công ty CP Đầu Tư Phát Triển Giang Thành",
-    companyDesc:
-      "GTG - Chuyên cung cấp máy may công nghiệp, thiết bị ngành may chính hãng.",
+    companyDesc: "GTG - Giải pháp nhà máy may thông minh",
     quickLinks: "Liên Kết Nhanh",
     home: "Trang chủ",
     about: "Giới thiệu",
@@ -427,7 +426,7 @@ export default {
     // Office info
     office: "Văn Phòng Việt Nam",
     officeLocation: "TT03-03 số 190 Sài Đồng, Long Biên, Hà Nội",
-    officePhone: "0961.230.808",
+    officePhone: "+84 0961.230.808",
     // Factory info
     factory: "Nhà Máy tại Việt Nam",
     factoryLocation:
@@ -435,8 +434,8 @@ export default {
     hefeiCenter: "Trung Tâm Vận Hành Hợp Phì",
     hefeiLocation:
       "Phòng 403-2, Tòa 5, Vạn Dương Chúng Sáng Thành (Tân Trạm), Giao lộ Thiên Thủy & Tân Biện Hà, Quận Tân Trạm, TP Hợp Phì, An Huy, Trung Quốc",
-    factoryPhone: "0086-13345510808",
-    factoryPhonevn: "0961.230.808",
+    factoryPhone: "+86 13345510808",
+    factoryPhonevn: "+84 0961.230.808",
     factoryEmail: "tracy@gtgsew.cn",
     copyright: "© 2026 GTG.",
     brand: "Thương hiệu",
@@ -763,6 +762,119 @@ export default {
     heroDesc:
       "GTG - Đơn vị hàng đầu chuyên cung cấp máy may công nghiệp và thiết bị ngành may tại Việt Nam.",
     introduction: "Giới Thiệu Chung",
+    // 1. Tổng quan thương hiệu (Giới thiệu chung)
+    brandTitle: "Tổng quan về GTG",
+    brandIntroduction:
+      "GTG là thương hiệu quốc tế chuyên nghiên cứu, phát triển và cung cấp thiết bị công nghiệp cùng giải pháp tự động hóa cho ngành may mặc.",
+    brandModelTitle:
+      "GTG hoạt động theo mô hình hệ sinh thái công nghệ đa quốc gia, với:",
+    brandModelRnd: "Trung tâm nghiên cứu và phát triển tại Trung Quốc",
+    brandModelMarket:
+      "Hệ thống lắp ráp, thử nghiệm và phát triển thị trường tại Việt Nam",
+    brandModelNetwork:
+      "Mạng lưới phân phối tại nhiều quốc gia trong ngành dệt may",
+
+    brandBenefitTitle: "Giải pháp của GTG giúp:",
+    brandBenefit1: "Tăng năng suất",
+    brandBenefit2: "Giảm chi phí sản xuất",
+    brandBenefit3: "Tối ưu quản lý vận hành",
+    brandBenefit4: "Từng bước chuyển đổi sang Smart Garment Factory",
+
+    // 2. Lịch sử phát triển
+    historyTitle: "2. Lịch sử phát triển",
+    historyDesc:
+      "Trong quá trình phát triển, GTG từng bước mở rộng từ thiết bị may công nghiệp sang các giải pháp tự động hóa và nhà máy thông minh",
+    historyMilestoneTitle: "Một số cột mốc quan trọng:",
+    historyMilestone1:
+      "Phát triển các dòng máy may công nghiệp và máy lập trình",
+    historyMilestone2: "Mở rộng sang thiết bị tự động hóa ngành may",
+    historyMilestone3:
+      "Phát triển các thiết bị chuyên dụng như máy nhồi bông, nhồi lông, nối chun, dán seam",
+    historyMilestone4:
+      "Nghiên cứu và triển khai giải pháp Smart Garment Factory",
+    historyGlobalPresence:
+      "Sản phẩm GTG hiện đang được sử dụng tại nhiều nhà máy may trong khu vực châu Á.",
+
+    // 3. Hệ sinh thái công nghệ
+    ecosystemTitle: "3. Hệ sinh thái công nghệ GTG",
+    ecosystemDesc:
+      "GTG xây dựng hệ sinh thái công nghệ phục vụ ngành may bao gồm:",
+
+    ecosystemRnDTitle: "R&D",
+    ecosystemRnD1: "Thiết kế cơ khí",
+    ecosystemRnD2: "Hệ điều khiển điện tử",
+    ecosystemRnD3: "Nghiên cứu tự động hóa",
+
+    ecosystemProdTitle: "Sản xuất",
+    ecosystemProd1: "Sản xuất linh kiện",
+    ecosystemProd2: "OEM sản xuất thiết bị",
+    ecosystemProd3: "Lắp ráp và kiểm tra chất lượng",
+
+    ecosystemSolTitle: "Giải pháp",
+    ecosystemSol1: "Thiết bị sản xuất may mặc",
+    ecosystemSol2: "Tự động hóa dây chuyền",
+    ecosystemSol3: "Phần mềm quản lý sản xuất",
+
+    // 4. Danh mục sản phẩm
+    introDesc17: "4. Danh mục sản phẩm",
+    introDesc18:
+      "GTG cung cấp thiết bị phục vụ toàn bộ dây chuyền sản xuất may:",
+
+    // Nhóm: Máy may công nghiệp
+    productGroup1: "Máy may công nghiệp",
+    productGroup1Item1: "máy may 1 kim",
+    productGroup1Item2: "máy may 2 kim",
+    productGroup1Item3: "máy vắt sổ",
+    productGroup1Item4: "máy lập trình",
+
+    // Nhóm: Thiết bị CAD/CAM
+    productGroup2: "Thiết bị CAD/CAM",
+    productGroup2Item1: "máy in sơ đồ",
+    productGroup2Item2: "máy trải vải",
+    productGroup2Item3: "máy cắt vải tự động",
+
+    // Nhóm: Thiết bị tự động hóa
+    productGroup3: "Thiết bị tự động hóa",
+    productGroup3Item1: "máy nhồi bông",
+    productGroup3Item2: "máy nhồi lông vũ",
+    productGroup3Item3: "máy nối chun tự động",
+    productGroup3Item4: "máy dán seam",
+
+    // Nhóm: Thiết bị phụ trợ
+    productGroup4: "Thiết bị phụ trợ",
+    productGroup4Item1: "máy ép nhiệt",
+    productGroup4Item2: "thiết bị hoàn tất",
+    productGroup4Item3: "thiết bị hỗ trợ sản xuất",
+
+    // 5. Giải pháp nhà máy may thông minh
+    solutionTitle: "5. Giải pháp nhà máy may thông minh",
+    solutionDesc: "GTG cung cấp các giải pháp tổng thể cho nhà máy may:",
+    solutionItem1: "tự động hóa dây chuyền sản xuất",
+    solutionItem2: "hệ thống quản lý sản xuất MES",
+    solutionItem3: "hệ thống quản lý kho thông minh",
+    solutionItem4: "hệ thống theo dõi năng suất chuyền may",
+    solutionItem5: "giải pháp Smart Garment Factory",
+
+    // 6. Mạng lưới thị trường
+    marketTitle: "6. Mạng lưới thị trường",
+    marketDesc:
+      "Thiết bị GTG hiện đang được sử dụng tại nhiều nhà máy may trong khu vực:",
+    marketItem1: "Việt Nam",
+    marketItem2: "Trung Quốc",
+    marketItem3: "Đông Nam Á",
+    marketItem4: "các quốc gia sản xuất dệt may",
+    marketFooter:
+      "GTG không ngừng mở rộng mạng lưới đối tác và khách hàng trên thị trường quốc tế.",
+
+    // 7. Tầm nhìn và sứ mệnh
+    visionMissionTitle: "7. Tầm nhìn và sứ mệnh",
+    visionTitle: "Tầm nhìn",
+    visionContent:
+      "Trở thành thương hiệu thiết bị và giải pháp công nghệ hàng đầu cho ngành may mặc tại châu Á.",
+    missionTitle: "Sứ mệnh",
+    missionContent:
+      "Phát triển các thiết bị và giải pháp giúp ngành may tăng năng suất và chuyển đổi sang sản xuất thông minh.",
+
     introDesc1:
       "là đơn vị hàng đầu chuyên cung cấp các dòng máy may công nghệ cao phục vụ đa dạng nhu cầu khách hàng từ cá nhân đến các doanh nghiệp may mặc quy mô lớn trên toàn quốc.",
     introDesc2:

@@ -379,10 +379,10 @@ const CompanyInfoPage = () => {
                     {branch.addr}
                   </p>
                   <a
-                    href="tel:0961230808"
+                    href="tel:+84961230808"
                     className="text-blue-400 font-bold hover:text-blue-300"
                   >
-                    0961.230.808
+                    +84 0961.230.808
                   </a>
                 </div>
               ))}
@@ -399,7 +399,7 @@ const CompanyInfoPage = () => {
             {t("companyInfoPage.needConsultDesc")}
           </p>
           <a
-            href="tel:0961230808"
+            href="tel:+84961230808"
             className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-200 transition-all hover:scale-105 active:scale-95"
           >
             <svg

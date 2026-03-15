@@ -84,7 +84,7 @@ export function Hero() {
                   />
                 </svg>
                 <span className="font-semibold text-gray-900">
-                  {t("hero.hotline") as string}: 0961.230.808
+                  {t("hero.hotline") as string}: +8613345510808 - +84961230808
                 </span>
               </div>
             </div>

@@ -50,7 +50,7 @@ export function FooterContact() {
             />
           </svg>
           <a
-            href="tel:0961230808"
+            href="tel:+84961230808"
             className="text-gray-400 text-sm hover:text-blue-400"
           >
             {t("footer.officePhone") as string}
@@ -124,7 +124,7 @@ export function FooterContact() {
             />
           </svg>
           <a
-            href="tel:0961230808"
+            href="tel:+84961230808"
             className="text-gray-400 text-sm hover:text-orange-400"
           >
             {t("footer.factoryPhonevn") as string}
@@ -175,7 +175,7 @@ export function FooterContact() {
             />
           </svg>
           <a
-            href="tel:008613345510808"
+            href="tel:+8613345510808"
             className="text-gray-400 text-sm hover:text-green-400"
           >
             {t("footer.factoryPhone") as string}

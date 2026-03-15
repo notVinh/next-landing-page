@@ -85,7 +85,7 @@ function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-white">
             <a
-              href="tel:0961230808"
+              href="tel:+84961230808"
               className="flex items-center gap-3 hover:text-blue-200 transition-all group"
             >
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition">
@@ -308,7 +308,7 @@ function ContactPage() {
 
               <div className="mt-8">
                 <a
-                  href="tel:0961230808"
+                  href="tel:+84961230808"
                   className="w-full inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 font-bold text-lg rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
                   <svg
