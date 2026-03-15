@@ -1,6 +1,7 @@
 "use client";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ShieldCheck } from "lucide-react";
+import SlideUi from "./SlideUi";
 
 const ProductDetailDesc = ({
   name,
@@ -14,6 +15,17 @@ const ProductDetailDesc = ({
   videoList: [];
 }) => {
   const { t } = useLanguage();
+
+  const cleanHtmlContent = (html: string) => {
+    if (!html) return "";
+
+    // Regex này tìm link Google Presentation (có thể nằm trong thẻ <a> hoặc là text thuần)
+    // Nó sẽ xóa toàn bộ cụm đó đi
+    const regex =
+      /<a[^>]*href="https:\/\/docs\.google\.com\/presentation\/d\/[^"]*"[^>]*>.*?<\/a>|https:\/\/docs\.google\.com\/presentation\/d\/[a-zA-Z0-9_-]+[^\s<]*/g;
+
+    return html.replace(regex, "").trim();
+  };
 
   return (
     <div className="  mt-6 rounded-xl">
@@ -39,7 +51,7 @@ const ProductDetailDesc = ({
                 prose-strong:text-blue-700
                 prose-a:text-blue-600 hover:prose-a:text-blue-800"
             dangerouslySetInnerHTML={{
-              __html: desc,
+              __html: cleanHtmlContent(desc),
             }}
           />
         </div>
@@ -92,6 +104,8 @@ const ProductDetailDesc = ({
             ))}
           </div>
         )}
+
+        <SlideUi htmlContent={desc} />
 
         {/* CTA Footer nhỏ bên dưới nội dung */}
         <div className="mt-16 text-center">

@@ -1,5 +1,6 @@
 import ProductDetailDesc from "@/components/ProductDetailDesc";
 import QuoteModal from "@/components/QuoteModal";
+import SlideUi from "@/components/SlideUi";
 import { getProductById } from "@/lib/queries/product";
 import {
   CheckCircleIcon,
