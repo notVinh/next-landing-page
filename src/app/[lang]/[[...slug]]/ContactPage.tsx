@@ -2,6 +2,17 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  Building2,
+  CheckCircle2,
+  ChevronRight,
+  Factory,
+  Mail,
+  MapPin,
+  Microscope,
+  Phone,
+  ShieldCheck,
+} from "lucide-react";
 
 function ContactPage() {
   const { t } = useLanguage();
@@ -32,7 +43,7 @@ function ContactPage() {
       regionKey: "pages.contactPage.north",
       nameKey: "pages.contactPage.headquarters",
       address: "TT03-03 số 190 Sài Đồng, Long Biên, Hà Nội",
-      phone: "0961.230.808",
+      phone: "+84 0961.230.808",
       email: "kinhdoanh@maymaygiangthanh.com",
       mapUrl:
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.924403914!2d105.914!3d21.035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDAyJzA2LjAiTiAxMDXCsDU0JzUwLjQiRQ!5e0!3m2!1svi!2svn!4v123456789",
@@ -41,7 +52,7 @@ function ContactPage() {
       regionKey: "pages.contactPage.central",
       nameKey: "pages.contactPage.branchQN",
       address: "968 Trần Thủ Độ, Thị Xã Điện Bàn, Quảng Nam",
-      phone: "0961.230.808",
+      phone: "+84 0961.230.808",
       email: "kinhdoanh@maymaygiangthanh.com",
       mapUrl: "https://www.google.com/maps/embed?pb=...",
     },
@@ -49,9 +60,27 @@ function ContactPage() {
       regionKey: "pages.contactPage.south",
       nameKey: "pages.contactPage.branchHCM",
       address: "330 Bùi Văn Ngữ, P.Hiệp Thành, Q.12, TP.HCM",
-      phone: "0961.230.808",
+      phone: "+84 0961.230.808",
       email: "kinhdoanh@maymaygiangthanh.com",
       mapUrl: "https://www.google.com/maps/embed?pb=...",
+    },
+  ];
+
+  const branchKeys = [
+    {
+      id: "vietnamOffice",
+      icon: <Building2 className="w-6 h-6 text-blue-600" />,
+      color: "border-blue-500",
+    },
+    {
+      id: "vietnamFactory",
+      icon: <Factory className="w-6 h-6 text-orange-600" />,
+      color: "border-orange-500",
+    },
+    {
+      id: "chinaRnD",
+      icon: <Microscope className="w-6 h-6 text-green-600" />,
+      color: "border-green-500",
     },
   ];
 
@@ -69,10 +98,10 @@ function ContactPage() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            {t("pages.contactPage.title")}
+            {t("pages.contactPage.hero.title")}
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            {t("pages.contactPage.heroDesc")}
+            {t("pages.contactPage.hero.description")}
           </p>
           <div className="mt-8 flex justify-center">
             <div className="h-1 w-24 bg-white rounded-full"></div>
@@ -103,7 +132,7 @@ function ContactPage() {
                   />
                 </svg>
               </div>
-              <span className="font-bold text-lg">0961.230.808</span>
+              <span className="font-bold text-lg">+84 0961.230.808</span>
             </a>
             <a
               href="mailto:kinhdoanh@maymaygiangthanh.com"
@@ -151,6 +180,142 @@ function ContactPage() {
           </div>
         </div>
       </div>
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Cột trái: Tiêu đề và dẫn dắt */}
+            <div className="lg:w-1/3">
+              <div className="space-y-4">
+                {/* <span className="text-blue-600 font-bold uppercase tracking-[0.2em] text-sm">
+                  Lợi thế cạnh tranh
+                </span> */}
+                <h2 className="text-4xl font-black text-gray-950 leading-[1.1]">
+                  {t("pages.contactPage.whyContact.title")}
+                </h2>
+                <div className="h-1.5 w-20 bg-blue-600 rounded-full"></div>
+                <p className="text-gray-600 text-lg pt-4 leading-relaxed">
+                  {/* {t("pages.contactPage.whyContact.subtitle")} */}
+                </p>
+
+                {/* <div className="pt-6">
+                  <button className="flex items-center gap-2 font-bold text-gray-900 hover:text-blue-600 transition group">
+                    Khám phá năng lực sản xuất
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div> */}
+              </div>
+            </div>
+
+            {/* Cột phải: Grid các lý do với Icon bên trong */}
+            <div className="lg:w-2/3 grid sm:grid-cols-2 gap-6">
+              {Array.isArray(t("pages.contactPage.whyContact.reasons")) &&
+                t("pages.contactPage.whyContact.reasons").map(
+                  (reason: string, index: number) => (
+                    <div
+                      key={index}
+                      className="group p-8 bg-gray-50 rounded-[2rem] border border-transparent hover:border-blue-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col items-start"
+                    >
+                      {/* Icon nằm bên trong Card */}
+                      {/* <div className={`mb-6 p-4 rounded-2xl shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${reasonIcons[index]?.bg || 'bg-gray-100'}`}>
+                  {reasonIcons[index]?.icon || <ShieldCheck className="w-6 h-6 text-blue-600" />}
+                </div> */}
+
+                      <div className="space-y-2">
+                        <p className="text-lg font-bold text-gray-900 leading-snug">
+                          {reason}
+                        </p>
+                        <div className="w-0 group-hover:w-12 h-1 bg-blue-500 transition-all duration-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  ),
+                )}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            {branchKeys.map((branch) => {
+              // Truy xuất dữ liệu từ t() dựa trên ID
+              const title = t(`pages.contactPage.locations.${branch.id}.title`);
+              const name = t(`pages.contactPage.locations.${branch.id}.name`);
+              const address = t(
+                `pages.contactPage.locations.${branch.id}.address`,
+              );
+              const hotline = t(
+                `pages.contactPage.locations.${branch.id}.hotline`,
+              );
+              const email = t(`pages.contactPage.locations.${branch.id}.email`);
+              const functions = t(
+                `pages.contactPage.locations.${branch.id}.functions`,
+              );
+
+              return (
+                <div
+                  key={branch.id}
+                  className={`bg-white rounded-2xl shadow-lg border-t-4 ${branch.color} p-6 flex flex-col h-full hover:-translate-y-1 transition-all duration-300`}
+                >
+                  {/* Header: Icon + Loại cơ sở */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-gray-50 rounded-xl shadow-sm">
+                      {branch.icon}
+                    </div>
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                      {name}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-gray-900 mb-4 leading-tight min-h-[50px]">
+                    {title}
+                  </h3>
+
+                  {/* Thông tin liên hệ */}
+                  <div className="space-y-4 mb-6 flex-grow">
+                    <div className="flex gap-3 text-sm text-gray-600">
+                      <MapPin className="w-5 h-5 shrink-0 text-blue-500/50" />
+                      <span>{address}</span>
+                    </div>
+                    <a
+                      href={`tel:${hotline}`}
+                      className="flex gap-3 text-sm font-bold text-gray-800 hover:text-blue-600"
+                    >
+                      <Phone className="w-5 h-5 shrink-0 text-blue-600" />
+                      <span>{hotline}</span>
+                    </a>
+                    {/* {email && (
+                      <div className="flex gap-3 text-sm text-gray-600">
+                        <Mail className="w-5 h-5 shrink-0 text-blue-500/50" />
+                        <span className="truncate">{email}</span>
+                      </div>
+                    )} */}
+                  </div>
+
+                  {/* Danh sách chức năng (Dùng mảng từ JSON) */}
+                  <div className="pt-5 border-t border-gray-100">
+                    <h4 className="text-[11px] font-black text-gray-400 uppercase mb-3 tracking-wider">
+                      Nhiệm vụ trọng tâm:
+                    </h4>
+                    <ul className="space-y-2">
+                      {Array.isArray(functions) &&
+                        functions.map((fn: string, i: number) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-[13px] text-gray-700 font-medium"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                            <span>{fn}</span>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Office Tabs */}
@@ -324,7 +489,7 @@ function ContactPage() {
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </svg>
-                  {t("pages.contactPage.callNow")}: 0961.230.808
+                  {t("pages.contactPage.callNow")}: +84 0961.230.808
                 </a>
               </div>
             </div>

@@ -650,6 +650,84 @@ export default {
 
     // Contact Page
     contactPage: {
+      hero: {
+        title: "Kết nối với GTG để được tư vấn giải pháp ngành may",
+        description:
+          "GTG cung cấp thiết bị ngành may, tự động hóa và giải pháp Smart Garment Factory cho khách hàng tại Việt Nam và thị trường quốc tế.",
+        ctaInquiry: "Gửi yêu cầu tư vấn",
+        ctaContact: "Liên hệ ngay",
+        ctaNetwork: "Xem hệ thống GTG",
+      },
+      intro:
+        "Nếu quý khách cần tư vấn về máy may công nghiệp, thiết bị tự động, giải pháp nhà máy may thông minh hoặc hợp tác phân phối quốc tế, đội ngũ GTG luôn sẵn sàng hỗ trợ nhanh chóng và chuyên nghiệp.",
+      locations: {
+        vietnamOffice: {
+          title: "ĐẠI DIỆN KINH DOANH VIỆT NAM",
+          name: "Văn phòng Việt Nam",
+          address: "TT03-03 số 190 Sài Đồng, Long Biên, Hà Nội, Việt Nam",
+          hotline: "+84 0961 230 808",
+          email: "kinhdoanh@maymaygiangthanh.com",
+          functions: [
+            "Tư vấn bán hàng",
+            "Tiếp nhận yêu cầu khách hàng",
+            "Điều phối dịch vụ và hỗ trợ thị trường",
+          ],
+        },
+        vietnamFactory: {
+          title: "NHÀ MÁY GTG TẠI VIỆT NAM",
+          name: "Nhà máy GTG Việt Nam",
+          hotline: "+84 0961 230 808",
+
+          address:
+            "Lô CN02, Khu công nghiệp Đồng Văn I mở rộng, Phường Đồng Văn, Tỉnh Ninh Bình, Việt Nam",
+          functions: [
+            "Lắp ráp thiết bị",
+            "Kiểm tra chất lượng",
+            "Trình diễn công nghệ",
+            "Phát triển sản phẩm cho thị trường quốc tế",
+          ],
+        },
+        chinaRnD: {
+          title: "TRUNG TÂM R&D TẠI TRUNG QUỐC",
+          name: "Trung tâm R&D Trung Quốc",
+          address:
+            "403-2, Tòa 5, Vạn Dương Chúng Sáng Thành (Tân Trạm), giao lộ Thiên Thủy & Tân Biện Hà, Quận Tân Trạm, TP Hợp Phì, An Huy, Trung Quốc",
+          hotline: "+86 133 4551 0808",
+          functions: [
+            "Nghiên cứu công nghệ",
+            "Phát triển thiết bị",
+            "Kết nối chuỗi cung ứng và kỹ thuật",
+          ],
+        },
+      },
+      regionalSupport: {
+        title: "MẠNG LƯỚI HỖ TRỢ KHU VỰC",
+        north: "Miền Bắc: Hà Nội",
+        central: "Miền Trung: Quảng Nam",
+        south: "Miền Nam: TP.HCM",
+      },
+      form: {
+        title: "GỬI YÊU CẦU",
+        desc: "Vui lòng để lại thông tin, đội ngũ GTG sẽ liên hệ với quý khách trong thời gian sớm nhất.",
+        labelName: "Họ và tên",
+        labelCompany: "Công ty",
+        labelCountry: "Quốc gia",
+        labelEmail: "Email",
+        labelPhone: "Điện thoại / Zalo / WhatsApp",
+        labelProduct: "Sản phẩm hoặc giải pháp quan tâm",
+        labelMessage: "Nội dung yêu cầu",
+        btnSubmit: "Gửi yêu cầu",
+      },
+      whyContact: {
+        title: "VÌ SAO NÊN LIÊN HỆ GTG",
+        reasons: [
+          "Tư vấn đúng thiết bị theo nhu cầu sản xuất",
+          "Hỗ trợ giải pháp tự động hóa và smart factory",
+          "Kết nối kỹ thuật Việt Nam – Trung Quốc",
+          "Hỗ trợ khách hàng và đối tác quốc tế",
+        ],
+      },
+      quickContact: "KẾT NỐI NHANH",
       title: "Liên Hệ Với Chúng Tôi",
       heroDesc:
         "Bạn cần tư vấn về máy may công nghiệp? Hãy liên hệ ngay với GTG để được hỗ trợ nhanh nhất!",

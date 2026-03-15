@@ -569,6 +569,69 @@ export default {
 
     // Contact Page
     contactPage: {
+      hero: {
+        title: "联系GTG，获取服装科技解决方案",
+        description:
+          "GTG 为越南及国际客户提供服装设备、自动化设备及 Smart Garment Factory 智能工厂解决方案。",
+        ctaInquiry: "提交咨询",
+        ctaContact: "立即联系",
+        ctaNetwork: "查看GTG网络",
+      },
+      intro:
+        "如果您需要咨询 工业缝纫设备、自动化设备、智能服装工厂解决方案或国际经销合作，GTG 团队将为您提供快速、专业的支持。",
+      locations: {
+        vietnamOffice: {
+          title: "GTG越南办事处",
+          name: "越南办公室",
+          address: "越南河内市龙编郡 Sài Đồng 街190号 TT03-03",
+          hotline: "+84 961 230 808",
+          email: "kinhdoanh@maymaygiangthanh.com",
+          functions: ["销售咨询", "客户需求对接", "市场与服务协调"],
+        },
+        vietnamFactory: {
+          title: "GTG越南工厂",
+          name: "GTG越南工厂",
+          address: "越南宁平省同文坊同文一扩展工业区 CN02 地块",
+          hotline: "+84 961 230 808",
+          functions: ["设备组装", "质量检测", "技术展示", "国际市场产品开发"],
+        },
+        chinaRnD: {
+          title: "中国研发中心",
+          name: "中国研发中心",
+          address:
+            "中国安徽省合肥市新站区万洋众创城5号楼403-2，天水路与新汴河路交口",
+          hotline: "+86 133 4551 0808",
+          functions: ["技术研发", "设备开发", "供应链与工程协同"],
+        },
+      },
+      regionalSupport: {
+        title: "区域服务网络",
+        north: "越南北部：河内",
+        central: "越南中部：广南",
+        south: "越南南部：胡志明市",
+      },
+      form: {
+        title: "提交咨询",
+        desc: "请留下您的信息，GTG 团队将尽快与您联系。",
+        labelName: "姓名",
+        labelCompany: "公司",
+        labelCountry: "国家",
+        labelEmail: "邮箱",
+        labelPhone: "电话 / Zalo / WhatsApp",
+        labelProduct: "感兴趣的产品或解决方案",
+        labelMessage: "咨询内容",
+        btnSubmit: "提交咨询",
+      },
+      whyContact: {
+        title: "为什么选择联系GTG",
+        reasons: [
+          "根据生产需求推荐合适设备",
+          "支持自动化与智能工厂项目",
+          "中越技术协同支持",
+          "服务国际客户与合作伙伴",
+        ],
+      },
+      quickContact: "快速联系",
       title: "联系我们",
       heroDesc: "需要工业缝纫机咨询？立即联系GTG获得最快速的支持！",
       workingHours: "周一至周六：8:00 - 17:30",

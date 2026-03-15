@@ -663,6 +663,84 @@ export default {
 
     // Contact Page
     contactPage: {
+      hero: {
+        title: "Connect with GTG for garment technology solutions",
+        description:
+          "GTG provides garment machinery, automation equipment and Smart Garment Factory solutions for customers in Vietnam and international markets.",
+        ctaInquiry: "Send Inquiry",
+        ctaContact: "Contact Us Now",
+        ctaNetwork: "Explore GTG Network",
+      },
+      intro:
+        "If you need consultation on industrial sewing machines, automation equipment, smart garment factory solutions, or international distribution cooperation, the GTG team is ready to support you promptly and professionally.",
+      locations: {
+        vietnamOffice: {
+          title: "VIETNAM SALES REPRESENTATIVE",
+          name: "Vietnam Office",
+          address: "TT03-03, No. 190 Sai Dong, Long Bien, Hanoi, Vietnam",
+          hotline: "+84 961 230 808",
+          email: "kinhdoanh@maymaygiangthanh.com",
+          functions: [
+            "Sales consultation",
+            "Customer inquiry handling",
+            "Market support coordination",
+          ],
+        },
+        vietnamFactory: {
+          title: "GTG FACTORY IN VIETNAM",
+          name: "GTG Factory Vietnam",
+          hotline: "+84 961 230 808",
+
+          address:
+            "Lot CN02, Dong Van I Expanded Industrial Zone, Dong Van Ward, Ninh Binh Province, Vietnam",
+          functions: [
+            "Equipment assembly",
+            "Quality inspection",
+            "Technology demonstration",
+            "Product development for international markets",
+          ],
+        },
+        chinaRnD: {
+          title: "R&D CENTER IN CHINA",
+          name: "China R&D Center",
+          address:
+            "403-2, Building 5, Wanyang Zhongchuang City (Xinzhan), Tian Shui & Xin Bian He Intersection, Xinzhan District, Hefei, Anhui, China",
+          hotline: "+86 133 4551 0808",
+          functions: [
+            "Technology research",
+            "Equipment development",
+            "Supply chain and engineering coordination",
+          ],
+        },
+      },
+      regionalSupport: {
+        title: "REGIONAL SUPPORT NETWORK",
+        north: "North Vietnam: Hanoi",
+        central: "Central Vietnam: Quang Nam",
+        south: "South Vietnam: Ho Chi Minh City",
+      },
+      form: {
+        title: "SEND INQUIRY",
+        desc: "Please leave your information and the GTG team will get back to you as soon as possible.",
+        labelName: "Full Name",
+        labelCompany: "Company",
+        labelCountry: "Country",
+        labelEmail: "Email",
+        labelPhone: "Phone / Zalo / WhatsApp",
+        labelProduct: "Product or solution of interest",
+        labelMessage: "Message",
+        btnSubmit: "Send Inquiry",
+      },
+      whyContact: {
+        title: "WHY CONTACT GTG",
+        reasons: [
+          "Right equipment recommendation for your production needs",
+          "Support for automation and smart factory projects",
+          "Vietnam–China engineering collaboration",
+          "Assistance for international customers and partners",
+        ],
+      },
+      quickContact: "QUICK CONTACT",
       title: "Contact Us",
       heroDesc:
         "Need consultation on industrial sewing machines? Contact GTG now for the fastest support!",

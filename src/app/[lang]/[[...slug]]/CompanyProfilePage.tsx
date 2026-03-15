@@ -58,7 +58,7 @@ export function CompanyProfilePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* 1. HERO SECTION - Tối giản & Hiện đại */}
-      <section className="relative bg-[#0a192f] text-white py-24 md:py-32 overflow-hidden">
+      <section className="relative bg-blue-600 text-white py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div
             className="absolute inset-0"
@@ -380,7 +380,7 @@ export function CompanyProfilePage() {
         </div>
 
         {/* CTA Contact Section - Phong cách giống ảnh 1 */}
-        <section className="relative bg-[#0f172a] rounded-[2rem] p-10 md:p-20 text-white text-center overflow-hidden shadow-2xl">
+        <section className="relative bg-[#4672da] rounded-[2rem] p-10 md:p-20 text-white text-center overflow-hidden shadow-2xl">
           {/* Pattern chấm bi chìm (Dot pattern) */}
           <div
             className="absolute inset-0 opacity-20 pointer-events-none"
