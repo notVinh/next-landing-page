@@ -107,11 +107,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     icons: {
       icon: "/favicon.ico",
     },
-    openGraph: {
-      title: t.title,
-      // description: t.desc,
-      images: ["/og-image.jpg"],
-    },
+    // openGraph: {
+    //   title: t.title,
+    //   // description: t.desc,
+    //   images: [
+    //     "/images/anhcty/z7357057865754_32e8b0dfead67aaba6e79ba81571bcf0.jpg",
+    //   ],
+    // },
   };
 }
 
