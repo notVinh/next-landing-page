@@ -569,6 +569,7 @@ export default {
 
     // Contact Page
     contactPage: {
+      missionTitle: "重点任务",
       hero: {
         title: "联系GTG，获取服装科技解决方案",
         description:

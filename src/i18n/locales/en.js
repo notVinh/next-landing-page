@@ -663,6 +663,8 @@ export default {
 
     // Contact Page
     contactPage: {
+      missionTitle: "Key task",
+
       hero: {
         title: "Connect with GTG for garment technology solutions",
         description:

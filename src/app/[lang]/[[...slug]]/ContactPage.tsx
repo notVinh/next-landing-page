@@ -295,7 +295,7 @@ function ContactPage() {
                   {/* Danh sách chức năng (Dùng mảng từ JSON) */}
                   <div className="pt-5 border-t border-gray-100">
                     <h4 className="text-[11px] font-black text-gray-400 uppercase mb-3 tracking-wider">
-                      Nhiệm vụ trọng tâm:
+                      {t("pages.contactPage.missionTitle")}
                     </h4>
                     <ul className="space-y-2">
                       {Array.isArray(functions) &&

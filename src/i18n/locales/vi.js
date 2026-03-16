@@ -650,6 +650,7 @@ export default {
 
     // Contact Page
     contactPage: {
+      missionTitle: "Nhiệm vụ trọng tâm",
       hero: {
         title: "Kết nối với GTG để được tư vấn giải pháp ngành may",
         description:
