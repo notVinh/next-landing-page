@@ -57,8 +57,6 @@ export function ChildCategoryPage({
     fetchData();
   }, [currentId]);
 
-  console.log(currentCategory);
-
   const categoryName = currentCategory?.translations.find(
     (t: any) => t.languageCode === language,
   )?.name;

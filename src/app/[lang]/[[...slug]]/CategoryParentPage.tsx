@@ -52,7 +52,6 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
     // ... thêm các sản phẩm khác tương tự ảnh
   ];
 
-  console.log(currentCategoryItem);
   return (
     <div className="min-h-screen bg-gray-50">
       {/* 1. Header Banner Section */}
@@ -114,7 +113,6 @@ export function CategoryParentPage({ categoryName }: { categoryName: string }) {
               (i: any) => i.languageCode === language,
             );
 
-            console.log(currentItemLang);
             return (
               <LocalizedLink
                 key={product.id}

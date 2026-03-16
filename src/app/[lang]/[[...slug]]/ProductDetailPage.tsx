@@ -204,7 +204,7 @@ export default async function ProductDetailPage({
               </div>
               <div>
                 <p className="text-xs text-slate-500">Model</p>
-                <p className="font-bold">{product.id}</p>
+                <p className="font-bold">{product.model || product.id}</p>
               </div>
             </div>
           </div>
