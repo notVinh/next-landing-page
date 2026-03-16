@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const translations: Record<string, { title: string; desc: string }> = {
     vi: {
       title: "GTG - Giải pháp nhà máy may thông minh",
-      desc: "GTG - Giang Thành",
+      desc: "Nhà cung cấp hàng đầu máy may công nghiệp và thiết bị may mặc tự động tại Việt Nam.",
     },
     en: {
       title: "GTG - Smart Garment Factory Solution",
