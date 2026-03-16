@@ -111,7 +111,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t.title,
       // description: t.desc,
       images: [
-        "/images/anhcty/z7357057865754_32e8b0dfead67aaba6e79ba81571bcf0.jpg",
+        "https://gtgsew.com/images/anhcty/z7357057865754_32e8b0dfead67aaba6e79ba81571bcf0.jpg",
       ],
     },
   };
