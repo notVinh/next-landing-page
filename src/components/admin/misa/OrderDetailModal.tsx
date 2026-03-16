@@ -19,7 +19,7 @@ import {
 import { InfoField } from "../FormComponents";
 import FinanceSection from "./FinanceSection";
 import { formatDateTime } from "@/config/formatDateTime";
-import { SaveInfoOrderAction } from "@/app/(test)/(dashboard)/admin_test/misa/order/action";
+import { SaveInfoOrderAction } from "@/app/(test)/(dashboard)/test/misa/order/action";
 
 export default function OrderDetailModal({
   order,

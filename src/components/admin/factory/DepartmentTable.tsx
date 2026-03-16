@@ -23,7 +23,7 @@ import {
 import {
   deleteDepartmentAction,
   handleDepartmentAction,
-} from "@/app/(test)/(dashboard)/admin_test/factory/department/action";
+} from "@/app/(test)/(dashboard)/test/factory/department/action";
 
 export default function DepartmentTable({
   departmentsData = [],

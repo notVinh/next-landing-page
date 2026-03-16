@@ -13,7 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { toast } from "react-toastify";
-import { saveFactoryAction } from "@/app/(test)/(dashboard)/admin_test/factory/overview/action";
+import { saveFactoryAction } from "@/app/(test)/(dashboard)/test/factory/overview/action";
 
 import dynamic from "next/dynamic";
 

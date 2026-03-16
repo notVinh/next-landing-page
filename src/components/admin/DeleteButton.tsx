@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Trash2, Loader2 } from "lucide-react";
 import { toast } from "react-toastify"; // Hoặc thư viện thông báo bạn đang dùng
-import { deleteFactoryAction } from "@/app/(test)/(dashboard)/admin_test/factory/overview/action";
+import { deleteFactoryAction } from "@/app/(test)/(dashboard)/test/factory/overview/action";
 
 interface DeleteButtonProps {
   id: number;

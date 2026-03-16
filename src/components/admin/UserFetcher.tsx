@@ -1,7 +1,7 @@
 // components/UserFetcher.tsx
 "use client";
 
-import { getInfoAction } from "@/app/(test)/(auth)/admin_test/login/action";
+import { getInfoAction } from "@/app/(test)/(auth)/test/login/action";
 import { useUserStore } from "@/lib/zustand/userStore";
 import { useEffect } from "react";
 
