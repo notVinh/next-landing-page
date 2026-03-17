@@ -38,7 +38,6 @@ export const allProducts = {
     nameZh: "电脑平缝机",
     images: ["/products/1n-08.jpg"],
   },
-  // ... Vinh thêm các mã khác vào đây để map với productId bên dưới
 };
 
 const cadCamBenefitIcons = [

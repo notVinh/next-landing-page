@@ -23,6 +23,21 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // 1. Bảo vệ nhánh ADMIN (Auth Guard)
+  if (pathname.startsWith("/business")) {
+    // 1. Nếu đang vào trang Login MÀ ĐÃ CÓ token -> Đá về Dashboard
+    if (pathname === "/business/login" && accessToken) {
+      return NextResponse.redirect(new URL("/business/product", request.url));
+    }
+
+    // 2. Nếu vào các trang quản trị MÀ CHƯA CÓ token -> Đá về Login
+    if (pathname !== "/business/login" && !accessToken) {
+      return NextResponse.redirect(new URL("/business/login", request.url));
+    }
+
+    return NextResponse.next();
+  }
+
   // 1. ƯU TIÊN SỐ 1: Nhánh Admin và các file hệ thống
   // Loại bỏ hoàn toàn Admin và API khỏi luồng xử lý i18n
   if (

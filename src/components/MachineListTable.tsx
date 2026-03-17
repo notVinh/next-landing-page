@@ -71,7 +71,8 @@ export default function MachineListTable({
     if (!product) return "#";
     const slug = getProductSlug(product, language);
     // Đường dẫn chuẩn Next.js
-    return `/san-pham/may-may-lap-trinh/kho-lon/${slug}`;
+    // return `/san-pham/may-may-lap-trinh/kho-lon/${slug}`;
+    return `/san-pham`;
   };
 
   return (

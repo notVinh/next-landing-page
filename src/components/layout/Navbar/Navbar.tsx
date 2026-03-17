@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LocalizedLink } from "@/components/LocalizedLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { NavbarProductDropdown } from "./NavbarProductDropdown";
@@ -18,6 +18,7 @@ function getPathWithoutLang(pathname: string | null): string {
 
 export function Navbar({ data }: { data: any[] }) {
   const { categories, setCategories } = useCategoriesStore();
+  const router = useRouter();
 
   useEffect(() => {
     // chỉ set một lần khi mount
@@ -208,6 +209,13 @@ export function Navbar({ data }: { data: any[] }) {
             </LocalizedLink>
 
             <LanguageSwitcher />
+
+            <button
+              onClick={() => router.push("/business/product")}
+              className="border border-gray-200 rounded-lg p-2 text-gray-700 hover:bg-blue-600 hover:text-white cursor-pointer"
+            >
+              Đăng nhập
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -298,6 +306,12 @@ export function Navbar({ data }: { data: any[] }) {
               >
                 {t("nav.contact") as string}
               </LocalizedLink>
+              <button
+                onClick={() => router.push("/business/product")}
+                className="border border-gray-200 rounded-lg p-2 text-black hover:bg-blue-600 hover:text-white cursor-pointer"
+              >
+                Đăng nhập cho kinh doanh
+              </button>
             </div>
           </div>
         )}
