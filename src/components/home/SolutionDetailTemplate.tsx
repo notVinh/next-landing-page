@@ -200,6 +200,7 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
                         left: `${pos.x}%`,
                         top: `${pos.y}%`,
                         transform: "translate(-50%, -50%)",
+                        zIndex: activeHotspot === pos.id ? 50 : 10,
                       }}
                       onMouseEnter={() => setActiveHotspot(pos.id)}
                       onMouseLeave={() => setActiveHotspot(null)}
@@ -255,7 +256,7 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
                       {/* Tooltip Content */}
                       {activeHotspot === pos.id && (
                         <div
-                          className={`absolute z-[100] top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 
+                          className={`absolute z-100 top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 
       ${pos.side === "left" ? "left-0" : "right-0"}
       
       /* Lớp đệm vô hình kết nối Node và Tooltip */
