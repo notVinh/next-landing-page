@@ -9,6 +9,7 @@ interface Machine {
   id: string | number;
   name?: string;
   nameVi?: string;
+  nameEn?: string;
   nameZh?: string;
   models: string[];
   productId?: string;
@@ -18,7 +19,8 @@ interface Machine {
 
 interface MachineListTableProps {
   machines: Machine[];
-  allProducts: any;
+  productsData: Record<string, any>; // Nhận từ SolutionTemplate
+  isLoading?: boolean; // Nhận từ SolutionTemplate
   colorClasses?: {
     gradient: string;
     bgLight: string;
@@ -30,7 +32,8 @@ interface MachineListTableProps {
 
 export default function MachineListTable({
   machines,
-  allProducts,
+  productsData,
+  isLoading,
   colorClasses,
   title,
 }: MachineListTableProps) {
@@ -38,179 +41,176 @@ export default function MachineListTable({
 
   if (!machines || machines.length === 0) return null;
 
-  // Màu mặc định nếu không truyền colorClasses từ solutionData
-  const defaultColors = {
+  const colors = colorClasses || {
     gradient: "from-cyan-500 to-cyan-700",
     bgLight: "bg-cyan-100",
     text: "text-cyan-600",
     border: "border-cyan-200",
   };
 
-  const colors = colorClasses || defaultColors;
-
+  // --- HELPERS ---
   const getMachineName = (machine: Machine) => {
     if (language === "zh") return machine.nameZh || machine.name;
-    if (language === "en") return machine.name;
+    if (language === "en") return machine.nameEn;
     return machine.nameVi || machine.name;
   };
 
   const getProductInfo = (machine: Machine) => {
     const productIdList =
       machine.productIds || (machine.productId ? [machine.productId] : []);
-    return productIdList.map((id) => allProducts?.[id]).filter(Boolean);
+    return productIdList.map((id) => productsData?.[id]).filter(Boolean);
   };
 
   const getProductName = (product: any) => {
-    if (!product) return null;
-    if (language === "zh") return product.nameZh;
-    if (language === "en") return product.nameEn;
-    return product.name;
+    if (!product?.translations) return "";
+    // Tìm tên theo ngôn ngữ trong mảng translations từ Backend
+    const trans = product.translations.find(
+      (t: any) => t.languageCode === language,
+    );
+    return trans?.name || product.id;
   };
 
   const getProductLink = (product: any) => {
-    if (!product) return "#";
+    if (!product) return "/san-pham";
     const slug = getProductSlug(product, language);
-    // Đường dẫn chuẩn Next.js
-    // return `/san-pham/may-may-lap-trinh/kho-lon/${slug}`;
-    return `/san-pham`;
+    return `/san-pham/${slug}`;
   };
 
   return (
-    <div className="bg-white p-4 md:p-8 shadow-xl rounded-xl mb-12 border border-gray-100">
+    <div className="bg-white p-4 md:p-8 shadow-xl rounded-[2.5rem] mb-12 border border-slate-100 relative overflow-hidden">
+      {/* Hiệu ứng loading phủ lên bảng khi đang fetch */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px] z-30 flex items-center justify-center">
+          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
+
       {title && (
-        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 text-center italic uppercase tracking-wider">
+        <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-8 text-center uppercase tracking-widest italic">
           {title}
         </h2>
       )}
 
-      <div className="overflow-x-auto rounded-lg border border-gray-200">
-        <table className="w-full border-collapse min-w-[700px]">
+      <div className="overflow-x-auto rounded-2xl border border-slate-100 shadow-sm">
+        <table className="w-full border-collapse min-w-[750px]">
           <thead>
             <tr className={`bg-gradient-to-r ${colors.gradient} text-white`}>
-              <th className="px-4 py-4 text-left text-xs md:text-sm font-bold w-16">
+              <th className="px-6 py-4 text-left text-xs font-black uppercase w-16">
                 {language === "zh" ? "序号" : language === "en" ? "No." : "STT"}
               </th>
-              <th className="px-4 py-4 text-left text-xs md:text-sm font-bold min-w-[150px]">
+              <th className="px-6 py-4 text-left text-xs font-black uppercase min-w-[200px]">
                 {language === "zh"
                   ? "工序名称"
                   : language === "en"
                     ? "Process Name"
                     : "Tên công đoạn"}
               </th>
-              <th className="px-4 py-4 text-left text-xs md:text-sm font-bold w-32 text-center">
+              <th className="px-6 py-4 text-center text-xs font-black uppercase w-32">
                 {language === "zh"
                   ? "图片"
                   : language === "en"
                     ? "Image"
                     : "Hình ảnh"}
               </th>
-              <th className="px-4 py-4 text-left text-xs md:text-sm font-bold">
+              <th className="px-6 py-4 text-left text-xs font-black uppercase">
                 {language === "zh"
                   ? "推荐型号"
                   : language === "en"
                     ? "Recommended Models"
                     : "Mã máy"}
               </th>
-              <th className="px-4 py-4 text-left text-xs md:text-sm font-bold">
+              <th className="px-6 py-4 text-left text-xs font-black uppercase">
                 {language === "zh"
-                  ? "产品详情"
+                  ? "详情"
                   : language === "en"
-                    ? "Product Details"
+                    ? "Details"
                     : "Chi tiết"}
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-slate-50">
             {machines.map((machine, idx) => {
               const products = getProductInfo(machine);
+              const hasProducts = products.length > 0;
               const firstProduct = products[0];
               const productImage = firstProduct?.images?.[0];
 
               return (
                 <tr
                   key={machine.id}
-                  className="hover:bg-blue-50/30 transition-all duration-200"
+                  className="group hover:bg-slate-50/80 transition-all duration-200"
                 >
-                  <td className="px-4 py-4 text-gray-500 font-mono text-xs md:text-sm">
+                  <td className="px-6 py-5 text-slate-400 font-mono text-sm">
                     {String(idx + 1).padStart(2, "0")}
                   </td>
-                  <td className="px-4 py-4">
-                    <span className="font-semibold text-gray-800 text-xs md:text-sm block leading-tight">
+                  <td className="px-6 py-5">
+                    <span className="font-bold text-slate-800 text-sm block leading-tight group-hover:text-blue-600 transition-colors">
                       {getMachineName(machine)}
                     </span>
                   </td>
-                  <td className="px-4 py-4 flex justify-center">
-                    {productImage ? (
-                      <div className="relative w-16 h-16 md:w-20 md:h-20 bg-white p-1 rounded-md border border-gray-100 shadow-sm">
-                        <Image
-                          src={productImage}
-                          alt={getMachineName(machine) || "Machine"}
-                          fill
-                          className="object-contain"
-                          sizes="(max-width: 768px) 64px, 80px"
-                        />
-                      </div>
-                    ) : (
-                      <div
-                        className={`w-16 h-16 md:w-20 md:h-20 ${colors.bgLight} rounded flex items-center justify-center`}
-                      >
-                        <span className={`${colors.text} text-[10px] italic`}>
-                          No Image
-                        </span>
-                      </div>
-                    )}
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex flex-wrap gap-1.5">
-                      {machine.models.map(
-                        (model, midx) =>
-                          model && (
-                            <span
-                              key={midx}
-                              className={`text-[10px] md:text-xs font-bold ${colors.bgLight} ${colors.text} px-2 py-1 rounded-full border border-current/20`}
-                            >
-                              {model}
-                            </span>
-                          ),
+                  <td className="px-6 py-5">
+                    <div className="flex justify-center">
+                      {hasProducts && productImage ? (
+                        <div className="relative w-20 h-20 bg-white p-1 rounded-xl border border-slate-100 shadow-sm group-hover:scale-110 transition-transform">
+                          <Image
+                            src={productImage}
+                            alt="Machine"
+                            fill
+                            className="object-contain p-1"
+                            sizes="80px"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className={`w-20 h-20 ${colors.bgLight} rounded-xl flex items-center justify-center border border-dashed border-slate-200`}
+                        >
+                          <span className="text-[10px] text-slate-400 italic text-center px-2 font-medium">
+                            {language === "zh"
+                              ? "更新中"
+                              : language === "en"
+                                ? "Updating"
+                                : "Đang cập nhật"}
+                          </span>
+                        </div>
                       )}
                     </div>
                   </td>
-                  <td className="px-4 py-4">
-                    {products.length > 0 ? (
+                  <td className="px-6 py-5">
+                    <div className="flex flex-wrap gap-1.5">
+                      {machine.models.map((model, midx) => (
+                        <span
+                          key={midx}
+                          className={`text-[10px] font-black px-2.5 py-1 rounded-md border border-current/10 ${colors.bgLight} ${colors.text} uppercase tracking-tighter`}
+                        >
+                          {model}
+                        </span>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-6 py-5">
+                    {hasProducts ? (
                       <div className="flex flex-col gap-2">
-                        {products.map((product, pidx) => (
+                        {products.map((p, pidx) => (
                           <LocalizedLink
                             key={pidx}
-                            href={getProductLink(product)}
-                            className={`text-xs md:text-sm ${colors.text} hover:opacity-70 font-bold flex items-center gap-1 group`}
+                            href={getProductLink(p)}
+                            className={`text-sm font-black ${colors.text} hover:opacity-70 flex items-center gap-1 group/link`}
                           >
-                            <span className="border-b border-current leading-none">
-                              {getProductName(product)}
+                            <span className="border-b-2 border-current leading-none pb-0.5">
+                              {getProductName(p)}
                             </span>
-                            <span className="group-hover:translate-x-1 transition-transform">
+                            <span className="group-hover/link:translate-x-1 transition-transform">
                               →
                             </span>
                           </LocalizedLink>
                         ))}
                       </div>
-                    ) : machine.productLink ? (
-                      <LocalizedLink
-                        href={machine.productLink}
-                        className={`text-xs md:text-sm ${colors.text} hover:opacity-70 font-bold italic`}
-                      >
-                        {language === "zh"
-                          ? "查看详情"
-                          : language === "en"
-                            ? "View Details"
-                            : "Xem chi tiết"}{" "}
-                        →
-                      </LocalizedLink>
                     ) : (
-                      <span className="text-xs text-gray-400 italic">
+                      <span className="text-xs text-slate-400 italic">
                         {language === "zh"
-                          ? "更新中..."
+                          ? "资料正在完善..."
                           : language === "en"
-                            ? "Updating..."
+                            ? "Coming soon..."
                             : "Đang cập nhật..."}
                       </span>
                     )}

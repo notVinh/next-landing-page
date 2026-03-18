@@ -134,7 +134,7 @@ const ProductDetailDesc = ({
               };
 
               return (
-                <div className="w-full max-w-4xl aspect-video mt-5" key={index}>
+                <div className="w-full aspect-video mt-5" key={index}>
                   <iframe
                     src={getEmbedUrl(video)}
                     title="Demonstration Video"

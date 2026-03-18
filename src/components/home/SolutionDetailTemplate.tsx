@@ -1,25 +1,14 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { allProducts, getSolutionBySlug } from "@/data/solutionData";
-import { useState, useMemo } from "react";
+import { getSolutionBySlug } from "@/data/solutionData";
+import { useState, useMemo, useEffect } from "react";
 import MachineListTable from "../MachineListTable";
 import SolutionBenefits from "./SolutionBenefits";
 import EmptySolution from "./EmptySolution";
+import ProductTooltip from "../ProductTooltip";
 
-// --- 1. ĐỊNH NGHĨA TYPES ĐỂ FIX LỖI INDEX SIGNATURE ---
 type SupportedLanguage = "vi" | "en" | "zh";
-
-// Định nghĩa cấu trúc Product để khớp với dữ liệu từ data
-interface Product {
-  name: string;
-  nameEn: string;
-  nameZh: string;
-  images: string[];
-}
-
-// Fix lỗi dòng 184: Ép kiểu allProducts thành Record để cho phép truy cập bằng biến string
-const typedAllProducts = allProducts as Record<string, Product>;
 
 interface MachinePosition {
   id: string | number;
@@ -47,7 +36,6 @@ interface SolutionTemplateProps {
 }
 
 function SolutionTemplate({ slug }: SolutionTemplateProps) {
-  // Lấy language và ép kiểu để TypeScript hiểu đây là key hợp lệ
   const { t, language: rawLanguage } = useLanguage();
   const language = rawLanguage as SupportedLanguage;
 
@@ -56,8 +44,11 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
   );
   const [activeSubIdx, setActiveSubIdx] = useState(0);
 
-  const solutionData = getSolutionBySlug(slug);
+  // --- STATE KHO DỮ LIỆU DÙNG CHUNG ---
+  const [productsData, setProductsData] = useState<Record<string, any>>({});
+  const [isDataLoading, setIsDataLoading] = useState(true);
 
+  const solutionData = getSolutionBySlug(slug);
   const hasSubTabs = !!(
     solutionData?.config?.subSolutions &&
     solutionData.config.subSolutions.length > 0
@@ -76,35 +67,52 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
     } as Partial<SubSolution>;
   }, [hasSubTabs, activeSubIdx, solutionData]);
 
-  if (!solutionData || !displayData) {
-    return (
-      <div className="pt-20 min-h-screen bg-gray-50 flex items-center justify-center">
-        <h1 className="text-xl font-bold">
-          {language === "zh"
-            ? "未找到"
-            : language === "en"
-              ? "Not Found"
-              : "Không tìm thấy"}
-        </h1>
-      </div>
-    );
-  }
+  // --- LOGIC FETCH DỮ LIỆU TỔNG HỢP ---
+  useEffect(() => {
+    const fetchSolutionProducts = async () => {
+      if (!displayData?.machinePositions) return;
+
+      setIsDataLoading(true);
+      const allIds = new Set<string>();
+      displayData.machinePositions.forEach((pos) => {
+        if (pos.productId) allIds.add(pos.productId);
+        pos.productIds?.forEach((id) => allIds.add(id));
+      });
+
+      if (allIds.size === 0) {
+        setIsDataLoading(false);
+        return;
+      }
+
+      try {
+        const idsQuery = Array.from(allIds).join(",");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/products/batch?ids=${idsQuery}`,
+        );
+        const data = await response.json();
+
+        const productsMap = data.reduce((acc: any, prod: any) => {
+          if (prod && prod.id) acc[prod.id] = prod;
+          return acc;
+        }, {});
+
+        setProductsData(productsMap);
+      } catch (error) {
+        console.error("Failed to fetch products for solution", error);
+      } finally {
+        setIsDataLoading(false);
+      }
+    };
+
+    fetchSolutionProducts();
+  }, [displayData]);
+
+  console.log(productsData);
+
+  if (!solutionData || !displayData) return <EmptySolution />;
 
   const { config, id: solutionId } = solutionData;
   const { colorClasses, benefitIcons, hasInteractiveDiagram } = config;
-
-  const translationKey = `solutionPages.${solutionId}`;
-  const rawBenefits = t(`${translationKey}.benefits`);
-  const benefits = Array.isArray(rawBenefits)
-    ? rawBenefits.map((b: any, idx: number) => ({
-        ...b,
-        icon: benefitIcons[idx] || benefitIcons[0],
-      }))
-    : [];
-
-  const renderIcon = (iconString: string) => (
-    <div dangerouslySetInnerHTML={{ __html: iconString }} />
-  );
   const nameRelu = solutionData.translations?.find(
     (i) => i.languageCode === language,
   );
@@ -127,22 +135,14 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* FIX LỖI DÒNG 108: ÉP KIỂU RECORD CHO OVERVIEW */}
+        {/* Overview */}
         <div className="bg-white p-10 shadow-xl mb-16 rounded-[2.5rem] border border-slate-100">
-          <h2 className="text-2xl font-black mb-6 uppercase">
+          <h2 className="text-2xl font-black mb-6 uppercase tracking-tight">
             {t("solutionPages.solutionOverview")}
           </h2>
           <div className="space-y-4 text-slate-600 leading-relaxed text-lg">
-            <p>
-              {(solutionData.overview as Record<SupportedLanguage, string>)?.[
-                language
-              ] ?? ""}
-            </p>
-            <p>
-              {(solutionData.overview2 as Record<SupportedLanguage, string>)?.[
-                language
-              ] ?? ""}
-            </p>
+            <p>{(solutionData.overview as any)?.[language] ?? ""}</p>
+            <p>{(solutionData.overview2 as any)?.[language] ?? ""}</p>
           </div>
         </div>
 
@@ -169,9 +169,8 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
         )}
 
         {/* Interactive Diagram Section */}
-        <div className="bg-white p-8 md:p-12 shadow-2xl mb-16 relative z-10 rounded-[3rem] overflow-visible min-h-[400px] flex items-center justify-center">
+        <div className="bg-white p-8 md:p-12 shadow-2xl mb-16 relative z-10 rounded-[3rem] overflow-visible min-h-[400px] flex items-center justify-center border border-slate-50">
           {hasInteractiveDiagram && displayData.diagramImage ? (
-            /* TRƯỜNG HỢP CÓ SƠ ĐỒ */
             <div className="flex justify-center overflow-visible w-full">
               <div
                 className={`relative w-full ${displayData.diagramMaxWidth || "max-w-4xl"}`}
@@ -182,127 +181,42 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
                   className="w-full h-auto"
                 />
 
-                {displayData.machinePositions?.map((pos: MachinePosition) => {
-                  const productIdList =
-                    pos.productIds || (pos.productId ? [pos.productId] : []);
-
-                  const products = productIdList
-                    .map((id) => typedAllProducts[id])
-                    .filter(Boolean);
-
-                  const firstProduct = products[0];
-
-                  return (
+                {displayData.machinePositions?.map((pos: MachinePosition) => (
+                  <div
+                    key={pos.id}
+                    className="absolute cursor-pointer"
+                    style={{
+                      left: `${pos.x}%`,
+                      top: `${pos.y}%`,
+                      transform: "translate(-50%, -50%)",
+                      // Z-index 100 khi hover để Tooltip luôn đè lên các nút khác
+                      zIndex: activeHotspot === pos.id ? 100 : 10,
+                    }}
+                    onMouseEnter={() => setActiveHotspot(pos.id)}
+                    onMouseLeave={() => setActiveHotspot(null)}
+                  >
                     <div
-                      key={pos.id}
-                      className="absolute cursor-pointer"
-                      style={{
-                        left: `${pos.x}%`,
-                        top: `${pos.y}%`,
-                        transform: "translate(-50%, -50%)",
-                        zIndex: activeHotspot === pos.id ? 50 : 10,
-                      }}
-                      onMouseEnter={() => setActiveHotspot(pos.id)}
-                      onMouseLeave={() => setActiveHotspot(null)}
-                    >
-                      <div
-                        className={`w-5 h-5 rounded-full border-4 border-white shadow-lg transition-all ${
-                          activeHotspot === pos.id
-                            ? "bg-orange-500 scale-150"
-                            : "bg-blue-600"
-                        }`}
-                      />
+                      className={`w-5 h-5 rounded-full border-4 border-white shadow-lg transition-all duration-300 ${
+                        activeHotspot === pos.id
+                          ? "bg-orange-500 scale-150 rotate-45"
+                          : "bg-blue-600"
+                      }`}
+                    />
 
-                      {/* Tooltip Content */}
-                      {/* {activeHotspot === pos.id && (
-                        <div
-                          className={`absolute z-[100] top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 ${
-                            pos.side === "left" ? "left-0" : "right-0"
-                          }`}
-                        >
-                          {firstProduct?.images?.[0] && (
-                            <img
-                              src={firstProduct.images[0]}
-                              className="w-full h-32 object-contain mb-3"
-                              alt=""
-                            />
-                          )}
-                          <h4 className="font-bold text-slate-900 text-sm mb-2">
-                            {firstProduct
-                              ? language === "zh"
-                                ? firstProduct.nameZh
-                                : language === "en"
-                                  ? firstProduct.nameEn
-                                  : firstProduct.name
-                              : pos.nameVi}
-                          </h4>
-                          <div className="pt-2 border-t">
-                            <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">
-                              Model đề xuất:
-                            </p>
-                            <div className="flex flex-wrap gap-1">
-                              {pos.models.map((m, i) => (
-                                <span
-                                  key={i}
-                                  className={`text-[10px] px-2 py-0.5 rounded font-bold ${colorClasses.bgLight} ${colorClasses.text}`}
-                                >
-                                  {m}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      )} */}
-                      {/* Tooltip Content */}
-                      {activeHotspot === pos.id && (
-                        <div
-                          className={`absolute z-100 top-full mt-4 w-72 bg-white rounded-2xl shadow-2xl border p-4 
-      ${pos.side === "left" ? "left-0" : "right-0"}
-      
-      /* Lớp đệm vô hình kết nối Node và Tooltip */
-      before:content-[''] before:absolute before:w-full before:h-6 before:-top-6 before:left-0`}
-                        >
-                          {/* ... giữ nguyên nội dung bên trong (images, h4, models) ... */}
-                          {firstProduct?.images?.[0] && (
-                            <img
-                              src={firstProduct.images[0]}
-                              className="w-full h-32 object-contain mb-3"
-                              alt=""
-                            />
-                          )}
-                          <h4 className="font-bold text-slate-900 text-sm mb-2">
-                            {firstProduct
-                              ? language === "zh"
-                                ? firstProduct.nameZh
-                                : language === "en"
-                                  ? firstProduct.nameEn
-                                  : firstProduct.name
-                              : pos.nameVi}
-                          </h4>
-                          <div className="pt-2 border-t">
-                            <p className="text-[10px] font-bold text-slate-400 uppercase mb-1">
-                              Model đề xuất:
-                            </p>
-                            <div className="flex flex-wrap gap-1">
-                              {pos.models.map((m, i) => (
-                                <span
-                                  key={i}
-                                  className={`text-[10px] px-2 py-0.5 rounded font-bold ${colorClasses.bgLight} ${colorClasses.text}`}
-                                >
-                                  {m}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                    {activeHotspot === pos.id && (
+                      <ProductTooltip
+                        productId={pos.productId}
+                        productsData={productsData} // Bơm data đã fetch sẵn vào đây
+                        language={language}
+                        pos={pos}
+                        colorClasses={colorClasses}
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           ) : (
-            /* TRƯỜNG HỢP KHÔNG CÓ SƠ ĐỒ - HIỆN COMPONENT TRỐNG */
             <EmptySolution />
           )}
         </div>
@@ -311,8 +225,9 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
         {displayData.machinePositions && (
           <MachineListTable
             machines={displayData.machinePositions}
-            allProducts={typedAllProducts as any}
-            // colorClasses={colorClasses}
+            productsData={productsData} // Kho dữ liệu chung
+            isLoading={isDataLoading} // Trạng thái loading chung
+            // colorClasses={colorClasses} // Màu sắc theo Solution
             title={
               language === "zh"
                 ? "工序清单"
@@ -322,25 +237,23 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
             }
           />
         )}
+
+        {/* Video & Benefits... */}
         {solutionData?.diagramVideo && (
-          <div className="bg-white p-6 md:p-8 shadow-lg mb-12 animate-on-scroll animate-from-bottom">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          <div className="bg-white p-8 shadow-xl rounded-[2.5rem] mb-12 border border-slate-50 overflow-hidden">
+            <h2 className="text-2xl font-black text-slate-900 mb-8 text-center uppercase">
               {language === "zh"
                 ? "演示视频"
                 : language === "en"
-                  ? "Demonstration Video"
+                  ? "Video"
                   : "Video Minh Họa"}
             </h2>
-            <div className="flex justify-center">
-              <div className="w-full max-w-4xl aspect-video">
-                <iframe
-                  src={solutionData?.diagramVideo}
-                  title="Demonstration Video"
-                  className="w-full h-full rounded-lg shadow-lg"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
+            <div className="aspect-video max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
+              <iframe
+                src={solutionData.diagramVideo}
+                className="w-full h-full"
+                allowFullScreen
+              />
             </div>
           </div>
         )}

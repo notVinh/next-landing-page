@@ -1,3 +1,4 @@
+import Crumbar from "@/components/Crumbar";
 import ProductDetailDesc from "@/components/ProductDetailDesc";
 import QuoteModal from "@/components/QuoteModal";
 import SlideUi from "@/components/SlideUi";
@@ -53,13 +54,20 @@ const translationDetail = {
 };
 
 export default async function ProductDetailPage({
+  parent,
+  child,
   productSlug,
   lang = "vi",
 }: {
+  parent: string;
+  child: string;
   productSlug: string;
   lang: string;
 }) {
   if (!productSlug) return notFound();
+
+  console.log(parent);
+  console.log(child);
 
   let product;
   try {
@@ -82,7 +90,7 @@ export default async function ProductDetailPage({
   return (
     <div className="min-h-screen bg-white">
       {/* SECTION 1: HERO BANNER (Giống ảnh mẫu Hikari) */}
-      <div className="relative bg-blue-600 (hoặc bg-slate-900) pt-20 pb-20 overflow-hidden text-white min-h-170">
+      <div className="relative bg-blue-600 (hoặc bg-slate-900) pt-2 md:pt-10 pb-20 overflow-hidden text-white min-h-170">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
@@ -93,12 +101,13 @@ export default async function ProductDetailPage({
               <nav className="flex text-sm text-blue-200 gap-2 mb-4">
                 {/* <span>{t("nav.home") as string}</span> / <span>Products</span> /{" "} */}
                 {/* <span className="text-white font-bold">{product.brand}</span> */}
+                <Crumbar parent={parent} child={child} />
               </nav>
-              <h1 className="text-4xl md:text-5xl font-black leading-tight uppercase tracking-tighter">
+              <div className="text-4xl md:text-4xl font-black leading-tight uppercase tracking-tighter">
                 {currentProduct.name}
-              </h1>
+              </div>
               <div
-                className="prose max-w-none description-content font-light leading-relaxed line-clamp-4"
+                className="prose max-w-none description-content font-light leading-relaxed line-clamp-4 text-[30px]"
                 dangerouslySetInnerHTML={{
                   __html: currentProduct.description
                     .replace(/<img[^>]*>/g, "")

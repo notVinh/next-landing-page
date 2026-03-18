@@ -97,8 +97,8 @@ export default async function SlugPage({ params }: PageProps) {
     return (
       <ProductDetailPage
         lang={lang}
-        // parent={pathSegments[1]}
-        // child={pathSegments[2]}
+        parent={pathSegments[1]}
+        child={pathSegments[2]}
         productSlug={pathSegments[3]}
       />
     );
