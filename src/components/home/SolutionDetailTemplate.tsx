@@ -107,8 +107,6 @@ function SolutionTemplate({ slug }: SolutionTemplateProps) {
     fetchSolutionProducts();
   }, [displayData]);
 
-  console.log(productsData);
-
   if (!solutionData || !displayData) return <EmptySolution />;
 
   const { config, id: solutionId } = solutionData;

@@ -130,8 +130,6 @@ export async function loginAction(formData: any) {
 
     const user = userInfoRes?.data;
 
-    console.log(user.roleGroups);
-
     // 3. KIỂM TRA ROLE TẠI ĐÂY
     // Giả sử field role nằm trong user.role.name hoặc user.roles
     // const isKinhDoanh =

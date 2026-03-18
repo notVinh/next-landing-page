@@ -66,9 +66,6 @@ export default async function ProductDetailPage({
 }) {
   if (!productSlug) return notFound();
 
-  console.log(parent);
-  console.log(child);
-
   let product;
   try {
     product = await getProductById(productSlug);

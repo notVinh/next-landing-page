@@ -69,8 +69,6 @@ const ProductPriceTable = ({
     return new Intl.NumberFormat("vi-VN").format(number);
   };
 
-  console.log(products);
-
   return (
     <div className="bg-gray-50 min-h-screen font-sans pb-10">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-800 w-full text-center py-6">
