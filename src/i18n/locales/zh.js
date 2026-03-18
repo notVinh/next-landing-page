@@ -531,7 +531,7 @@ export default {
       title: "技术解决方案",
       heroDesc:
         "GTG针对牛仔、夹克、运动服、内衣等不同服装产品，提供定制化自动化设备及生产工艺解决方案。",
-      heroDesc:
+      heroDesc2:
         "帮助企业提升生产效率，降低对人工的依赖，并保证产品质量的稳定性。",
       sectionTitle: "行业解决方案",
       sectionDesc1:
