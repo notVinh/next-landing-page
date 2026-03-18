@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLanguage } from "../contexts/LanguageContext";
 import { getProductSlug } from "../utils/slugUtils";
 import { LocalizedLink } from "./LocalizedLink";
+import { useCategoriesStore } from "@/lib/zustand/useCategoriesStore";
 
 interface Machine {
   id: string | number;
@@ -30,6 +31,26 @@ interface MachineListTableProps {
   title?: string;
 }
 
+// Giả định các Interface này đã được khai báo ở trên hoặc import vào
+interface Translation {
+  languageCode: string;
+  slug: string;
+}
+
+interface Category {
+  id: string;
+  parentId?: string | null;
+  translations: Translation[];
+}
+
+interface Product {
+  id: string;
+  category: {
+    id: string;
+  };
+  // translations: Translation[]; // Mở comment nếu bạn cần dùng slug của sản phẩm
+}
+
 export default function MachineListTable({
   machines,
   productsData,
@@ -38,6 +59,7 @@ export default function MachineListTable({
   title,
 }: MachineListTableProps) {
   const { language } = useLanguage();
+  const { categories } = useCategoriesStore();
 
   if (!machines || machines.length === 0) return null;
 
@@ -70,10 +92,90 @@ export default function MachineListTable({
     return trans?.name || product.id;
   };
 
-  const getProductLink = (product: any) => {
+  // const getProductLink = (product: any) => {
+  //   const currentParrentItem = categories.find(
+  //     (i) => i.id === product.category.id,
+  //   );
+  //   const currentParrentslug = currentParrentItem?.translations.find(
+  //     (i) => i.languageCode === language,
+  //   ).slug;
+  //   console.log(currentParrentslug);
+  //   if (!product) return "/san-pham";
+  //   const slug = getProductSlug(product, language);
+  //   return `/san-pham/${slug}`;
+  // };
+
+  // const getProductLink = (product: any) => {
+  //   if (!product) return "/san-pham";
+
+  //   // 1. Tìm danh mục CHA (Parent)
+  //   const parentCategory = categories.find(
+  //     (cat) => cat.id === product.category.id,
+  //   );
+
+  //   // 2. Tìm danh mục ÔNG NỘI (Grandparent) dựa vào parentId của cha
+  //   const grandparentCategory = categories.find(
+  //     (cat) => cat.id === parentCategory?.parentId,
+  //   );
+
+  //   // 3. Lấy Slug của CHA theo ngôn ngữ hiện tại
+  //   const parentSlug = parentCategory?.translations?.find(
+  //     (t: any) => t.languageCode === language,
+  //   )?.slug;
+
+  //   // 4. Lấy Slug của ÔNG NỘI theo ngôn ngữ hiện tại
+  //   const grandparentSlug = grandparentCategory?.translations?.find(
+  //     (t: any) => t.languageCode === language,
+  //   )?.slug;
+
+  //   // 5. Lấy Slug của chính SẢN PHẨM
+  //   // const productSlug = getProductSlug(product, language);
+  //   // const productSlug = product.translations.find(
+  //   //   (i) => i.languageCode === language,
+  //   // ).slug;
+
+  //   // 6. Xây dựng URL (Giả sử cấu trúc: /san-pham/ong-noi/cha/san-pham)
+  //   // Bạn có thể thêm điều kiện check nếu không có ông nội thì bỏ qua segment đó
+  //   if (grandparentSlug && parentSlug) {
+  //     return `/san-pham/${grandparentSlug}/${parentSlug}/${product.id}`;
+  //   } else if (parentSlug) {
+  //     return `/san-pham/${parentSlug}/${product.id}`;
+  //   }
+
+  //   return `/san-pham/${product.id}`;
+  // };
+
+  const getProductLink = (product: Product | null | undefined): string => {
     if (!product) return "/san-pham";
-    const slug = getProductSlug(product, language);
-    return `/san-pham/${slug}`;
+
+    // 1. Tìm danh mục CHA (Parent)
+    // categories và language lúc này được lấy trực tiếp từ scope bên ngoài
+    const parentCategory = categories.find(
+      (cat: any) => cat.id === product.category.id,
+    );
+
+    // 2. Tìm danh mục ÔNG NỘI (Grandparent)
+    const grandparentCategory = categories.find(
+      (cat: any) => cat.id === parentCategory?.parentId,
+    );
+
+    // 3. Helper lấy slug theo ngôn ngữ hiện tại (biến language từ scope ngoài)
+    const getSlug = (cat?: any): string | undefined =>
+      cat?.translations?.find((t: any) => t.languageCode === language)?.slug;
+
+    const parentSlug = getSlug(parentCategory);
+    const grandparentSlug = getSlug(grandparentCategory);
+
+    // 4. Xây dựng URL dựa trên số cấp tìm thấy
+    if (grandparentSlug && parentSlug) {
+      return `/san-pham/${grandparentSlug}/${parentSlug}/${product.id}`;
+    }
+
+    if (parentSlug) {
+      return `/san-pham/${parentSlug}/${product.id}`;
+    }
+
+    return `/san-pham/${product.id}`;
   };
 
   return (
