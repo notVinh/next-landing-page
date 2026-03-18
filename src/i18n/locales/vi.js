@@ -575,7 +575,10 @@ export default {
     solutionsPage: {
       title: "Giải Pháp Công Nghệ",
       heroDesc:
-        "GTG cung cấp giải pháp máy móc toàn diện cho từng loại sản phẩm may mặc, từ đồ lót đến âu phục, giúp tối ưu hóa quy trình sản xuất của bạn.",
+        "GTG cung cấp giải pháp công nghệ toàn diện cho từng loại sản phẩm may như jeans, áo khoác, đồ thể thao, đồ lót… với hệ thống máy tự động và quy trình tối ưu theo đặc thù sản xuất.",
+      sectionTitle: "Giải Pháp Theo Ngành Hàng",
+      heroDesc2:
+        "Giải pháp giúp doanh nghiệp nâng cao năng suất, giảm phụ thuộc lao động tay nghề và đảm bảo chất lượng đồng đều trong sản xuất.",
       sectionTitle: "Giải Pháp Theo Ngành Hàng",
       sectionDesc1:
         "Mỗi loại sản phẩm may mặc đều có những yêu cầu riêng về máy móc và công nghệ. GTG hiểu điều đó và đã phát triển các giải pháp chuyên biệt cho từng ngành hàng, giúp doanh nghiệp của bạn sản xuất hiệu quả với chất lượng tốt nhất.",

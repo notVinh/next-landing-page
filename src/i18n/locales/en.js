@@ -576,7 +576,10 @@ export default {
       title: "Technology Solutions",
 
       heroDesc:
-        "GTG provides comprehensive machinery solutions for each type of garment product, from underwear to formal wear, helping optimize your production process.",
+        "GTG provides comprehensive technology solutions tailored to various garment products such as jeans, jackets, sportswear, and underwear, combining automation equipment with optimized production processes.",
+      heroDesc2:
+        "These solutions help improve productivity, reduce labor dependency, and ensure consistent product quality.",
+
       sectionTitle: "Solutions by Industry",
       sectionDesc1:
         "Each type of garment product has its own requirements for machinery and technology. GTG understands this and has developed specialized solutions for each industry, helping your business produce efficiently with the best quality.",

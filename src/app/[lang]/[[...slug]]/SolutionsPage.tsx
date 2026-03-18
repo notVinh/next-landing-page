@@ -73,8 +73,11 @@ export function SolutionsPage() {
           <h1 className="text-4xl font-bold mb-4">
             {t("pages.solutionsPage.title") as string}
           </h1>
-          <p className="text-xl text-blue-100 max-w-3xl">
+          <p className="text-xl text-blue-100 mb-5">
             {t("pages.solutionsPage.heroDesc") as string}
+          </p>
+          <p className="text-xl text-blue-100">
+            {t("pages.solutionsPage.heroDesc2") as string}
           </p>
         </div>
       </div>
