@@ -4,7 +4,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Dialog, Tab, Transition } from "@headlessui/react";
 import { XMarkIcon, CheckBadgeIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
-import { getProductPrices, getProductPricesArray } from "@/config/formatPrice";
+import { getProductPricesArray } from "@/config/formatPrice";
 
 interface PriceModalProps {
   isOpen: boolean;

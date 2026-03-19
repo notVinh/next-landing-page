@@ -5,7 +5,13 @@ import QuoteModal from "./QuoteModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useUserStore } from "@/lib/zustand/userStore";
 
-const ChangeModalProduct = ({ product, currentLangPro }) => {
+const ChangeModalProduct = ({
+  product,
+  currentLangPro,
+}: {
+  product: any;
+  currentLangPro: any;
+}) => {
   const { language } = useLanguage();
   const { user } = useUserStore();
   console.log(user);
