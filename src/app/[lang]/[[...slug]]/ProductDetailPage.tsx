@@ -1,4 +1,6 @@
+import ChangeModalProduct from "@/components/ChangeModalProduct";
 import Crumbar from "@/components/Crumbar";
+import PriceModal from "@/components/PriceModal";
 import ProductDetailDesc from "@/components/ProductDetailDesc";
 import QuoteModal from "@/components/QuoteModal";
 import SlideUi from "@/components/SlideUi";
@@ -104,7 +106,7 @@ export default async function ProductDetailPage({
                 {currentProduct.name}
               </div>
               <div
-                className="prose max-w-none description-content font-light leading-relaxed line-clamp-4 text-[30px]"
+                className="prose max-w-none description-content font-light leading-tight line-clamp-3 text-[30px]"
                 dangerouslySetInnerHTML={{
                   __html: currentProduct.description
                     .replace(/<img[^>]*>/g, "")
@@ -115,16 +117,10 @@ export default async function ProductDetailPage({
                 {t.description}
               </p> */}
 
-              <div className="flex flex-wrap gap-4 pt-4 ">
-                <QuoteModal
-                  productName={currentProduct.name}
-                  productId={product.id}
-                  lang={lang}
-                />
-                {/* <button className="border-2 border-white/30 hover:bg-white hover:text-blue-900 px-8 py-4 rounded-full font-bold transition-all uppercase text-sm">
-                  Download Brochure
-                </button> */}
-              </div>
+              <ChangeModalProduct
+                product={product}
+                currentLangPro={currentProduct}
+              />
             </div>
 
             {/* Ảnh sản phẩm bên phải (Tràn lề) */}

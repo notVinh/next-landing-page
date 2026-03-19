@@ -140,7 +140,7 @@ export async function loginAction(formData: any) {
 
     // console.log(isKinhDoanh);
 
-    const businessId = ["13", "14", "3"];
+    const businessId = ["3", "2"];
     const isKinhDoanh = user.roleGroups.some((item: any) =>
       businessId.includes(item.id),
     );

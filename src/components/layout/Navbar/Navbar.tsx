@@ -10,6 +10,8 @@ import { NavbarCompanyDropdown } from "./NavbarCompanyDropdown";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useCategoriesStore } from "@/lib/zustand/useCategoriesStore";
 import { NavbarTestDropdown } from "./NavbarTestDropdown";
+import { useUserStore } from "@/lib/zustand/userStore";
+import LogoutButton from "@/components/business/LogoutButton";
 
 function getPathWithoutLang(pathname: string | null): string {
   if (!pathname) return "/";
@@ -18,6 +20,7 @@ function getPathWithoutLang(pathname: string | null): string {
 
 export function Navbar({ data }: { data: any[] }) {
   const { categories, setCategories } = useCategoriesStore();
+  const { user } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -210,12 +213,24 @@ export function Navbar({ data }: { data: any[] }) {
 
             <LanguageSwitcher />
 
-            <button
-              onClick={() => router.push("/business/product")}
-              className="border border-gray-200 rounded-lg p-2 text-gray-700 hover:bg-blue-600 hover:text-white cursor-pointer"
-            >
-              Đăng nhập
-            </button>
+            {user ? (
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 overflow-hidden rounded-full">
+                  <img
+                    src={user.user.photo.path}
+                    className="w-auto h-20 object-cover"
+                  ></img>
+                </div>
+                <LogoutButton />
+              </div>
+            ) : (
+              <button
+                onClick={() => router.push("/business/login")}
+                className="border border-gray-200 rounded-lg p-2 text-gray-700 hover:bg-blue-600 hover:text-white cursor-pointer"
+              >
+                Đăng nhập
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -306,12 +321,24 @@ export function Navbar({ data }: { data: any[] }) {
               >
                 {t("nav.contact") as string}
               </LocalizedLink>
-              <button
-                onClick={() => router.push("/business/product")}
-                className="border border-gray-200 rounded-lg p-2 text-black hover:bg-blue-600 hover:text-white cursor-pointer"
-              >
-                Đăng nhập cho kinh doanh
-              </button>
+              {user ? (
+                <div className="flex items-center gap-2 px-3 md:px-0">
+                  <div className="w-8 h-8 overflow-hidden rounded-full">
+                    <img
+                      src={user.user.photo.path}
+                      className="w-auto h-20 object-cover"
+                    ></img>
+                  </div>
+                  <LogoutButton />
+                </div>
+              ) : (
+                <button
+                  onClick={() => router.push("/business/product")}
+                  className="border border-gray-200 rounded-lg p-2 text-black hover:bg-blue-600 hover:text-white cursor-pointer"
+                >
+                  Đăng nhập cho kinh doanh
+                </button>
+              )}
             </div>
           </div>
         )}

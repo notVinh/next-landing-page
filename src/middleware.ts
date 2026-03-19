@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
   if (pathname.startsWith("/business")) {
     // 1. Nếu đang vào trang Login MÀ ĐÃ CÓ token -> Đá về Dashboard
     if (pathname === "/business/login" && accessToken) {
-      return NextResponse.redirect(new URL("/business/product", request.url));
+      return NextResponse.redirect(new URL("/", request.url));
     }
 
     // 2. Nếu vào các trang quản trị MÀ CHƯA CÓ token -> Đá về Login

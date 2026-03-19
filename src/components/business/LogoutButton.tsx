@@ -18,8 +18,9 @@ const LogoutButton = () => {
       // localStorage.clear();
 
       // 4. Điều hướng và Refresh để xóa sạch trạng thái cũ
-      router.push("/");
-      router.refresh();
+      // router.push("/");
+      // router.refresh();
+      window.location.href = "/";
     }
   };
 

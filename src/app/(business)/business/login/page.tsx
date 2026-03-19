@@ -6,11 +6,13 @@ import { Eye, EyeOff, Lock, User, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { loginAction } from "./action";
 import { toast } from "react-toastify";
+import { useUserStore } from "@/lib/zustand/userStore";
 
 export default function AdminLoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useUserStore();
 
   const {
     register,
@@ -20,13 +22,15 @@ export default function AdminLoginPage() {
 
   const onSubmit = async (data: any) => {
     const result = await loginAction(data);
+    console.log(result);
 
     if (result.success) {
       toast.success("Đăng nhập thành công!", {
         position: "top-center",
       });
       // Chuyển hướng sang dashboard
-      router.push("/business/product");
+      setUser(result.userData);
+      router.push("/");
       router.refresh(); // Làm mới lại Middleware để nhận diện Cookie mới
     } else {
       toast.error(result.message, {
