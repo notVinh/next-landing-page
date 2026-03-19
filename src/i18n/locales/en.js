@@ -204,7 +204,7 @@ export default {
     companyName: "GTG",
     established: "Established",
     description1:
-      "<strong>R&D SYSTEM:</strong> GTG owns <strong>02 research & development centers (R&D)</strong> in <strong>Shenzhen and Hefei, China</strong> serving as the <strong>technological foundation</strong> for all products.",
+      "<strong>R&D SYSTEM:</strong> GTG owns <strong>01 research & development centers (R&D)</strong> in <strong>Shenzhen and Hefei, China</strong> serving as the <strong>technological foundation</strong> for all products.",
     rdFeatures: [
       "Design of industrial sewing machines & auxiliary equipment",
       "Development of circuit boards, control systems, energy optimization",

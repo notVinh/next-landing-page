@@ -78,13 +78,12 @@ const ProductTooltip = ({
     <div className={wrapperClasses}>
       {/* Ảnh sản phẩm */}
       {productImage ? (
-        <div className="relative w-full h-36 bg-slate-50 rounded-xl mb-3 border border-slate-50 overflow-hidden">
-          <Image
+        <div className="relative w-full h-36 bg-slate-50 rounded-xl mb-3 border border-slate-50 overflow-hidden flex items-center justify-center">
+          <img
             src={productImage}
             alt={productName}
-            fill
-            className="object-contain p-2"
-            sizes="280px"
+            className="object-contain p-2 h-40 "
+            // sizes="280px"
           />
         </div>
       ) : (

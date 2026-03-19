@@ -204,7 +204,7 @@ export default {
     companyName: "GTG",
     established: "Thành lập",
     description1:
-      "<strong>HỆ THỐNG R&D:</strong> GTG sở hữu <strong>02 trung tâm</strong> nghiên cứu & phát triển (R&D) tại <strong>Thâm Quyến và Hợp Phì, Trung Quốc</strong> đóng vai trò <strong>nền tảng công nghệ</strong> cho toàn bộ sản phẩm.",
+      "<strong>HỆ THỐNG R&D:</strong> GTG sở hữu <strong>01 trung tâm</strong> nghiên cứu & phát triển (R&D) tại <strong>Thâm Quyến và Hợp Phì, Trung Quốc</strong> đóng vai trò <strong>nền tảng công nghệ</strong> cho toàn bộ sản phẩm.",
     rdFeatures: [
       "Thiết kế máy may công nghiệp & thiết bị phụ trợ",
       "Phát triển bo mạch, hệ điều khiển, tối ưu năng lượng",

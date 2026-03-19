@@ -266,7 +266,7 @@ export default async function ProductDetailPage({
                       {currentProduct.features.map((f: string, i: number) => (
                         <li
                           key={i}
-                          className="flex gap-4 items-start text-slate-300 text-sm"
+                          className="flex gap-4 items-start text-slate-300 text-[16px]"
                         >
                           <CheckCircleIcon className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
                           {f}

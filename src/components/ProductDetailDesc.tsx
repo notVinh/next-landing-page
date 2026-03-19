@@ -49,7 +49,7 @@ const ProductDetailDesc = ({
                 prose-p:text-slate-600 prose-p:leading-relaxed
                 prose-img:rounded-[2rem] prose-img:shadow-2xl prose-img:mx-auto prose-img:border-8 prose-img:border-slate-50
                 prose-strong:text-blue-700
-                prose-a:text-blue-600 hover:prose-a:text-blue-800"
+                prose-a:text-blue-600 hover:prose-a:text-blue-800 text-[18px]"
             dangerouslySetInnerHTML={{
               __html: cleanHtmlContent(desc),
             }}

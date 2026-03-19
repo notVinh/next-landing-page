@@ -253,13 +253,12 @@ export default function MachineListTable({
                   <td className="px-6 py-5">
                     <div className="flex justify-center">
                       {hasProducts && productImage ? (
-                        <div className="relative w-20 h-20 bg-white p-1 rounded-xl border border-slate-100 shadow-sm group-hover:scale-110 transition-transform">
-                          <Image
+                        <div className="relative w-20 h-20 bg-white p-1 rounded-xl border border-slate-100 shadow-sm group-hover:scale-110 transition-transform flex justify-center items-center">
+                          <img
                             src={productImage}
                             alt="Machine"
-                            fill
                             className="object-contain p-1"
-                            sizes="80px"
+                            sizes="90px"
                           />
                         </div>
                       ) : (
