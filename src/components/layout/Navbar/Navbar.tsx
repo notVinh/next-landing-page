@@ -217,8 +217,8 @@ export function Navbar({ data }: { data: any[] }) {
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 overflow-hidden rounded-full">
                   <img
-                    src={user.user.photo.path}
-                    className="w-auto h-20 object-cover"
+                    src={user?.user?.photo?.path || "/noimg.png"}
+                    className="h-auto h-20 object-cover"
                   ></img>
                 </div>
                 <LogoutButton />
