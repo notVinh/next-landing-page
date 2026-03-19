@@ -108,7 +108,7 @@ const ProductDetailDesc = ({
         {videoList?.length > 0 && (
           <div className="flex flex-col items-center justify-center mt-20">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">
-              {"Video sản phẩm"}
+              {"Video"}
             </h2>
             <div className="w-20 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
 

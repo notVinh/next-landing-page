@@ -112,10 +112,10 @@ export default function QuoteModal({
       >
         <PhoneIcon className="w-5 h-5" />
         {lang === "vi"
-          ? "Liên hệ báo giá"
+          ? "Nhận báo giá & giải pháp trong 24h"
           : lang === "en"
-            ? "Request Quote"
-            : "联系报价"}
+            ? "Get a quote and solution within 24 hours."
+            : "24小时内即可获得报价和解决方案。"}
       </button>
       {isOpen && (
         <div className="fixed inset-0 z-100 flex items-center justify-center p-4 mt-12">
