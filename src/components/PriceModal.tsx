@@ -1,9 +1,8 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Dialog, Tab, Transition } from "@headlessui/react";
-import { XMarkIcon, CheckBadgeIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { getProductPricesArray } from "@/config/formatPrice";
 
 interface PriceModalProps {
@@ -67,6 +66,8 @@ function PriceModalDetail({
     product.originalPrice,
     product.price,
   );
+
+  const [isHidden, setIsHidden] = useState(true);
 
   // Quản lý tab bằng index (0, 1, 2) để khớp hoàn hảo với Headless UI
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -167,9 +168,26 @@ function PriceModalDetail({
                                 <p className="text-xs text-black font-semibold uppercase tracking-wider mb-1">
                                   Giá Gốc (Original)
                                 </p>
-                                <p className="text-3xl font-black text-black decoration-red-400/50">
-                                  {item.original}
-                                </p>
+                                {!isHidden ? (
+                                  <>
+                                    <p className="text-3xl font-black text-black decoration-red-400/50">
+                                      {item.original}
+                                    </p>
+                                    <button
+                                      onClick={() => setIsHidden(true)}
+                                      className="border px-5 py-1 rounded-lg mt-2 border-gray-100 shadow-sm hover:text-white hover:bg-blue-600"
+                                    >
+                                      Ẩn
+                                    </button>
+                                  </>
+                                ) : (
+                                  <button
+                                    onClick={() => setIsHidden(false)}
+                                    className="border px-5 py-1 rounded-lg mt-2 border-gray-100 shadow-sm hover:text-white hover:bg-blue-600"
+                                  >
+                                    Xem
+                                  </button>
+                                )}
                               </div>
                             </div>
 
