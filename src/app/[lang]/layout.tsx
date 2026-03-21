@@ -44,8 +44,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [
         {
           url: "https://gtgsew.com/images/anhcty/z7357057865754_32e8b0dfead67aaba6e79ba81571bcf0.jpg",
-          width: 400,
-          height: 400,
+          width: 600,
+          height: 315,
           alt: t.title,
         },
       ],
