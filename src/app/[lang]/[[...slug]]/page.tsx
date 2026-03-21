@@ -140,8 +140,8 @@ export async function generateMetadata({
       images: [
         {
           url: finalImage,
-          width: 1080,
-          height: 566,
+          width: 400,
+          height: 210,
           alt: finalTitle,
         },
       ],
