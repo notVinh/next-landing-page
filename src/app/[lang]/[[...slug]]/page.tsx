@@ -132,6 +132,12 @@ export async function generateMetadata({
     title: finalTitle,
     description: finalDesc,
     icons: { icon: "/favicon.ico" },
+    twitter: {
+      card: "summary", // Cực kỳ quan trọng: "summary" thay vì "summary_large_image"
+      title: finalTitle,
+      description: finalDesc,
+      images: [finalImage],
+    },
     openGraph: {
       title: finalTitle,
       description: finalDesc,
